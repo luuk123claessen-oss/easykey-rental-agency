@@ -26,7 +26,7 @@ document.addEventListener('DOMContentLoaded', function () {
   if (form && status) {
     form.addEventListener('submit', function (e) {
       e.preventDefault();
-      status.textContent = 'Thanks for reaching out! We will get back to you soon.';
+      status.textContent = 'Bedankt voor uw aanvraag! Wij nemen zo spoedig mogelijk contact met u op.';
       form.reset();
     });
   }

@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EasyKey Rental Agency | Rooms & Apartments in Groningen</title>
+  <meta name="description" content="EasyKey Rental Agency helps students and professionals find rooms and apartments to rent in Groningen, Netherlands.">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="#" class="logo">Easy<span>Key</span></a>
+      <nav class="main-nav" id="main-nav">
+        <a href="#listings">Listings</a>
+        <a href="#how-it-works">How It Works</a>
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
+      </nav>
+      <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="container hero-inner">
+      <h1>Find your room or apartment in Groningen</h1>
+      <p>EasyKey Rental Agency matches students and professionals with verified rooms and apartments across Groningen — fast, honest, and hassle-free.</p>
+      <a href="#listings" class="btn btn-primary">Browse Listings</a>
+    </div>
+  </section>
+
+  <section class="listings" id="listings">
+    <div class="container">
+      <h2>Featured Listings</h2>
+      <div class="listing-grid">
+        <article class="listing-card">
+          <div class="listing-image listing-image--1"></div>
+          <div class="listing-body">
+            <h3>Cozy Studio &mdash; Binnenstad</h3>
+            <p class="listing-meta">28 m² &middot; Furnished &middot; 5 min to city center</p>
+            <p class="listing-price">&euro;750 / month</p>
+          </div>
+        </article>
+        <article class="listing-card">
+          <div class="listing-image listing-image--2"></div>
+          <div class="listing-body">
+            <h3>Bright Room &mdash; Paddepoel</h3>
+            <p class="listing-meta">16 m² &middot; Shared kitchen &middot; Near RUG campus</p>
+            <p class="listing-price">&euro;480 / month</p>
+          </div>
+        </article>
+        <article class="listing-card">
+          <div class="listing-image listing-image--3"></div>
+          <div class="listing-body">
+            <h3>2-Bedroom Apartment &mdash; Helpman</h3>
+            <p class="listing-meta">65 m² &middot; Balcony &middot; Quiet neighborhood</p>
+            <p class="listing-price">&euro;1,150 / month</p>
+          </div>
+        </article>
+        <article class="listing-card">
+          <div class="listing-image listing-image--4"></div>
+          <div class="listing-body">
+            <h3>Modern Loft &mdash; Oosterpoort</h3>
+            <p class="listing-meta">40 m² &middot; Newly renovated &middot; Bike storage</p>
+            <p class="listing-price">&euro;895 / month</p>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="how-it-works" id="how-it-works">
+    <div class="container">
+      <h2>How It Works</h2>
+      <div class="steps">
+        <div class="step">
+          <span class="step-number">1</span>
+          <h3>Browse</h3>
+          <p>Explore verified rooms and apartments across Groningen.</p>
+        </div>
+        <div class="step">
+          <span class="step-number">2</span>
+          <h3>Schedule a Viewing</h3>
+          <p>Book a viewing online or in person at a time that suits you.</p>
+        </div>
+        <div class="step">
+          <span class="step-number">3</span>
+          <h3>Sign & Move In</h3>
+          <p>Sign your contract digitally and get your keys — easy as that.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="about" id="about">
+    <div class="container">
+      <h2>About EasyKey</h2>
+      <p>EasyKey Rental Agency has been helping students, internationals, and young professionals find housing in Groningen for years. We know the local market inside and out, and we're committed to transparent pricing, verified listings, and a smooth rental process from first viewing to signed contract.</p>
+    </div>
+  </section>
+
+  <section class="contact" id="contact">
+    <div class="container">
+      <h2>Get in Touch</h2>
+      <form id="contact-form" class="contact-form">
+        <div class="form-row">
+          <label for="name">Name</label>
+          <input type="text" id="name" name="name" required>
+        </div>
+        <div class="form-row">
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" required>
+        </div>
+        <div class="form-row">
+          <label for="message">Message</label>
+          <textarea id="message" name="message" rows="5" required></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">Send Message</button>
+        <p class="form-status" id="form-status" role="status"></p>
+      </form>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <p>&copy; <span id="year"></span> EasyKey Rental Agency &middot; Groningen, Netherlands</p>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

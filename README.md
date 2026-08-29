@@ -33,3 +33,4 @@ This site is deployed via Cloudflare Pages, connected to this GitHub repository.
 - Output directory: `/`
 
 <!-- deploy trigger test 2026-08-29T08:30:34Z -->
+<!-- reconnect test 2026-08-29T08:39:25Z -->

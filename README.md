@@ -31,3 +31,5 @@ This site is deployed via Cloudflare Pages, connected to this GitHub repository.
 - Framework preset: None
 - Build command: none
 - Output directory: `/`
+
+<!-- deploy trigger test 2026-08-29T08:30:34Z -->

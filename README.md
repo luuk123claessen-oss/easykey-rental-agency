@@ -26,11 +26,11 @@ Then visit `http://localhost:8000`.
 
 ## Deployment
 
-This site is deployed via Cloudflare Pages, connected to this GitHub repository. Pushes to `main` automatically trigger a new deployment.
+This site is deployed to Cloudflare Workers (static assets) via GitHub Actions (`.github/workflows/deploy.yml`). Every push to `main` runs `wrangler deploy` automatically.
 
-- Framework preset: None
-- Build command: none
-- Output directory: `/`
+Required GitHub repository secrets:
 
-<!-- deploy trigger test 2026-08-29T08:30:34Z -->
-<!-- reconnect test 2026-08-29T08:39:25Z -->
+- `CLOUDFLARE_API_TOKEN` — a Cloudflare API token with Workers edit permission
+- `CLOUDFLARE_ACCOUNT_ID` — the Cloudflare account ID
+
+Live at: https://easykey-rental-agency.luuk123-claessen.workers.dev

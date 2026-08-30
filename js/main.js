@@ -24,8 +24,8 @@ document.addEventListener('DOMContentLoaded', function () {
   initWizard();
 });
 
-// Fill in once available — each key routes a copy of the submission to one inbox.
-var WEB3FORMS_ACCESS_KEYS = [];
+// Each key routes a copy of the submission to one inbox.
+var WEB3FORMS_ACCESS_KEYS = ['fe9f8c84-09c5-4b3f-8d23-d21589cfe188'];
 
 function initWizard() {
   var wizard = document.getElementById('wizard');

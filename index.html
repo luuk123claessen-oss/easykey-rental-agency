@@ -159,38 +159,83 @@
     <div class="container">
       <p class="section-label section-label--light">Contact</p>
       <h2>Plaats uw zoekopdracht</h2>
-      <p class="contact-intro">Vertel ons wat u zoekt — wij gaan voor u aan de slag binnen ons netwerk.</p>
-      <form id="contact-form" class="contact-form">
-        <div class="form-grid">
-          <div class="form-row">
-            <label for="name">Naam</label>
-            <input type="text" id="name" name="name" required>
-          </div>
-          <div class="form-row">
-            <label for="email">E-mailadres</label>
-            <input type="email" id="email" name="email" required>
-          </div>
-          <div class="form-row">
-            <label for="type">Op zoek naar</label>
-            <select id="type" name="type" required>
-              <option value="" disabled selected>Maak een keuze</option>
-              <option value="kamer">Kamer</option>
-              <option value="studio">Studio</option>
-              <option value="appartement">Appartement</option>
-            </select>
-          </div>
-          <div class="form-row">
-            <label for="budget">Budget per maand</label>
-            <input type="text" id="budget" name="budget" placeholder="&euro; 750">
+      <p class="contact-intro">Beantwoord 4 korte vragen — u bent er in minder dan een minuut doorheen.</p>
+
+      <div class="wizard" id="wizard">
+        <div class="wizard-progress" id="wizard-progress" role="progressbar" aria-valuemin="1" aria-valuemax="5" aria-valuenow="1">
+          <span class="wizard-dot is-active" data-dot="1"></span>
+          <span class="wizard-dot" data-dot="2"></span>
+          <span class="wizard-dot" data-dot="3"></span>
+          <span class="wizard-dot" data-dot="4"></span>
+          <span class="wizard-dot" data-dot="5"></span>
+        </div>
+
+        <button type="button" class="wizard-back" id="wizard-back" aria-label="Vorige vraag">&larr; Vorige</button>
+
+        <div class="wizard-step is-active" data-step="1">
+          <h3 class="wizard-question">Wat zoekt u?</h3>
+          <div class="wizard-options">
+            <button type="button" class="wizard-option" data-field="type" data-value="Kamer">Kamer</button>
+            <button type="button" class="wizard-option" data-field="type" data-value="Studio">Studio</button>
+            <button type="button" class="wizard-option" data-field="type" data-value="Appartement">Appartement</button>
           </div>
         </div>
-        <div class="form-row">
-          <label for="message">Uw wensen</label>
-          <textarea id="message" name="message" rows="5" placeholder="Locatie, gewenste ingangsdatum, aantal personen, overige wensen..." required></textarea>
+
+        <div class="wizard-step" data-step="2">
+          <h3 class="wizard-question">Wat is uw budget per maand?</h3>
+          <div class="wizard-options">
+            <button type="button" class="wizard-option" data-field="budget" data-value="Tot &euro;600">Tot &euro;600</button>
+            <button type="button" class="wizard-option" data-field="budget" data-value="&euro;600 &ndash; &euro;800">&euro;600 &ndash; &euro;800</button>
+            <button type="button" class="wizard-option" data-field="budget" data-value="&euro;800 &ndash; &euro;1.000">&euro;800 &ndash; &euro;1.000</button>
+            <button type="button" class="wizard-option" data-field="budget" data-value="&euro;1.000+">&euro;1.000+</button>
+          </div>
         </div>
-        <button type="submit" class="btn btn-primary">Verstuur aanvraag</button>
-        <p class="form-status" id="form-status" role="status"></p>
-      </form>
+
+        <div class="wizard-step" data-step="3">
+          <h3 class="wizard-question">Wanneer wilt u erin?</h3>
+          <div class="wizard-options">
+            <button type="button" class="wizard-option" data-field="timing" data-value="Zo snel mogelijk">Zo snel mogelijk</button>
+            <button type="button" class="wizard-option" data-field="timing" data-value="Binnen 1 maand">Binnen 1 maand</button>
+            <button type="button" class="wizard-option" data-field="timing" data-value="Binnen 3 maanden">Binnen 3 maanden</button>
+            <button type="button" class="wizard-option" data-field="timing" data-value="Nog geen idee">Nog geen idee</button>
+          </div>
+        </div>
+
+        <div class="wizard-step" data-step="4">
+          <h3 class="wizard-question">U bent&hellip;</h3>
+          <div class="wizard-options">
+            <button type="button" class="wizard-option" data-field="profile" data-value="Student">Student</button>
+            <button type="button" class="wizard-option" data-field="profile" data-value="Young professional">Young professional</button>
+          </div>
+        </div>
+
+        <div class="wizard-step" data-step="5">
+          <h3 class="wizard-question">Waar mogen we de match naartoe sturen?</h3>
+          <form id="wizard-form" class="wizard-form" novalidate>
+            <div class="form-row">
+              <label for="wizard-name">Naam</label>
+              <input type="text" id="wizard-name" name="name" required>
+            </div>
+            <div class="form-row">
+              <label for="wizard-email">E-mailadres</label>
+              <input type="email" id="wizard-email" name="email" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Verstuur aanvraag</button>
+            <p class="form-status" id="form-status" role="status"></p>
+          </form>
+        </div>
+
+        <div class="wizard-step wizard-step--done" data-step="done">
+          <div class="wizard-check">
+            <svg viewBox="0 0 52 52" fill="none" stroke="currentColor" stroke-width="3">
+              <circle cx="26" cy="26" r="24"/>
+              <path d="M15 27l7.5 7.5L37 19" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <h3 class="wizard-question">Bedankt!</h3>
+          <p>We gaan direct voor u aan de slag binnen ons exclusieve netwerk. U hoort snel van ons.</p>
+        </div>
+      </div>
     </div>
   </section>
 

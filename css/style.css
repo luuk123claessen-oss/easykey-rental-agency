@@ -123,6 +123,18 @@ section[id] {
   color: var(--color-green);
 }
 
+.main-nav a.nav-cta {
+  background: var(--color-green);
+  color: var(--color-white);
+  padding: 10px 20px;
+  border-radius: 999px;
+}
+
+.main-nav a.nav-cta:hover {
+  background: var(--color-green-dark);
+  color: var(--color-white);
+}
+
 .nav-toggle {
   display: none;
   flex-direction: column;
@@ -228,9 +240,22 @@ section[id] {
   max-width: 640px;
 }
 
-.tarief h2,
-.contact h2 {
+.tarief h2 {
   color: var(--color-white);
+}
+
+.section-cta {
+  display: inline-block;
+  margin-top: 32px;
+  font-weight: 700;
+  color: var(--color-green);
+  border-bottom: 2px solid var(--color-green);
+  padding-bottom: 2px;
+}
+
+.section-cta:hover {
+  color: var(--color-green-dark);
+  border-color: var(--color-green-dark);
 }
 
 /* Werkwijze */
@@ -393,9 +418,19 @@ section[id] {
   margin: 0;
 }
 
+.tarief-cta {
+  margin-top: 32px;
+}
+
 /* Voorbeelden (listings) */
 .voorbeelden {
   padding: 100px 0;
+}
+
+.voorbeelden-cta-text {
+  margin: 56px 0 20px;
+  font-weight: 600;
+  color: var(--color-text-light);
 }
 
 .listing-grid {
@@ -508,13 +543,13 @@ section[id] {
 
 /* Contact */
 .contact {
-  padding: 100px 0;
-  background: var(--color-green);
-  background-image: linear-gradient(160deg, var(--color-green) 0%, var(--color-green-dark) 100%);
+  padding: 88px 0 100px;
+  background: var(--color-green-tint);
+  border-bottom: 1px solid var(--color-border);
 }
 
 .contact-intro {
-  color: rgba(255, 255, 255, 0.85);
+  color: var(--color-text-light);
   margin-top: -28px;
   margin-bottom: 40px;
   max-width: 520px;
@@ -528,6 +563,8 @@ section[id] {
   background: var(--color-white);
   padding: 48px 40px 40px;
   border-radius: var(--radius);
+  box-shadow: 0 20px 48px rgba(15, 77, 58, 0.12);
+  border: 1px solid var(--color-border);
 }
 
 .wizard-progress {
@@ -704,6 +741,29 @@ section[id] {
   font-weight: 600;
   color: var(--color-green);
   min-height: 1.2em;
+}
+
+/* Final CTA */
+.final-cta {
+  padding: 88px 0;
+  background-color: var(--color-green);
+  background-image: linear-gradient(160deg, var(--color-green) 0%, var(--color-green-dark) 100%);
+  text-align: center;
+}
+
+.final-cta-inner {
+  max-width: 520px;
+  margin: 0 auto;
+}
+
+.final-cta h2 {
+  color: var(--color-white);
+  margin: 0 0 16px;
+}
+
+.final-cta p {
+  color: rgba(255, 255, 255, 0.85);
+  margin: 0 0 32px;
 }
 
 /* Footer */

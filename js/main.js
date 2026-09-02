@@ -39,54 +39,57 @@ var TRANSLATIONS = {
       doelgroep: 'Voor wie',
       tarief: 'Tarief',
       voorbeelden: 'Voorbeelden',
-      cta: 'Schrijf u in',
+      cta: 'Schrijf je in',
       menuLabel: 'Menu openen'
     },
     hero: {
       eyebrow: 'Exclusieve bemiddeling · Groningen',
-      h1: 'Uw sleutel tot wonen in Groningen',
-      p: 'Property Direct zoekt binnen ons eigen, uitgebreide netwerk naar kamers en appartementen voor studenten en young professionals die in en rond Groningen starten. Persoonlijk, exclusief en zonder gedoe.',
-      ctaPrimary: 'Schrijf u nu in',
+      h1: 'Jouw sleutel tot wonen in Groningen',
+      p: 'We zoeken binnen ons eigen, uitgebreide netwerk naar de perfecte kamer of appartement voor jou — student of young professional die start in en rond Groningen. Persoonlijk, exclusief en zonder gedoe.',
+      ctaPrimary: 'Schrijf je nu in',
       ctaSecondary: 'Onze werkwijze'
     },
     contact: {
       label: 'Inschrijven',
-      h2: 'Schrijf u nu in',
-      intro: 'Beantwoord 4 korte vragen — u bent er in minder dan een minuut doorheen. Wij gaan direct voor u aan de slag.'
+      h2: 'Schrijf je nu in',
+      intro: 'Beantwoord een paar korte vragen — je bent er zo doorheen. Wij gaan direct voor je aan de slag.'
     },
     wizard: {
       back: '← Vorige',
-      step1: { question: 'Wat zoekt u?', opt1: 'Kamer', opt2: 'Studio', opt3: 'Appartement' },
-      step2: { question: 'Wat is uw budget per maand?', opt1: 'Tot €600', opt2: '€600 – €800', opt3: '€800 – €1.000', opt4: '€1.000+' },
-      step3: { question: 'Wanneer wilt u erin?', opt1: 'Zo snel mogelijk', opt2: 'Binnen 1 maand', opt3: 'Binnen 3 maanden', opt4: 'Nog geen idee' },
-      step4: { question: 'U bent…', opt1: 'Student', opt2: 'Young professional' },
-      step5: {
-        question: 'Waar mogen we de match naartoe sturen?',
+      step1: { question: 'Wat zoek je?', opt1: 'Kamer', opt2: 'Studio', opt3: 'Appartement' },
+      step2: { question: 'Wat is je budget per maand?', opt1: 'Tot €600', opt2: '€600 – €800', opt3: '€800 – €1.000', opt4: '€1.000+' },
+      step3: { question: 'Hoelang wil je huren?', opt1: 'Korter dan 6 maanden', opt2: '6 - 12 maanden', opt3: '1 - 2 jaar', opt4: 'Langer dan 2 jaar' },
+      step4: { question: 'Met hoeveel personen?', opt1: 'Alleen', opt2: "Met z'n 2", opt3: "Met z'n 3", opt4: '4 of meer' },
+      step5: { question: 'Wanneer wil je erin?', opt1: 'Zo snel mogelijk', opt2: 'Binnen 1 maand', opt3: 'Binnen 3 maanden', opt4: 'Nog geen idee' },
+      step6: { question: 'Wat is je maandinkomen?', opt1: 'Studiefinanciering', opt2: 'Tot €2.000', opt3: '€2.000 – €3.000', opt4: '€3.000+' },
+      step7: { question: 'Je bent…', opt1: 'Student', opt2: 'Young professional' },
+      step8: {
+        question: 'Waar mogen we je match naartoe sturen?',
         labelName: 'Naam',
         labelEmail: 'E-mailadres',
         submit: 'Verstuur aanvraag'
       },
       done: {
         title: 'Bedankt!',
-        text: 'We gaan direct voor u aan de slag binnen ons exclusieve netwerk. U hoort snel van ons.'
+        text: 'We gaan direct voor je aan de slag binnen ons exclusieve netwerk. Je hoort snel van ons.'
       }
     },
     werkwijze: {
       imageAlt: 'A-kerk en gracht in Groningen',
       label: 'Werkwijze',
       h2: 'Van zoekopdracht tot sleuteloverdracht',
-      step1: { title: 'Zoekopdracht', text: 'U geeft uw wensen door: locatie, budget, type woonruimte en gewenste ingangsdatum.' },
+      step1: { title: 'Zoekopdracht', text: 'Je geeft je wensen door: locatie, budget, type woonruimte en gewenste ingangsdatum.' },
       step2: { title: 'Exclusieve zoektocht', text: 'Wij zoeken binnen ons eigen netwerk naar een passende kamer of appartement — vaak nog vóór deze breed bekend is.' },
-      step3: { title: 'Bezichtiging', text: 'Zodra wij een geschikte match zien, plannen wij direct een bezichtiging voor u in.' },
-      step4: { title: 'Match & sleutel', text: 'Bevalt het? Dan ronden wij de overeenkomst af en ontvangt u de sleutel van uw nieuwe woonruimte.' },
-      cta: 'Schrijf u nu in →'
+      step3: { title: 'Bezichtiging', text: 'Zodra we een geschikte match zien, plannen we direct een bezichtiging voor je in.' },
+      step4: { title: 'Match & sleutel', text: 'Bevalt het? Dan ronden we de overeenkomst af en ontvang je de sleutel van je nieuwe woonruimte.' },
+      cta: 'Schrijf je nu in →'
     },
     doelgroep: {
       imageAlt: 'Luchtfoto van Groningen met de Martinitoren',
       label: 'Voor wie',
       h2: 'Voor studenten & young professionals',
-      p: 'Property Direct richt zich specifiek op studenten en young professionals die een nieuwe start maken in Groningen — voor studie, een eerste baan, of een volgende stap in de carrière. Wij kennen de Groningse woningmarkt van binnenuit en weten precies waar te zoeken.',
-      cta: 'Schrijf u nu in →',
+      p: 'Property Direct richt zich specifiek op studenten en young professionals die een nieuwe start maken in Groningen — voor je studie, je eerste baan, of de volgende stap in je carrière. Wij kennen de Groningse woningmarkt van binnenuit en weten precies waar te zoeken.',
+      cta: 'Schrijf je nu in →',
       card1: { title: 'Exclusief netwerk', text: 'Toegang tot verhuurders en eigenaren buiten de gangbare kanalen om.' },
       card2: { title: 'Persoonlijke begeleiding', text: 'Eén aanspreekpunt van eerste kennismaking tot sleuteloverdracht.' },
       card3: { title: 'Lokale expertise', text: 'Jarenlange kennis van wijken, prijzen en de Groningse verhuurmarkt.' }
@@ -96,8 +99,8 @@ var TRANSLATIONS = {
       h2: 'Transparant & zonder verrassingen',
       amount1: '1 maand huur',
       amount2: '21% btw',
-      desc: 'Bemiddelingskosten zijn alleen verschuldigd zodra wij voor u een match vinden. Geen match, geen kosten.',
-      cta: 'Schrijf u nu in'
+      desc: 'Bemiddelingskosten zijn alleen verschuldigd zodra we voor jou een match vinden. Geen match, geen kosten.',
+      cta: 'Schrijf je nu in'
     },
     voorbeelden: {
       label: 'Recent bemiddeld',
@@ -106,8 +109,8 @@ var TRANSLATIONS = {
       card2: { alt: 'Fietsen bij een gracht nabij Paddepoel', title: 'Kamer — Paddepoel', meta: '16 m² · Gedeelde keuken · Nabij RUG-campus' },
       card3: { alt: 'Appartementengebouw met balkons en bloemen in Helpman', title: '2-kamerappartement — Helpman', meta: '65 m² · Balkon · Rustige buurt' },
       card4: { alt: 'Modern gerenoveerd appartementencomplex in Oosterpoort', title: 'Loft — Oosterpoort', meta: '40 m² · Recent gerenoveerd · Fietsenstalling' },
-      ctaText: 'Ziet u iets dat u aanspreekt? Schrijf u in en wij gaan voor u op zoek.',
-      cta: 'Schrijf u nu in'
+      ctaText: 'Zie je iets dat je aanspreekt? Schrijf je in en wij gaan voor je op zoek.',
+      cta: 'Schrijf je nu in'
     },
     gallery: {
       alt1: 'Station Groningen',
@@ -123,8 +126,8 @@ var TRANSLATIONS = {
     },
     finalCta: {
       h2: 'Klaar om te beginnen?',
-      p: 'Schrijf u in en wij gaan direct voor u op zoek binnen ons exclusieve netwerk.',
-      cta: 'Schrijf u nu in'
+      p: 'Schrijf je in en wij gaan direct voor je op zoek binnen ons exclusieve netwerk.',
+      cta: 'Schrijf je nu in'
     },
     footer: {
       fine: 'Bemiddelingskosten: 1 maand huur + 21% btw, uitsluitend verschuldigd bij een succesvolle match.'
@@ -149,22 +152,25 @@ var TRANSLATIONS = {
     hero: {
       eyebrow: 'Exclusive placement · Groningen',
       h1: 'Your key to living in Groningen',
-      p: 'Property Direct searches within our own extensive network for rooms and apartments for students and young professionals starting out in and around Groningen. Personal, exclusive, and hassle-free.',
+      p: 'We search within our own extensive network for the perfect room or apartment for you — student or young professional starting out in and around Groningen. Personal, exclusive, and hassle-free.',
       ctaPrimary: 'Sign up now',
       ctaSecondary: 'How it works'
     },
     contact: {
       label: 'Sign up',
       h2: 'Sign up now',
-      intro: 'Answer 4 short questions — it takes less than a minute. We’ll get straight to work for you.'
+      intro: 'Answer a few short questions — you’ll be done in no time. We’ll get straight to work for you.'
     },
     wizard: {
       back: '← Back',
       step1: { question: 'What are you looking for?', opt1: 'Room', opt2: 'Studio', opt3: 'Apartment' },
       step2: { question: 'What’s your monthly budget?', opt1: 'Up to €600', opt2: '€600 – €800', opt3: '€800 – €1,000', opt4: '€1,000+' },
-      step3: { question: 'When would you like to move in?', opt1: 'As soon as possible', opt2: 'Within 1 month', opt3: 'Within 3 months', opt4: 'Not sure yet' },
-      step4: { question: 'You are…', opt1: 'Student', opt2: 'Young professional' },
-      step5: {
+      step3: { question: 'How long do you want to rent?', opt1: 'Less than 6 months', opt2: '6 - 12 months', opt3: '1 - 2 years', opt4: 'More than 2 years' },
+      step4: { question: 'With how many people?', opt1: 'Just me', opt2: '2 people', opt3: '3 people', opt4: '4 or more' },
+      step5: { question: 'When would you like to move in?', opt1: 'As soon as possible', opt2: 'Within 1 month', opt3: 'Within 3 months', opt4: 'Not sure yet' },
+      step6: { question: 'What’s your monthly income?', opt1: 'Student finance', opt2: 'Up to €2,000', opt3: '€2,000 – €3,000', opt4: '€3,000+' },
+      step7: { question: 'You are…', opt1: 'Student', opt2: 'Young professional' },
+      step8: {
         question: 'Where should we send your match?',
         labelName: 'Name',
         labelEmail: 'Email address',
@@ -357,7 +363,10 @@ function initWizard() {
       email: answers.email,
       op_zoek_naar: answers.type,
       budget: answers.budget,
-      gewenste_periode: answers.timing,
+      huurperiode: answers.duration,
+      aantal_personen: answers.people,
+      gewenste_ingangsdatum: answers.timing,
+      maandinkomen: answers.income,
       profiel: answers.profile,
       subject: 'Nieuwe zoekopdracht via Property Direct website'
     };

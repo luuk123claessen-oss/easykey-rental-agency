@@ -31,7 +31,7 @@
           <a href="#doelgroep" data-i18n="nav.doelgroep">Voor wie</a>
           <a href="#tarief" data-i18n="nav.tarief">Tarief</a>
           <a href="#voorbeelden" data-i18n="nav.voorbeelden">Voorbeelden</a>
-          <a href="#contact" class="nav-cta" data-i18n="nav.cta">Schrijf u in</a>
+          <a href="#contact" class="nav-cta" data-i18n="nav.cta">Schrijf je in</a>
         </nav>
         <div class="lang-toggle" role="group" aria-label="Taal / Language">
           <button type="button" class="lang-btn is-active" data-lang="nl">NL</button>
@@ -47,10 +47,10 @@
   <section class="hero">
     <div class="container hero-inner">
       <p class="eyebrow" data-i18n="hero.eyebrow">Exclusieve bemiddeling &middot; Groningen</p>
-      <h1 data-i18n="hero.h1">Uw sleutel tot wonen in Groningen</h1>
-      <p data-i18n="hero.p">Property Direct zoekt binnen ons eigen, uitgebreide netwerk naar kamers en appartementen voor studenten en young professionals die in en rond Groningen starten. Persoonlijk, exclusief en zonder gedoe.</p>
+      <h1 data-i18n="hero.h1">Jouw sleutel tot wonen in Groningen</h1>
+      <p data-i18n="hero.p">We zoeken binnen ons eigen, uitgebreide netwerk naar de perfecte kamer of appartement voor jou — student of young professional die start in en rond Groningen. Persoonlijk, exclusief en zonder gedoe.</p>
       <div class="hero-actions">
-        <a href="#contact" class="btn btn-primary" data-i18n="hero.ctaPrimary">Schrijf u nu in</a>
+        <a href="#contact" class="btn btn-primary" data-i18n="hero.ctaPrimary">Schrijf je nu in</a>
         <a href="#werkwijze" class="btn btn-outline" data-i18n="hero.ctaSecondary">Onze werkwijze</a>
       </div>
     </div>
@@ -59,22 +59,25 @@
   <section class="contact" id="contact">
     <div class="container">
       <p class="section-label" data-i18n="contact.label">Inschrijven</p>
-      <h2 data-i18n="contact.h2">Schrijf u nu in</h2>
-      <p class="contact-intro" data-i18n="contact.intro">Beantwoord 4 korte vragen — u bent er in minder dan een minuut doorheen. Wij gaan direct voor u aan de slag.</p>
+      <h2 data-i18n="contact.h2">Schrijf je nu in</h2>
+      <p class="contact-intro" data-i18n="contact.intro">Beantwoord een paar korte vragen — je bent er zo doorheen. Wij gaan direct voor je aan de slag.</p>
 
       <div class="wizard" id="wizard">
-        <div class="wizard-progress" id="wizard-progress" role="progressbar" aria-valuemin="1" aria-valuemax="5" aria-valuenow="1">
+        <div class="wizard-progress" id="wizard-progress" role="progressbar" aria-valuemin="1" aria-valuemax="8" aria-valuenow="1">
           <span class="wizard-dot is-active" data-dot="1"></span>
           <span class="wizard-dot" data-dot="2"></span>
           <span class="wizard-dot" data-dot="3"></span>
           <span class="wizard-dot" data-dot="4"></span>
           <span class="wizard-dot" data-dot="5"></span>
+          <span class="wizard-dot" data-dot="6"></span>
+          <span class="wizard-dot" data-dot="7"></span>
+          <span class="wizard-dot" data-dot="8"></span>
         </div>
 
         <button type="button" class="wizard-back" id="wizard-back" data-i18n="wizard.back" aria-label="Vorige vraag">&larr; Vorige</button>
 
         <div class="wizard-step is-active" data-step="1">
-          <h3 class="wizard-question" data-i18n="wizard.step1.question">Wat zoekt u?</h3>
+          <h3 class="wizard-question" data-i18n="wizard.step1.question">Wat zoek je?</h3>
           <div class="wizard-options">
             <button type="button" class="wizard-option" data-field="type" data-value="Kamer" data-i18n="wizard.step1.opt1">Kamer</button>
             <button type="button" class="wizard-option" data-field="type" data-value="Studio" data-i18n="wizard.step1.opt2">Studio</button>
@@ -83,7 +86,7 @@
         </div>
 
         <div class="wizard-step" data-step="2">
-          <h3 class="wizard-question" data-i18n="wizard.step2.question">Wat is uw budget per maand?</h3>
+          <h3 class="wizard-question" data-i18n="wizard.step2.question">Wat is je budget per maand?</h3>
           <div class="wizard-options">
             <button type="button" class="wizard-option" data-field="budget" data-value="Tot &euro;600" data-i18n="wizard.step2.opt1">Tot &euro;600</button>
             <button type="button" class="wizard-option" data-field="budget" data-value="&euro;600 &ndash; &euro;800" data-i18n="wizard.step2.opt2">&euro;600 &ndash; &euro;800</button>
@@ -93,35 +96,65 @@
         </div>
 
         <div class="wizard-step" data-step="3">
-          <h3 class="wizard-question" data-i18n="wizard.step3.question">Wanneer wilt u erin?</h3>
+          <h3 class="wizard-question" data-i18n="wizard.step3.question">Hoelang wil je huren?</h3>
           <div class="wizard-options">
-            <button type="button" class="wizard-option" data-field="timing" data-value="Zo snel mogelijk" data-i18n="wizard.step3.opt1">Zo snel mogelijk</button>
-            <button type="button" class="wizard-option" data-field="timing" data-value="Binnen 1 maand" data-i18n="wizard.step3.opt2">Binnen 1 maand</button>
-            <button type="button" class="wizard-option" data-field="timing" data-value="Binnen 3 maanden" data-i18n="wizard.step3.opt3">Binnen 3 maanden</button>
-            <button type="button" class="wizard-option" data-field="timing" data-value="Nog geen idee" data-i18n="wizard.step3.opt4">Nog geen idee</button>
+            <button type="button" class="wizard-option" data-field="duration" data-value="Korter dan 6 maanden" data-i18n="wizard.step3.opt1">Korter dan 6 maanden</button>
+            <button type="button" class="wizard-option" data-field="duration" data-value="6 - 12 maanden" data-i18n="wizard.step3.opt2">6 - 12 maanden</button>
+            <button type="button" class="wizard-option" data-field="duration" data-value="1 - 2 jaar" data-i18n="wizard.step3.opt3">1 - 2 jaar</button>
+            <button type="button" class="wizard-option" data-field="duration" data-value="Langer dan 2 jaar" data-i18n="wizard.step3.opt4">Langer dan 2 jaar</button>
           </div>
         </div>
 
         <div class="wizard-step" data-step="4">
-          <h3 class="wizard-question" data-i18n="wizard.step4.question">U bent&hellip;</h3>
+          <h3 class="wizard-question" data-i18n="wizard.step4.question">Met hoeveel personen?</h3>
           <div class="wizard-options">
-            <button type="button" class="wizard-option" data-field="profile" data-value="Student" data-i18n="wizard.step4.opt1">Student</button>
-            <button type="button" class="wizard-option" data-field="profile" data-value="Young professional" data-i18n="wizard.step4.opt2">Young professional</button>
+            <button type="button" class="wizard-option" data-field="people" data-value="Alleen" data-i18n="wizard.step4.opt1">Alleen</button>
+            <button type="button" class="wizard-option" data-field="people" data-value="Met z'n 2" data-i18n="wizard.step4.opt2">Met z'n 2</button>
+            <button type="button" class="wizard-option" data-field="people" data-value="Met z'n 3" data-i18n="wizard.step4.opt3">Met z'n 3</button>
+            <button type="button" class="wizard-option" data-field="people" data-value="4 of meer" data-i18n="wizard.step4.opt4">4 of meer</button>
           </div>
         </div>
 
         <div class="wizard-step" data-step="5">
-          <h3 class="wizard-question" data-i18n="wizard.step5.question">Waar mogen we de match naartoe sturen?</h3>
+          <h3 class="wizard-question" data-i18n="wizard.step5.question">Wanneer wil je erin?</h3>
+          <div class="wizard-options">
+            <button type="button" class="wizard-option" data-field="timing" data-value="Zo snel mogelijk" data-i18n="wizard.step5.opt1">Zo snel mogelijk</button>
+            <button type="button" class="wizard-option" data-field="timing" data-value="Binnen 1 maand" data-i18n="wizard.step5.opt2">Binnen 1 maand</button>
+            <button type="button" class="wizard-option" data-field="timing" data-value="Binnen 3 maanden" data-i18n="wizard.step5.opt3">Binnen 3 maanden</button>
+            <button type="button" class="wizard-option" data-field="timing" data-value="Nog geen idee" data-i18n="wizard.step5.opt4">Nog geen idee</button>
+          </div>
+        </div>
+
+        <div class="wizard-step" data-step="6">
+          <h3 class="wizard-question" data-i18n="wizard.step6.question">Wat is je maandinkomen?</h3>
+          <div class="wizard-options">
+            <button type="button" class="wizard-option" data-field="income" data-value="Studiefinanciering / geen eigen inkomen" data-i18n="wizard.step6.opt1">Studiefinanciering</button>
+            <button type="button" class="wizard-option" data-field="income" data-value="Tot &euro;2.000" data-i18n="wizard.step6.opt2">Tot &euro;2.000</button>
+            <button type="button" class="wizard-option" data-field="income" data-value="&euro;2.000 &ndash; &euro;3.000" data-i18n="wizard.step6.opt3">&euro;2.000 &ndash; &euro;3.000</button>
+            <button type="button" class="wizard-option" data-field="income" data-value="&euro;3.000+" data-i18n="wizard.step6.opt4">&euro;3.000+</button>
+          </div>
+        </div>
+
+        <div class="wizard-step" data-step="7">
+          <h3 class="wizard-question" data-i18n="wizard.step7.question">Je bent&hellip;</h3>
+          <div class="wizard-options">
+            <button type="button" class="wizard-option" data-field="profile" data-value="Student" data-i18n="wizard.step7.opt1">Student</button>
+            <button type="button" class="wizard-option" data-field="profile" data-value="Young professional" data-i18n="wizard.step7.opt2">Young professional</button>
+          </div>
+        </div>
+
+        <div class="wizard-step" data-step="8">
+          <h3 class="wizard-question" data-i18n="wizard.step8.question">Waar mogen we je match naartoe sturen?</h3>
           <form id="wizard-form" class="wizard-form" novalidate>
             <div class="form-row">
-              <label for="wizard-name" data-i18n="wizard.step5.labelName">Naam</label>
+              <label for="wizard-name" data-i18n="wizard.step8.labelName">Naam</label>
               <input type="text" id="wizard-name" name="name" required>
             </div>
             <div class="form-row">
-              <label for="wizard-email" data-i18n="wizard.step5.labelEmail">E-mailadres</label>
+              <label for="wizard-email" data-i18n="wizard.step8.labelEmail">E-mailadres</label>
               <input type="email" id="wizard-email" name="email" required>
             </div>
-            <button type="submit" class="btn btn-primary" data-i18n="wizard.step5.submit">Verstuur aanvraag</button>
+            <button type="submit" class="btn btn-primary" data-i18n="wizard.step8.submit">Verstuur aanvraag</button>
             <p class="form-status" id="form-status" role="status"></p>
           </form>
         </div>
@@ -134,7 +167,7 @@
             </svg>
           </div>
           <h3 class="wizard-question" data-i18n="wizard.done.title">Bedankt!</h3>
-          <p data-i18n="wizard.done.text">We gaan direct voor u aan de slag binnen ons exclusieve netwerk. U hoort snel van ons.</p>
+          <p data-i18n="wizard.done.text">We gaan direct voor je aan de slag binnen ons exclusieve netwerk. Je hoort snel van ons.</p>
         </div>
       </div>
     </div>
@@ -152,7 +185,7 @@
           <div class="step">
             <span class="step-number">01</span>
             <h3 data-i18n="werkwijze.step1.title">Zoekopdracht</h3>
-            <p data-i18n="werkwijze.step1.text">U geeft uw wensen door: locatie, budget, type woonruimte en gewenste ingangsdatum.</p>
+            <p data-i18n="werkwijze.step1.text">Je geeft je wensen door: locatie, budget, type woonruimte en gewenste ingangsdatum.</p>
           </div>
           <div class="step">
             <span class="step-number">02</span>
@@ -162,15 +195,15 @@
           <div class="step">
             <span class="step-number">03</span>
             <h3 data-i18n="werkwijze.step3.title">Bezichtiging</h3>
-            <p data-i18n="werkwijze.step3.text">Zodra wij een geschikte match zien, plannen wij direct een bezichtiging voor u in.</p>
+            <p data-i18n="werkwijze.step3.text">Zodra we een geschikte match zien, plannen we direct een bezichtiging voor je in.</p>
           </div>
           <div class="step">
             <span class="step-number">04</span>
             <h3 data-i18n="werkwijze.step4.title">Match &amp; sleutel</h3>
-            <p data-i18n="werkwijze.step4.text">Bevalt het? Dan ronden wij de overeenkomst af en ontvangt u de sleutel van uw nieuwe woonruimte.</p>
+            <p data-i18n="werkwijze.step4.text">Bevalt het? Dan ronden we de overeenkomst af en ontvang je de sleutel van je nieuwe woonruimte.</p>
           </div>
         </div>
-        <a href="#contact" class="section-cta" data-i18n="werkwijze.cta">Schrijf u nu in &rarr;</a>
+        <a href="#contact" class="section-cta" data-i18n="werkwijze.cta">Schrijf je nu in &rarr;</a>
       </div>
     </div>
   </section>
@@ -183,8 +216,8 @@
         </div>
         <p class="section-label" data-i18n="doelgroep.label">Voor wie</p>
         <h2 data-i18n="doelgroep.h2">Voor studenten &amp; young professionals</h2>
-        <p data-i18n="doelgroep.p">Property Direct richt zich specifiek op studenten en young professionals die een nieuwe start maken in Groningen — voor studie, een eerste baan, of een volgende stap in de carrière. Wij kennen de Groningse woningmarkt van binnenuit en weten precies waar te zoeken.</p>
-        <a href="#contact" class="section-cta" data-i18n="doelgroep.cta">Schrijf u nu in &rarr;</a>
+        <p data-i18n="doelgroep.p">Property Direct richt zich specifiek op studenten en young professionals die een nieuwe start maken in Groningen — voor je studie, je eerste baan, of de volgende stap in je carrière. Wij kennen de Groningse woningmarkt van binnenuit en weten precies waar te zoeken.</p>
+        <a href="#contact" class="section-cta" data-i18n="doelgroep.cta">Schrijf je nu in &rarr;</a>
       </div>
       <div class="doelgroep-cards">
         <div class="mini-card">
@@ -213,9 +246,9 @@
           <span class="plus">+</span>
           <span data-i18n="tarief.amount2">21% btw</span>
         </div>
-        <p class="tarief-desc" data-i18n="tarief.desc">Bemiddelingskosten zijn alleen verschuldigd zodra wij voor u een match vinden. Geen match, geen kosten.</p>
+        <p class="tarief-desc" data-i18n="tarief.desc">Bemiddelingskosten zijn alleen verschuldigd zodra we voor jou een match vinden. Geen match, geen kosten.</p>
       </div>
-      <a href="#contact" class="btn btn-outline tarief-cta" data-i18n="tarief.cta">Schrijf u nu in</a>
+      <a href="#contact" class="btn btn-outline tarief-cta" data-i18n="tarief.cta">Schrijf je nu in</a>
     </div>
   </section>
 
@@ -261,8 +294,8 @@
           </div>
         </article>
       </div>
-      <p class="voorbeelden-cta-text" data-i18n="voorbeelden.ctaText">Ziet u iets dat u aanspreekt? Schrijf u in en wij gaan voor u op zoek.</p>
-      <a href="#contact" class="btn btn-primary" data-i18n="voorbeelden.cta">Schrijf u nu in</a>
+      <p class="voorbeelden-cta-text" data-i18n="voorbeelden.ctaText">Zie je iets dat je aanspreekt? Schrijf je in en wij gaan voor je op zoek.</p>
+      <a href="#contact" class="btn btn-primary" data-i18n="voorbeelden.cta">Schrijf je nu in</a>
     </div>
   </section>
 
@@ -291,8 +324,8 @@
   <section class="final-cta">
     <div class="container final-cta-inner">
       <h2 data-i18n="finalCta.h2">Klaar om te beginnen?</h2>
-      <p data-i18n="finalCta.p">Schrijf u in en wij gaan direct voor u op zoek binnen ons exclusieve netwerk.</p>
-      <a href="#contact" class="btn btn-primary" data-i18n="finalCta.cta">Schrijf u nu in</a>
+      <p data-i18n="finalCta.p">Schrijf je in en wij gaan direct voor je op zoek binnen ons exclusieve netwerk.</p>
+      <a href="#contact" class="btn btn-primary" data-i18n="finalCta.cta">Schrijf je nu in</a>
     </div>
   </section>
 

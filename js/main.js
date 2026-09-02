@@ -31,8 +31,8 @@ var WEB3FORMS_ACCESS_KEYS = ['fe9f8c84-09c5-4b3f-8d23-d21589cfe188'];
 var TRANSLATIONS = {
   nl: {
     meta: {
-      title: 'EasyKey Rental Agency | Exclusieve bemiddeling in Groningen',
-      description: 'EasyKey Rental Agency bemiddelt exclusief binnen ons eigen netwerk van kamers en appartementen voor studenten en young professionals in Groningen.'
+      title: 'Property Direct Rental Agency | Exclusieve bemiddeling in Groningen',
+      description: 'Property Direct Rental Agency bemiddelt exclusief binnen ons eigen netwerk van kamers en appartementen voor studenten en young professionals in Groningen.'
     },
     nav: {
       werkwijze: 'Werkwijze',
@@ -45,7 +45,7 @@ var TRANSLATIONS = {
     hero: {
       eyebrow: 'Exclusieve bemiddeling · Groningen',
       h1: 'Uw sleutel tot wonen in Groningen',
-      p: 'EasyKey zoekt binnen ons eigen, uitgebreide netwerk naar kamers en appartementen voor studenten en young professionals die in en rond Groningen starten. Persoonlijk, exclusief en zonder gedoe.',
+      p: 'Property Direct zoekt binnen ons eigen, uitgebreide netwerk naar kamers en appartementen voor studenten en young professionals die in en rond Groningen starten. Persoonlijk, exclusief en zonder gedoe.',
       ctaPrimary: 'Schrijf u nu in',
       ctaSecondary: 'Onze werkwijze'
     },
@@ -85,7 +85,7 @@ var TRANSLATIONS = {
       imageAlt: 'Luchtfoto van Groningen met de Martinitoren',
       label: 'Voor wie',
       h2: 'Voor studenten & young professionals',
-      p: 'EasyKey richt zich specifiek op studenten en young professionals die een nieuwe start maken in Groningen — voor studie, een eerste baan, of een volgende stap in de carrière. Wij kennen de Groningse woningmarkt van binnenuit en weten precies waar te zoeken.',
+      p: 'Property Direct richt zich specifiek op studenten en young professionals die een nieuwe start maken in Groningen — voor studie, een eerste baan, of een volgende stap in de carrière. Wij kennen de Groningse woningmarkt van binnenuit en weten precies waar te zoeken.',
       cta: 'Schrijf u nu in →',
       card1: { title: 'Exclusief netwerk', text: 'Toegang tot verhuurders en eigenaren buiten de gangbare kanalen om.' },
       card2: { title: 'Persoonlijke begeleiding', text: 'Eén aanspreekpunt van eerste kennismaking tot sleuteloverdracht.' },
@@ -117,9 +117,9 @@ var TRANSLATIONS = {
     },
     about: {
       imageAlt: 'Voormalige Verkade-fabriek weerspiegeld in het water, Groningen',
-      label: 'Over EasyKey',
+      label: 'Over Property Direct',
       h2: 'Bemiddeling met een persoonlijke aanpak',
-      p: 'EasyKey Rental Agency is gespecialiseerd in de bemiddeling van kamers en appartementen in Groningen. Via ons uitgebreide, exclusieve netwerk van verhuurders en particuliere eigenaren vinden wij woonruimte die niet altijd via reguliere kanalen te vinden is. Van eerste kennismaking tot sleuteloverdracht begeleiden wij het volledige proces persoonlijk en professioneel.'
+      p: 'Property Direct Rental Agency is gespecialiseerd in de bemiddeling van kamers en appartementen in Groningen. Via ons uitgebreide, exclusieve netwerk van verhuurders en particuliere eigenaren vinden wij woonruimte die niet altijd via reguliere kanalen te vinden is. Van eerste kennismaking tot sleuteloverdracht begeleiden wij het volledige proces persoonlijk en professioneel.'
     },
     finalCta: {
       h2: 'Klaar om te beginnen?',
@@ -135,8 +135,8 @@ var TRANSLATIONS = {
   },
   en: {
     meta: {
-      title: 'EasyKey Rental Agency | Exclusive Rental Placement in Groningen',
-      description: 'EasyKey Rental Agency exclusively places rooms and apartments from our own network for students and young professionals in Groningen.'
+      title: 'Property Direct Rental Agency | Exclusive Rental Placement in Groningen',
+      description: 'Property Direct Rental Agency exclusively places rooms and apartments from our own network for students and young professionals in Groningen.'
     },
     nav: {
       werkwijze: 'How it works',
@@ -149,7 +149,7 @@ var TRANSLATIONS = {
     hero: {
       eyebrow: 'Exclusive placement · Groningen',
       h1: 'Your key to living in Groningen',
-      p: 'EasyKey searches within our own extensive network for rooms and apartments for students and young professionals starting out in and around Groningen. Personal, exclusive, and hassle-free.',
+      p: 'Property Direct searches within our own extensive network for rooms and apartments for students and young professionals starting out in and around Groningen. Personal, exclusive, and hassle-free.',
       ctaPrimary: 'Sign up now',
       ctaSecondary: 'How it works'
     },
@@ -189,7 +189,7 @@ var TRANSLATIONS = {
       imageAlt: 'Aerial view of Groningen with the Martini Tower',
       label: 'Who it’s for',
       h2: 'For students & young professionals',
-      p: 'EasyKey focuses specifically on students and young professionals making a fresh start in Groningen — for studies, a first job, or the next step in their career. We know the Groningen housing market inside out and know exactly where to look.',
+      p: 'Property Direct focuses specifically on students and young professionals making a fresh start in Groningen — for studies, a first job, or the next step in their career. We know the Groningen housing market inside out and know exactly where to look.',
       cta: 'Sign up now →',
       card1: { title: 'Exclusive network', text: 'Access to landlords and owners outside the usual channels.' },
       card2: { title: 'Personal guidance', text: 'One point of contact from first introduction to key handover.' },
@@ -221,9 +221,9 @@ var TRANSLATIONS = {
     },
     about: {
       imageAlt: 'Former Verkade factory reflected in the water, Groningen',
-      label: 'About EasyKey',
+      label: 'About Property Direct',
       h2: 'Placement with a personal approach',
-      p: 'EasyKey Rental Agency specializes in placing tenants in rooms and apartments in Groningen. Through our extensive, exclusive network of landlords and private owners, we find housing that isn’t always available through regular channels. From first introduction to key handover, we guide the entire process personally and professionally.'
+      p: 'Property Direct Rental Agency specializes in placing tenants in rooms and apartments in Groningen. Through our extensive, exclusive network of landlords and private owners, we find housing that isn’t always available through regular channels. From first introduction to key handover, we guide the entire process personally and professionally.'
     },
     finalCta: {
       h2: 'Ready to get started?',
@@ -359,7 +359,7 @@ function initWizard() {
       budget: answers.budget,
       gewenste_periode: answers.timing,
       profiel: answers.profile,
-      subject: 'Nieuwe zoekopdracht via EasyKey website'
+      subject: 'Nieuwe zoekopdracht via Property Direct website'
     };
 
     var requests = WEB3FORMS_ACCESS_KEYS.map(function (key) {

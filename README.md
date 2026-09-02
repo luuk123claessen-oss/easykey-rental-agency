@@ -1,6 +1,6 @@
-# EasyKey Rental Agency
+# Property Direct Rental Agency
 
-A static website for EasyKey Rental Agency, a room and apartment rental agency based in Groningen, Netherlands.
+A static website for Property Direct Rental Agency, a room and apartment rental agency based in Groningen, Netherlands.
 
 ## Project structure
 
@@ -33,4 +33,4 @@ Required GitHub repository secrets:
 - `CLOUDFLARE_API_TOKEN` — a Cloudflare API token with Workers edit permission
 - `CLOUDFLARE_ACCOUNT_ID` — the Cloudflare account ID
 
-Live at: https://easykey-rental-agency.luuk123-claessen.workers.dev
+Live at: https://propertydirect.nl (custom domain; also reachable at https://easykey-rental-agency.luuk123-claessen.workers.dev)

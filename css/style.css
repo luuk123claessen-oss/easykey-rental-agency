@@ -99,8 +99,8 @@ section[id] {
 }
 
 .logo-mark {
-  width: 26px;
-  height: 26px;
+  width: 34px;
+  height: 34px;
   flex-shrink: 0;
 }
 
@@ -115,7 +115,7 @@ section[id] {
   letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--color-text-light);
-  margin-left: 34px;
+  margin-left: 42px;
   margin-top: 6px;
 }
 

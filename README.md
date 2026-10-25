@@ -8,9 +8,13 @@ Live at https://propertydirect.nl
 
 ```
 .
-├── index.html        # Single page: hero, how it works, who it's for, pricing, FAQ, sign-up form
-├── css/style.css     # Design system (colours, type, layout)
-├── js/main.js        # Translations (EN/NL), pricing table, 4-step sign-up form
+├── index.html        # Single page: hero, how it works, who we help, fee calculator, register, about, FAQ
+├── privacy.html      # Privacy Policy (EN + NL)
+├── terms.html        # Terms and Conditions (EN + NL)
+├── css/style.css     # Design system (colours, type, layout, motion)
+├── js/i18n.js        # Translations (EN/NL) and language switch
+├── js/home.js        # Hero scene, scroll effects, fee calculator, registration form
+├── fonts/            # Self-hosted Inter Tight and JetBrains Mono (latin, woff2)
 ├── favicon.svg       # PD logo mark
 ├── og-image.png      # Share image for link previews (1200x630)
 ├── apple-touch-icon.png
@@ -19,8 +23,6 @@ Live at https://propertydirect.nl
 ├── .assetsignore     # Files that are not published to the live site
 └── wrangler.toml     # Cloudflare Workers (static assets) config
 ```
-
-The `images/` folder holds the earlier Groningen photography. The current layout does not use it.
 
 ## Running locally
 
@@ -34,13 +36,20 @@ Then open http://localhost:8000.
 
 ## Content notes
 
-- All copy lives in the `T` object at the top of `js/main.js` (`en` and `nl`). The HTML carries the English text as the no-JavaScript fallback.
-- The fee (1.5 x total monthly rent + 21% VAT) is set by `FEE_MULTIPLIER` and `VAT_RATE` in `js/main.js` and drives the pricing table. The headline figure and the fine print are plain text in `T`.
-- Sign-up requests are sent through Web3Forms (`ACCESS_KEYS` in `js/main.js`). Field names and values are Dutch on purpose, so the emails stay the same for the team.
+- All copy lives in the `T` object in `js/i18n.js` (`en` and `nl`). The HTML carries the English text as the no-JavaScript fallback. The legal pages hold their EN and NL text in the HTML itself.
+- The fee (1.5 x total monthly rent + 21% VAT) is set by `FEE_MULTIPLIER` and `VAT_RATE` in `js/home.js` and drives the calculator and the examples table.
+- Registrations are sent through Web3Forms (`ACCESS_KEYS` in `js/home.js`). Field names and values are Dutch on purpose, so the emails stay the same for the team.
+- Placeholders to fill in before launch: `[email]`, `[phone]`, KvK and VAT numbers (footer and legal pages), the retention period in the privacy policy, the About photo and name.
+
+## Hero video
+
+The hero currently shows an animated SVG scene. To add a video loop, put a silent, 8 to 12 second clip in `media/hero.webm` and `media/hero.mp4` (each under 3 MB) and set `HERO_VIDEO = true` in `js/home.js`. It is skipped on slow connections, when data saver is on, and for visitors who prefer reduced motion.
 
 ## Deployment
 
 Every push to `main` runs `.github/workflows/deploy.yml`, which deploys the site to Cloudflare Workers (static assets) with `wrangler deploy`.
+
+Every push to any other branch runs `.github/workflows/preview.yml`, which deploys to a separate Worker, `pd-preview` (https://pd-preview.luuk123-claessen.workers.dev), marked noindex. Use it to review changes before merging to `main`.
 
 Required GitHub repository secrets:
 

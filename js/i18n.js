@@ -227,7 +227,7 @@
     var cfg = PD.cfg;
     document.querySelectorAll('[data-cfg]').forEach(function (el) {
       var value = cfg[el.getAttribute('data-cfg')];
-      if (value) el.textContent = value;
+      if (value && el.textContent !== value) el.textContent = value;
     });
     document.querySelectorAll('[data-cfg-href]').forEach(function (a) {
       var key = a.getAttribute('data-cfg-href');
@@ -245,11 +245,11 @@
 
     document.querySelectorAll('[data-i18n]').forEach(function (el) {
       var value = T[next][el.getAttribute('data-i18n')];
-      if (value != null) el.textContent = value;
+      if (value != null && el.textContent !== value) el.textContent = value;
     });
     document.querySelectorAll('[data-i18n-placeholder]').forEach(function (el) {
       var value = T[next][el.getAttribute('data-i18n-placeholder')];
-      if (value != null) el.setAttribute('placeholder', value);
+      if (value != null && el.getAttribute('placeholder') !== value) el.setAttribute('placeholder', value);
     });
     document.querySelectorAll('[data-i18n-aria]').forEach(function (el) {
       var value = T[next][el.getAttribute('data-i18n-aria')];

@@ -314,6 +314,7 @@
   var tweenId = 0;
   var liveTimer = 0;
   var currentRent = 1500;
+  if (rentRange && Number(rentRange.value)) currentRent = Number(rentRange.value);
 
   function calc(rent) {
     var fee = rent * FEE_MULTIPLIER;

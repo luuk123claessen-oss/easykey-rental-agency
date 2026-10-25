@@ -33,12 +33,29 @@
   <meta name="twitter:image" content="https://propertydirect.nl/og-image.png">
 
   <link rel="preload" href="fonts/inter-tight-latin.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="preload" as="image" href="assets/media/hero-poster-800.webp" type="image/webp" imagesrcset="assets/media/hero-poster-800.webp 800w, assets/media/hero-poster.webp 1600w" imagesizes="100vw" fetchpriority="high">
+  <link rel="preload" href="fonts/jetbrains-mono-latin.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="css/style.css">
-  <script src="js/config.js" defer></script>
-  <script src="js/i18n.js" defer></script>
-  <script src="js/home.js" defer></script>
-  <script>document.documentElement.classList.add('js');setTimeout(function(){if(!window.__pdReady)document.documentElement.classList.add('pd-late')},4000);</script>
+  <script>
+  /* Adds the .js class and loads the scripts progressively: straight away for Dutch visitors (no flash of English),
+     otherwise after the page has loaded or on the first interaction. The hero needs no JavaScript to render. */
+  (function () {
+    var d = document, r = d.documentElement, done = 0;
+    r.classList.add('js');
+    setTimeout(function () { if (!window.__pdReady) r.classList.add('pd-late'); }, 4000);
+    function load() {
+      if (done) return;
+      done = 1;
+      ['js/config.js', 'js/i18n.js', 'js/home.js'].forEach(function (s) {
+        var e = d.createElement('script'); e.src = s; e.async = false; d.body.appendChild(e);
+      });
+    }
+    var nl = 0;
+    try { nl = /[?&]lang=nl/.test(location.search) || localStorage.getItem('pd-lang') === 'nl'; } catch (e) { /* ignore */ }
+    if (nl) { d.addEventListener('DOMContentLoaded', load); return; }
+    ['pointerdown', 'keydown', 'scroll', 'touchstart'].forEach(function (t) { addEventListener(t, load, { once: true, passive: true }); });
+    addEventListener('load', function () { setTimeout(load, 1200); });
+  })();
+  </script>
 
   <script type="application/ld+json">
   {
@@ -130,7 +147,7 @@
   <main id="main">
     <section class="hero grain" id="top">
       <div class="hero-media" aria-hidden="true">
-        <img class="hero-poster" src="assets/media/hero-poster-800.webp" srcset="assets/media/hero-poster-800.webp 800w, assets/media/hero-poster.webp 1600w" sizes="100vw" width="1600" height="900" alt="" fetchpriority="high" decoding="async">
+        <img class="hero-poster" src="assets/media/hero-poster-800.webp" srcset="assets/media/hero-poster-800.webp 800w, assets/media/hero-poster.webp 1600w" sizes="100vw" width="1600" height="900" alt="" decoding="async">
         <video class="hero-video" id="hero-video" muted loop playsinline preload="metadata" tabindex="-1" disablepictureinpicture></video>
       </div>
 

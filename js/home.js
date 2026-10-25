@@ -21,18 +21,6 @@
 
   var hero = $('.hero');
 
-  function initHeroIntro() {
-    if (!hero) return;
-    var started = false;
-    function go() { if (!started) { started = true; hero.classList.add('is-in'); } }
-    if (document.fonts && document.fonts.ready) {
-      document.fonts.ready.then(go);
-      setTimeout(go, 600);
-    } else {
-      go();
-    }
-  }
-
   // Video: poster first, video starts after the page has loaded. Poster only for reduced motion,
   // Save-Data and very slow connections. media/hero.mp4 can be swapped for another file without code changes.
   function initHeroVideo() {
@@ -135,6 +123,7 @@
   var sectionIds = ['how', 'who', 'fee', 'register', 'about', 'faq'];
   var vis = { stmt: false, how: false, who: false };
   var menuOpen = false;
+  var stmtArmed = false;
 
   function splitStatement() {
     var el = $('#stmt');
@@ -153,7 +142,7 @@
 
   function updateStatement() {
     var el = $('#stmt');
-    if (!el || !statementWords.length) return;
+    if (!el || !statementWords.length || !stmtArmed) return;
     if (reduced) { statementWords.forEach(function (w) { w.style.opacity = 1; }); return; }
     var vh = window.innerHeight;
     var r = el.getBoundingClientRect();
@@ -198,6 +187,7 @@
     var y = window.scrollY;
     var vh = window.innerHeight;
     var max = document.documentElement.scrollHeight - vh;
+    if (!stmtArmed && y > 0) { stmtArmed = true; }
     header.classList.toggle('is-solid', y > 80);
     topBar.style.setProperty('--sp', max > 0 ? clamp(y / max, 0, 1).toFixed(4) : 0);
 
@@ -725,7 +715,6 @@
   var yearEl = $('#year');
   if (yearEl) yearEl.textContent = String(new Date().getFullYear());
 
-  initHeroIntro();
   initHeroVideo();
   initPointerEffects();
   splitStatement();

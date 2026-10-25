@@ -245,21 +245,18 @@ nav.menu a:hover::after, nav.menu a.is-current::after { transform: scaleX(1); }
 .hero-sub { max-width: 34em; margin-top: clamp(20px, 3.4vh, 34px); font-size: clamp(18px, 1.9vw, 24px); color: var(--on-dark); font-weight: 300; }
 .hero .cta { display: flex; flex-wrap: wrap; align-items: center; gap: 14px; margin-top: clamp(24px, 4vh, 40px); }
 
-/* Intro: masked line reveal, then the rest. The final state is always fully opaque. */
-.js .hero .line-in { display: block; transform: translateY(104%); clip-path: inset(0 0 100% 0); }
-.js .hero .hero-label, .js .hero .hero-sub, .js .hero .cta, .js .hero .trust { opacity: 0; transform: translateY(16px); }
-.js .sig path { stroke-dashoffset: 1; }
-.hero.is-in .line-in, .pd-late .hero .line-in { transform: none; clip-path: inset(-12% -12% -24% -12%); transition: transform .7s var(--ease-reveal), clip-path .7s var(--ease-reveal); }
-.hero.is-in .line:nth-child(2) .line-in { transition-delay: .1s; }
-.hero.is-in .hero-label, .hero.is-in .hero-sub, .hero.is-in .cta, .hero.is-in .trust,
-.pd-late .hero .hero-label, .pd-late .hero .hero-sub, .pd-late .hero .cta, .pd-late .hero .trust { opacity: 1; transform: none; transition: opacity .8s var(--ease-reveal), transform .8s var(--ease-reveal); }
-.hero.is-in .hero-label { transition-delay: .05s; }
-.hero.is-in .hero-sub { transition-delay: .45s; }
-.hero.is-in .cta { transition-delay: .6s; }
-.hero.is-in .trust { transition-delay: .8s; }
-.hero.is-in .sig path, .pd-late .hero .sig path { animation: draw 1.6s .8s var(--ease) forwards; }
-.hero.is-in .sig .sig-line { animation-delay: 1.7s; animation-duration: 1s; }
-.pd-late .hero .sig path { stroke-dashoffset: 0; animation: none; }
+/* Intro: masked line reveal, then the rest. Pure CSS (no JS on the critical path), and every
+   animation ends fully opaque. Without JS the .js class is missing and everything is simply visible. */
+@keyframes maskUp { from { transform: translateY(104%); clip-path: inset(0 0 100% 0); } to { transform: none; clip-path: inset(-12% -12% -24% -12%); } }
+@keyframes fadeUp { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: none; } }
+.js .hero .line-in { display: block; animation: maskUp .7s var(--ease-reveal) .05s both; }
+.js .hero .line:nth-child(2) .line-in { animation-delay: .15s; }
+.js .hero .hero-label { animation: fadeUp .8s var(--ease-reveal) 0s both; }
+.js .hero .hero-sub { animation: fadeUp .8s var(--ease-reveal) .3s both; }
+.js .hero .cta { animation: fadeUp .8s var(--ease-reveal) .4s both; }
+.js .hero .trust { animation: fadeUp .8s var(--ease-reveal) .5s both; }
+.js .sig path { stroke-dashoffset: 1; animation: draw 1.6s .8s var(--ease) forwards; }
+.js .sig .sig-line { animation-delay: 1.6s; animation-duration: 1s; }
 @keyframes draw { to { stroke-dashoffset: 0; } }
 
 .trust { position: relative; z-index: 2; border-top: 1px solid var(--line-d); background: rgba(11, 21, 18, .5); }
@@ -279,8 +276,7 @@ nav.menu a:hover::after, nav.menu a.is-current::after { transform: scaleX(1); }
 /* Statement */
 .statement { background: var(--papier); padding-block: clamp(80px, 14vw, 200px); }
 .stmt { max-width: 19em; font-size: clamp(30px, 5.6vw, 84px); line-height: 1.07; letter-spacing: -.03em; font-weight: 300; }
-.stmt .w { opacity: .18; }
-html:not(.js) .stmt .w, .pd-late .stmt .w { opacity: 1; }
+.stmt .w { opacity: 1; }
 
 /* Sections */
 section.s { padding-block: clamp(72px, 10vw, 140px); }
@@ -610,8 +606,6 @@ html:not(.js) .faq-a { grid-template-rows: 1fr; visibility: visible; }
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   *, *::before, *::after { animation-duration: .001ms !important; animation-delay: 0s !important; animation-iteration-count: 1 !important; transition-duration: .001ms !important; transition-delay: 0s !important; }
-  .js .hero .line-in { transform: none; clip-path: none; }
-  .js .hero .hero-label, .js .hero .hero-sub, .js .hero .cta, .js .hero .trust { opacity: 1; transform: none; }
   .js .sig path { stroke-dashoffset: 0; }
   .js [data-reveal] { opacity: 1; transform: none; }
   .js .to-top path { stroke-dashoffset: 0; }

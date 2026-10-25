@@ -1,339 +1,321 @@
-<!DOCTYPE html>
-<html lang="nl">
+<!doctype html>
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Property Direct Rental Agency | Exclusieve bemiddeling in Groningen</title>
-  <meta name="description" content="Property Direct Rental Agency bemiddelt exclusief binnen ons eigen netwerk van kamers en appartementen voor studenten en young professionals in Groningen.">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Property Direct Rental Agency | Personal rental search for tenants</title>
+  <meta name="description" content="Property Direct is a rental search agent that works on the tenant's side only. We search for your room or apartment in our own network. You pay once your lease is signed.">
+  <meta name="theme-color" content="#0B1512">
+  <link rel="canonical" href="https://propertydirect.nl/">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Property Direct Rental Agency">
+  <meta property="og:title" content="Property Direct Rental Agency | We search. You sign.">
+  <meta property="og:description" content="Personal rental search, on the tenant's side only. You pay once your lease is signed.">
+  <meta property="og:url" content="https://propertydirect.nl/">
+  <meta property="og:image" content="https://propertydirect.nl/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
   <link rel="stylesheet" href="css/style.css">
-  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "RealEstateAgent",
+    "name": "Property Direct Rental Agency",
+    "url": "https://propertydirect.nl/",
+    "description": "Personal rental search for tenants. We search, you sign. You pay once your lease is signed.",
+    "areaServed": { "@type": "Country", "name": "Netherlands" },
+    "address": { "@type": "PostalAddress", "addressLocality": "Groningen", "addressCountry": "NL" }
+  }
+  </script>
 </head>
 <body>
-  <header class="site-header">
-    <div class="container header-inner">
-      <a href="#" class="logo">
-        <span class="logo-row">
-          <svg class="logo-mark" viewBox="0 0 44 44" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-            <circle cx="22" cy="22" r="21" fill="none" stroke="#0f4d3a" stroke-width="1.2"/>
-            <circle cx="22" cy="22" r="18.5" fill="#0f4d3a"/>
-            <text x="22" y="30" text-anchor="middle" font-family="'Playfair Display', Georgia, serif" font-size="18" font-weight="600" letter-spacing="-0.5" fill="#ffffff">PD</text>
-          </svg>
-          <span class="logo-text">Property<span>Direct</span></span>
-        </span>
-        <small>Rental Agency &middot; Groningen</small>
+  <a class="skip" href="#main" data-i18n="skip">Skip to content</a>
+
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+    <symbol id="pd" viewBox="0 0 158 120">
+      <path class="mp" d="M16 108 V14 H48 A22 22 0 0 1 48 58 H16" fill="none" stroke-width="11" stroke-linejoin="miter"/>
+      <path class="md" d="M86 108 V14 H96 A47 47 0 0 1 96 108 Z" fill="none" stroke-width="11" stroke-linejoin="miter"/>
+    </symbol>
+  </svg>
+
+  <header class="top">
+    <div class="wrap bar">
+      <a class="brand" href="#main" aria-label="Property Direct Rental Agency">
+        <svg class="mark" viewBox="0 0 158 120" width="45" height="34" aria-hidden="true" focusable="false"><use href="#pd"/></svg>
+        <span>Rental Agency</span>
       </a>
-      <div class="header-actions">
-        <nav class="main-nav" id="main-nav">
-          <a href="#werkwijze" data-i18n="nav.werkwijze">Werkwijze</a>
-          <a href="#doelgroep" data-i18n="nav.doelgroep">Voor wie</a>
-          <a href="#tarief" data-i18n="nav.tarief">Tarief</a>
-          <a href="#voorbeelden" data-i18n="nav.voorbeelden">Voorbeelden</a>
-          <a href="#contact" class="nav-cta" data-i18n="nav.cta">Schrijf je in</a>
-        </nav>
-        <div class="lang-toggle" role="group" aria-label="Taal / Language">
-          <button type="button" class="lang-btn is-active" data-lang="nl">NL</button>
-          <button type="button" class="lang-btn" data-lang="en">EN</button>
+      <nav class="menu" aria-label="Main">
+        <a href="#how-it-works" data-i18n="nav1">How it works</a>
+        <a href="#who" data-i18n="nav2">Who it's for</a>
+        <a href="#pricing" data-i18n="nav3">Pricing</a>
+        <a href="#faq" data-i18n="nav4">FAQ</a>
+      </nav>
+      <div class="bar-end">
+        <div class="lang" role="group" aria-label="Language / Taal">
+          <button type="button" data-lang="en" aria-pressed="true">EN</button>
+          <button type="button" data-lang="nl" aria-pressed="false">NL</button>
         </div>
-        <button class="nav-toggle" id="nav-toggle" data-i18n-aria="nav.menuLabel" aria-label="Menu openen" aria-expanded="false">
-          <span></span><span></span><span></span>
-        </button>
+        <a class="btn btn-light" href="#sign-up" data-i18n="navcta">Sign up</a>
       </div>
     </div>
   </header>
 
-  <section class="hero">
-    <div class="container hero-inner">
-      <p class="eyebrow" data-i18n="hero.eyebrow">Exclusieve bemiddeling &middot; Groningen</p>
-      <h1 data-i18n="hero.h1">Jouw sleutel tot wonen in Groningen</h1>
-      <p data-i18n="hero.p">We zoeken binnen ons eigen, uitgebreide netwerk naar de perfecte kamer of appartement voor jou — student of young professional die start in en rond Groningen. Persoonlijk, exclusief en zonder gedoe.</p>
-      <div class="hero-actions">
-        <a href="#contact" class="btn btn-primary" data-i18n="hero.ctaPrimary">Schrijf je nu in</a>
-        <a href="#werkwijze" class="btn btn-outline" data-i18n="hero.ctaSecondary">Onze werkwijze</a>
+  <main id="main">
+    <section class="hero">
+      <div class="wrap hero-grid">
+        <div>
+          <p class="label on-dark" data-i18n="heroLabel">Rental search agent · All of the Netherlands</p>
+          <h1><span data-i18n="h1a">We search.</span><br><em data-i18n="h1b">You sign.</em></h1>
+          <p class="lead" data-i18n="lead">Personal rental search, on the tenant's side only. You pay once your lease is signed.</p>
+          <div class="cta">
+            <a class="btn btn-light" href="#sign-up" data-i18n="cta1">Sign up</a>
+            <a class="btn btn-ghost" href="#how-it-works" data-i18n="cta2">How it works</a>
+          </div>
+        </div>
+        <aside class="card-profile" aria-label="Example search profile" data-i18n-aria="cardLabel">
+          <span class="label on-dark" data-i18n="cardLabel">Example search profile</span>
+          <div class="row"><span data-i18n="c1">Looking for</span><span data-i18n="c1v">2-room apartment</span></div>
+          <div class="row"><span data-i18n="c2">Area</span><span>Utrecht</span></div>
+          <div class="row"><span data-i18n="c3">Budget</span><span data-eur="1800">€ 1,800</span></div>
+          <div class="row"><span data-i18n="c4">Status</span><span class="ok" data-i18n="c4v">We search for you</span></div>
+        </aside>
       </div>
-    </div>
-  </section>
-
-  <section class="contact" id="contact">
-    <div class="container">
-      <p class="section-label" data-i18n="contact.label">Inschrijven</p>
-      <h2 data-i18n="contact.h2">Schrijf je nu in</h2>
-      <p class="contact-intro" data-i18n="contact.intro">Beantwoord een paar korte vragen — je bent er zo doorheen. Wij gaan direct voor je aan de slag.</p>
-
-      <div class="wizard" id="wizard">
-        <div class="wizard-progress" id="wizard-progress" role="progressbar" aria-valuemin="1" aria-valuemax="8" aria-valuenow="1">
-          <span class="wizard-dot is-active" data-dot="1"></span>
-          <span class="wizard-dot" data-dot="2"></span>
-          <span class="wizard-dot" data-dot="3"></span>
-          <span class="wizard-dot" data-dot="4"></span>
-          <span class="wizard-dot" data-dot="5"></span>
-          <span class="wizard-dot" data-dot="6"></span>
-          <span class="wizard-dot" data-dot="7"></span>
-          <span class="wizard-dot" data-dot="8"></span>
-        </div>
-
-        <button type="button" class="wizard-back" id="wizard-back" data-i18n="wizard.back" aria-label="Vorige vraag">&larr; Vorige</button>
-
-        <div class="wizard-step is-active" data-step="1">
-          <h3 class="wizard-question" data-i18n="wizard.step1.question">Wat zoek je?</h3>
-          <div class="wizard-options">
-            <button type="button" class="wizard-option" data-field="type" data-value="Kamer" data-i18n="wizard.step1.opt1">Kamer</button>
-            <button type="button" class="wizard-option" data-field="type" data-value="Studio" data-i18n="wizard.step1.opt2">Studio</button>
-            <button type="button" class="wizard-option" data-field="type" data-value="Appartement" data-i18n="wizard.step1.opt3">Appartement</button>
-          </div>
-        </div>
-
-        <div class="wizard-step" data-step="2">
-          <h3 class="wizard-question" data-i18n="wizard.step2.question">Wat is je budget per maand?</h3>
-          <div class="wizard-options">
-            <button type="button" class="wizard-option" data-field="budget" data-value="Tot &euro;600" data-i18n="wizard.step2.opt1">Tot &euro;600</button>
-            <button type="button" class="wizard-option" data-field="budget" data-value="&euro;600 &ndash; &euro;800" data-i18n="wizard.step2.opt2">&euro;600 &ndash; &euro;800</button>
-            <button type="button" class="wizard-option" data-field="budget" data-value="&euro;800 &ndash; &euro;1.000" data-i18n="wizard.step2.opt3">&euro;800 &ndash; &euro;1.000</button>
-            <button type="button" class="wizard-option" data-field="budget" data-value="&euro;1.000+" data-i18n="wizard.step2.opt4">&euro;1.000+</button>
-          </div>
-        </div>
-
-        <div class="wizard-step" data-step="3">
-          <h3 class="wizard-question" data-i18n="wizard.step3.question">Hoelang wil je huren?</h3>
-          <div class="wizard-options">
-            <button type="button" class="wizard-option" data-field="duration" data-value="Korter dan 6 maanden" data-i18n="wizard.step3.opt1">Korter dan 6 maanden</button>
-            <button type="button" class="wizard-option" data-field="duration" data-value="6 - 12 maanden" data-i18n="wizard.step3.opt2">6 - 12 maanden</button>
-            <button type="button" class="wizard-option" data-field="duration" data-value="1 - 2 jaar" data-i18n="wizard.step3.opt3">1 - 2 jaar</button>
-            <button type="button" class="wizard-option" data-field="duration" data-value="Langer dan 2 jaar" data-i18n="wizard.step3.opt4">Langer dan 2 jaar</button>
-          </div>
-        </div>
-
-        <div class="wizard-step" data-step="4">
-          <h3 class="wizard-question" data-i18n="wizard.step4.question">Met hoeveel personen?</h3>
-          <div class="wizard-options">
-            <button type="button" class="wizard-option" data-field="people" data-value="Alleen" data-i18n="wizard.step4.opt1">Alleen</button>
-            <button type="button" class="wizard-option" data-field="people" data-value="Met z'n 2" data-i18n="wizard.step4.opt2">Met z'n 2</button>
-            <button type="button" class="wizard-option" data-field="people" data-value="Met z'n 3" data-i18n="wizard.step4.opt3">Met z'n 3</button>
-            <button type="button" class="wizard-option" data-field="people" data-value="4 of meer" data-i18n="wizard.step4.opt4">4 of meer</button>
-          </div>
-        </div>
-
-        <div class="wizard-step" data-step="5">
-          <h3 class="wizard-question" data-i18n="wizard.step5.question">Wanneer wil je erin?</h3>
-          <div class="wizard-options">
-            <button type="button" class="wizard-option" data-field="timing" data-value="Zo snel mogelijk" data-i18n="wizard.step5.opt1">Zo snel mogelijk</button>
-            <button type="button" class="wizard-option" data-field="timing" data-value="Binnen 1 maand" data-i18n="wizard.step5.opt2">Binnen 1 maand</button>
-            <button type="button" class="wizard-option" data-field="timing" data-value="Binnen 3 maanden" data-i18n="wizard.step5.opt3">Binnen 3 maanden</button>
-            <button type="button" class="wizard-option" data-field="timing" data-value="Nog geen idee" data-i18n="wizard.step5.opt4">Nog geen idee</button>
-          </div>
-        </div>
-
-        <div class="wizard-step" data-step="6">
-          <h3 class="wizard-question" data-i18n="wizard.step6.question">Wat is je maandinkomen?</h3>
-          <div class="wizard-options">
-            <button type="button" class="wizard-option" data-field="income" data-value="Studiefinanciering / geen eigen inkomen" data-i18n="wizard.step6.opt1">Studiefinanciering</button>
-            <button type="button" class="wizard-option" data-field="income" data-value="Tot &euro;2.000" data-i18n="wizard.step6.opt2">Tot &euro;2.000</button>
-            <button type="button" class="wizard-option" data-field="income" data-value="&euro;2.000 &ndash; &euro;3.000" data-i18n="wizard.step6.opt3">&euro;2.000 &ndash; &euro;3.000</button>
-            <button type="button" class="wizard-option" data-field="income" data-value="&euro;3.000+" data-i18n="wizard.step6.opt4">&euro;3.000+</button>
-          </div>
-        </div>
-
-        <div class="wizard-step" data-step="7">
-          <h3 class="wizard-question" data-i18n="wizard.step7.question">Je bent&hellip;</h3>
-          <div class="wizard-options">
-            <button type="button" class="wizard-option" data-field="profile" data-value="Student" data-i18n="wizard.step7.opt1">Student</button>
-            <button type="button" class="wizard-option" data-field="profile" data-value="Young professional" data-i18n="wizard.step7.opt2">Young professional</button>
-          </div>
-        </div>
-
-        <div class="wizard-step" data-step="8">
-          <h3 class="wizard-question" data-i18n="wizard.step8.question">Waar mogen we je match naartoe sturen?</h3>
-          <form id="wizard-form" class="wizard-form" novalidate>
-            <div class="form-row">
-              <label for="wizard-name" data-i18n="wizard.step8.labelName">Naam</label>
-              <input type="text" id="wizard-name" name="name" required>
-            </div>
-            <div class="form-row">
-              <label for="wizard-email" data-i18n="wizard.step8.labelEmail">E-mailadres</label>
-              <input type="email" id="wizard-email" name="email" required>
-            </div>
-            <button type="submit" class="btn btn-primary" data-i18n="wizard.step8.submit">Verstuur aanvraag</button>
-            <p class="form-status" id="form-status" role="status"></p>
-          </form>
-        </div>
-
-        <div class="wizard-step wizard-step--done" data-step="done">
-          <div class="wizard-check">
-            <svg viewBox="0 0 52 52" fill="none" stroke="currentColor" stroke-width="3">
-              <circle cx="26" cy="26" r="24"/>
-              <path d="M15 27l7.5 7.5L37 19" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-          </div>
-          <h3 class="wizard-question" data-i18n="wizard.done.title">Bedankt!</h3>
-          <p data-i18n="wizard.done.text">We gaan direct voor je aan de slag binnen ons exclusieve netwerk. Je hoort snel van ons.</p>
+      <div class="trust">
+        <div class="wrap">
+          <ul>
+            <li data-i18n="t1">Tenant side only</li>
+            <li data-i18n="t2">No upfront costs</li>
+            <li data-i18n="t3">No cure, no pay</li>
+          </ul>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <section class="werkwijze" id="werkwijze">
-    <div class="container werkwijze-inner">
-      <div class="werkwijze-image">
-        <img src="images/werkwijze-akerk.jpg" data-i18n-alt="werkwijze.imageAlt" alt="A-kerk en gracht in Groningen" loading="lazy">
-      </div>
-      <div class="werkwijze-content">
-        <p class="section-label" data-i18n="werkwijze.label">Werkwijze</p>
-        <h2 data-i18n="werkwijze.h2">Van zoekopdracht tot sleuteloverdracht</h2>
+    <section class="s" id="how-it-works" aria-labelledby="how-title">
+      <div class="wrap">
+        <div class="head">
+          <span class="label" data-i18n="wLabel">How it works</span>
+          <h2 id="how-title" data-i18n="wH">From sign-up to keys</h2>
+        </div>
         <div class="steps">
-          <div class="step">
-            <span class="step-number">01</span>
-            <h3 data-i18n="werkwijze.step1.title">Zoekopdracht</h3>
-            <p data-i18n="werkwijze.step1.text">Je geeft je wensen door: locatie, budget, type woonruimte en gewenste ingangsdatum.</p>
-          </div>
-          <div class="step">
-            <span class="step-number">02</span>
-            <h3 data-i18n="werkwijze.step2.title">Exclusieve zoektocht</h3>
-            <p data-i18n="werkwijze.step2.text">Wij zoeken binnen ons eigen netwerk naar een passende kamer of appartement — vaak nog vóór deze breed bekend is.</p>
-          </div>
-          <div class="step">
-            <span class="step-number">03</span>
-            <h3 data-i18n="werkwijze.step3.title">Bezichtiging</h3>
-            <p data-i18n="werkwijze.step3.text">Zodra we een geschikte match zien, plannen we direct een bezichtiging voor je in.</p>
-          </div>
-          <div class="step">
-            <span class="step-number">04</span>
-            <h3 data-i18n="werkwijze.step4.title">Match &amp; sleutel</h3>
-            <p data-i18n="werkwijze.step4.text">Bevalt het? Dan ronden we de overeenkomst af en ontvang je de sleutel van je nieuwe woonruimte.</p>
-          </div>
+          <div class="step"><span class="label">01</span><h3 data-i18n="s1h">Sign-up</h3><p data-i18n="s1p">You tell us what you need: type of home, area, budget and start date.</p></div>
+          <div class="step"><span class="label">02</span><h3 data-i18n="s2h">Mandate</h3><p data-i18n="s2p">We put the agreement in writing. Only then do we start searching.</p></div>
+          <div class="step"><span class="label">03</span><h3 data-i18n="s3h">Search</h3><p data-i18n="s3p">We search for you in our own network of private landlords and investors.</p></div>
+          <div class="step"><span class="label">04</span><h3 data-i18n="s4h">Match</h3><p data-i18n="s4p">Viewing, landlord check and lease review. You sign it yourself.</p></div>
         </div>
-        <a href="#contact" class="section-cta" data-i18n="werkwijze.cta">Schrijf je nu in &rarr;</a>
+        <a class="link-cta" href="#sign-up" data-i18n="linkCta">Sign up →</a>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <section class="doelgroep" id="doelgroep">
-    <div class="container doelgroep-inner">
-      <div class="doelgroep-text">
-        <div class="doelgroep-image">
-          <img src="images/doelgroep-aerial.jpg" data-i18n-alt="doelgroep.imageAlt" alt="Luchtfoto van Groningen met de Martinitoren" loading="lazy">
+    <section class="s" id="who" aria-labelledby="who-title">
+      <div class="wrap">
+        <div class="head">
+          <span class="label" data-i18n="vLabel">Who it's for</span>
+          <h2 id="who-title" data-i18n="vH">Short on time, new to the market</h2>
         </div>
-        <p class="section-label" data-i18n="doelgroep.label">Voor wie</p>
-        <h2 data-i18n="doelgroep.h2">Voor studenten &amp; young professionals</h2>
-        <p data-i18n="doelgroep.p">Property Direct richt zich specifiek op studenten en young professionals die een nieuwe start maken in Groningen — voor je studie, je eerste baan, of de volgende stap in je carrière. Wij kennen de Groningse woningmarkt van binnenuit en weten precies waar te zoeken.</p>
-        <a href="#contact" class="section-cta" data-i18n="doelgroep.cta">Schrijf je nu in &rarr;</a>
-      </div>
-      <div class="doelgroep-cards">
-        <div class="mini-card">
-          <h3 data-i18n="doelgroep.card1.title">Exclusief netwerk</h3>
-          <p data-i18n="doelgroep.card1.text">Toegang tot verhuurders en eigenaren buiten de gangbare kanalen om.</p>
-        </div>
-        <div class="mini-card">
-          <h3 data-i18n="doelgroep.card2.title">Persoonlijke begeleiding</h3>
-          <p data-i18n="doelgroep.card2.text">Eén aanspreekpunt van eerste kennismaking tot sleuteloverdracht.</p>
-        </div>
-        <div class="mini-card">
-          <h3 data-i18n="doelgroep.card3.title">Lokale expertise</h3>
-          <p data-i18n="doelgroep.card3.text">Jarenlange kennis van wijken, prijzen en de Groningse verhuurmarkt.</p>
+        <div class="who">
+          <div><h3>Expats</h3><p data-i18n="v1">New in the Netherlands or still abroad. We know the rules and the scam signals.</p></div>
+          <div><h3 data-i18n="v2h">Students</h3><p data-i18n="v2">Find a room or apartment without scrolling through listings for hours.</p></div>
+          <div><h3>Young professionals</h3><p data-i18n="v3">One fixed contact who takes the search off your hands.</p></div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <section class="tarief" id="tarief">
-    <div class="container">
-      <p class="section-label section-label--light" data-i18n="tarief.label">Tarief</p>
-      <h2 data-i18n="tarief.h2">Transparant &amp; zonder verrassingen</h2>
-      <div class="tarief-card">
-        <div class="tarief-amount">
-          <span data-i18n="tarief.amount1">1 maand huur</span>
-          <span class="plus">+</span>
-          <span data-i18n="tarief.amount2">21% btw</span>
+    <section class="s tarief" id="pricing" aria-labelledby="pricing-title">
+      <div class="wrap grid">
+        <div>
+          <span class="label" id="pricing-title" data-i18n="tLabel">Pricing</span>
+          <div class="big" data-i18n="big" data-i18n-aria="bigAria" aria-label="1.5 times">1.5×</div>
+          <p class="desc" data-i18n="tDesc">of the total monthly rent, including gas, water and electricity, plus 21% VAT. Only when a lease is signed.</p>
         </div>
-        <p class="tarief-desc" data-i18n="tarief.desc">Bemiddelingskosten zijn alleen verschuldigd zodra we voor jou een match vinden. Geen match, geen kosten.</p>
+        <div>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr><th scope="col" data-i18n="th1">Monthly rent</th><th scope="col" data-i18n="th2">Fee</th><th scope="col" data-i18n="th3">VAT 21%</th><th scope="col" data-i18n="th4">Total</th></tr>
+              </thead>
+              <tbody>
+                <tr data-rent="1000"><td>€ 1,000</td><td>€ 1,500</td><td>€ 315</td><td>€ 1,815</td></tr>
+                <tr data-rent="1500"><td>€ 1,500</td><td>€ 2,250</td><td>€ 472.50</td><td>€ 2,722.50</td></tr>
+                <tr data-rent="2000"><td>€ 2,000</td><td>€ 3,000</td><td>€ 630</td><td>€ 3,630</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <ul class="points">
+            <li data-i18n="p1">No upfront costs and no registration fee. If you don't find a home through us, you pay nothing.</li>
+            <li data-i18n="p2">A home you found yourself or were already offered is excluded from the fee.</li>
+            <li data-i18n="p3">You only pay us. Landlords never pay us anything.</li>
+            <li data-i18n="p4">You have 14 days to change your mind. We only start when you explicitly ask us to.</li>
+          </ul>
+          <p class="note" data-i18n="note">Amounts are examples. The fee is always 1.5 times the total monthly rent in the lease.</p>
+          <a class="link-cta on-dark" href="#sign-up" data-i18n="linkCta">Sign up →</a>
+        </div>
       </div>
-      <a href="#contact" class="btn btn-outline tarief-cta" data-i18n="tarief.cta">Schrijf je nu in</a>
-    </div>
-  </section>
+    </section>
 
-  <section class="voorbeelden" id="voorbeelden">
-    <div class="container">
-      <p class="section-label" data-i18n="voorbeelden.label">Recent bemiddeld</p>
-      <h2 data-i18n="voorbeelden.h2">Voorbeelden uit ons netwerk</h2>
-      <div class="listing-grid">
-        <article class="listing-card">
-          <div class="listing-image">
-            <img src="images/listing-binnenstad.jpg" data-i18n-alt="voorbeelden.card1.alt" alt="Grachtenpand in de Binnenstad van Groningen" loading="lazy">
-          </div>
-          <div class="listing-body">
-            <h3 data-i18n="voorbeelden.card1.title">Studio &mdash; Binnenstad</h3>
-            <p class="listing-meta" data-i18n="voorbeelden.card1.meta">28 m² &middot; Gemeubileerd &middot; 5 min. van centrum</p>
-          </div>
-        </article>
-        <article class="listing-card">
-          <div class="listing-image">
-            <img src="images/listing-paddepoel.jpg" data-i18n-alt="voorbeelden.card2.alt" alt="Fietsen bij een gracht nabij Paddepoel" loading="lazy">
-          </div>
-          <div class="listing-body">
-            <h3 data-i18n="voorbeelden.card2.title">Kamer &mdash; Paddepoel</h3>
-            <p class="listing-meta" data-i18n="voorbeelden.card2.meta">16 m² &middot; Gedeelde keuken &middot; Nabij RUG-campus</p>
-          </div>
-        </article>
-        <article class="listing-card">
-          <div class="listing-image">
-            <img src="images/listing-helpman.jpg" data-i18n-alt="voorbeelden.card3.alt" alt="Appartementengebouw met balkons en bloemen in Helpman" loading="lazy">
-          </div>
-          <div class="listing-body">
-            <h3 data-i18n="voorbeelden.card3.title">2-kamerappartement &mdash; Helpman</h3>
-            <p class="listing-meta" data-i18n="voorbeelden.card3.meta">65 m² &middot; Balkon &middot; Rustige buurt</p>
-          </div>
-        </article>
-        <article class="listing-card">
-          <div class="listing-image">
-            <img src="images/listing-oosterpoort.jpg" data-i18n-alt="voorbeelden.card4.alt" alt="Modern gerenoveerd appartementencomplex in Oosterpoort" loading="lazy">
-          </div>
-          <div class="listing-body">
-            <h3 data-i18n="voorbeelden.card4.title">Loft &mdash; Oosterpoort</h3>
-            <p class="listing-meta" data-i18n="voorbeelden.card4.meta">40 m² &middot; Recent gerenoveerd &middot; Fietsenstalling</p>
-          </div>
-        </article>
+    <section class="s" id="faq" aria-labelledby="faq-title">
+      <div class="wrap">
+        <div class="head">
+          <span class="label" data-i18n="fLabel">FAQ</span>
+          <h2 id="faq-title" data-i18n="fH">What to know before you start</h2>
+        </div>
+        <div class="faq">
+          <details><summary data-i18n="q1">Who do you work for?</summary><p data-i18n="a1">Only for the tenant. We do not work for landlords and receive nothing from them. That is why you are allowed to pay us for the search.</p></details>
+          <details><summary data-i18n="q2">Why are there no homes on this site?</summary><p data-i18n="a2">We do not publish listings. We search per tenant in our network, based on your search profile. That keeps us fully on your side.</p></details>
+          <details><summary data-i18n="q3">What if you find nothing?</summary><p data-i18n="a3">Then you pay nothing. The fee is only due when you sign a lease through us.</p></details>
+          <details><summary data-i18n="q4">What happens with my data?</summary><p data-i18n="a4">We only share your details with a landlord when you want us to.</p></details>
+          <details><summary data-i18n="q5">Can I stop the assignment?</summary><p data-i18n="a5">Yes. You can cancel before you sign a lease. No fee is due then.</p></details>
+        </div>
+        <a class="link-cta" href="#sign-up" data-i18n="linkCta">Sign up →</a>
       </div>
-      <p class="voorbeelden-cta-text" data-i18n="voorbeelden.ctaText">Zie je iets dat je aanspreekt? Schrijf je in en wij gaan voor je op zoek.</p>
-      <a href="#contact" class="btn btn-primary" data-i18n="voorbeelden.cta">Schrijf je nu in</a>
-    </div>
-  </section>
+    </section>
 
-  <section class="gallery-strip">
-    <div class="strip-grid">
-      <div class="strip-item"><img src="images/strip-station.jpg" data-i18n-alt="gallery.alt1" alt="Station Groningen" loading="lazy"></div>
-      <div class="strip-item"><img src="images/strip-harbor.jpg" data-i18n-alt="gallery.alt2" alt="Haven van Groningen in de avond" loading="lazy"></div>
-      <div class="strip-item"><img src="images/strip-townhouses.jpg" data-i18n-alt="gallery.alt3" alt="Karakteristieke panden in Groningen" loading="lazy"></div>
-      <div class="strip-item"><img src="images/strip-balconies.jpg" data-i18n-alt="gallery.alt4" alt="Modern appartementencomplex met balkons" loading="lazy"></div>
-    </div>
-  </section>
+    <section class="s form-sec" id="sign-up" aria-labelledby="sign-up-title">
+      <span id="contact"></span>
+      <div class="wrap form-grid">
+        <div class="head">
+          <span class="label" data-i18n="rLabel">Sign up</span>
+          <h2 id="sign-up-title" data-i18n="rH">Tell us what you're looking for</h2>
+          <p class="sub" data-i18n="rP">Four short steps. Then we contact you about the written mandate. We only start searching after that.</p>
+        </div>
 
-  <section class="about" id="about">
-    <div class="container about-inner">
-      <div class="about-image">
-        <img src="images/about-verkade.jpg" data-i18n-alt="about.imageAlt" alt="Voormalige Verkade-fabriek weerspiegeld in het water, Groningen" loading="lazy">
+        <form id="intake" novalidate>
+          <div class="progress" aria-hidden="true"><i class="on"></i><i></i><i></i><i></i></div>
+          <p class="label step-count" id="step-count" aria-live="polite">Step 1 of 4</p>
+
+          <div class="pane" data-pane="1">
+            <fieldset>
+              <legend data-i18n="f1">What are you looking for?</legend>
+              <div class="opts">
+                <label><input type="radio" name="type" value="Kamer"><span data-i18n="oRoom">Room</span></label>
+                <label><input type="radio" name="type" value="Studio"><span data-i18n="oStudio">Studio</span></label>
+                <label><input type="radio" name="type" value="Appartement"><span data-i18n="oApt">Apartment</span></label>
+              </div>
+            </fieldset>
+            <div class="field">
+              <label for="regio" data-i18n="f2">City or area</label>
+              <input type="text" id="regio" name="regio" autocomplete="address-level2" placeholder="e.g. Groningen" data-i18n-placeholder="regioPh">
+            </div>
+          </div>
+
+          <div class="pane" data-pane="2" hidden>
+            <fieldset>
+              <legend data-i18n="f3">Budget per month, total rent</legend>
+              <div class="opts">
+                <label><input type="radio" name="budget" value="Tot € 800"><span data-i18n="b1">Up to € 800</span></label>
+                <label><input type="radio" name="budget" value="€ 800 – € 1.200"><span data-i18n="b2">€ 800 – 1,200</span></label>
+                <label><input type="radio" name="budget" value="€ 1.200 – € 1.800"><span data-i18n="b3">€ 1,200 – 1,800</span></label>
+                <label><input type="radio" name="budget" value="€ 1.800 – € 2.500"><span data-i18n="b4">€ 1,800 – 2,500</span></label>
+                <label><input type="radio" name="budget" value="€ 2.500+"><span data-i18n="b5">€ 2,500+</span></label>
+              </div>
+            </fieldset>
+            <div class="two">
+              <div class="field">
+                <label for="wanneer" data-i18n="f4">Start date</label>
+                <select id="wanneer" name="wanneer">
+                  <option value="Zo snel mogelijk" data-i18n="w1">As soon as possible</option>
+                  <option value="Binnen 1 maand" data-i18n="w2">Within 1 month</option>
+                  <option value="Binnen 3 maanden" data-i18n="w3">Within 3 months</option>
+                  <option value="Nog geen idee" data-i18n="w4">No idea yet</option>
+                </select>
+              </div>
+              <div class="field">
+                <label for="personen" data-i18n="f5">Number of people</label>
+                <select id="personen" name="personen"><option>1</option><option>2</option><option>3</option><option>4+</option></select>
+              </div>
+            </div>
+          </div>
+
+          <div class="pane" data-pane="3" hidden>
+            <fieldset>
+              <legend data-i18n="f6">How long do you want to rent?</legend>
+              <div class="opts">
+                <label><input type="radio" name="duration" value="Korter dan 6 maanden"><span data-i18n="d1">Under 6 months</span></label>
+                <label><input type="radio" name="duration" value="6 - 12 maanden"><span data-i18n="d2">6 – 12 months</span></label>
+                <label><input type="radio" name="duration" value="1 - 2 jaar"><span data-i18n="d3">1 – 2 years</span></label>
+                <label><input type="radio" name="duration" value="Langer dan 2 jaar"><span data-i18n="d4">2+ years</span></label>
+              </div>
+            </fieldset>
+            <fieldset>
+              <legend data-i18n="f7">Monthly income</legend>
+              <div class="opts">
+                <label><input type="radio" name="income" value="Studiefinanciering / geen eigen inkomen"><span data-i18n="i1">Student finance / none</span></label>
+                <label><input type="radio" name="income" value="Tot € 2.000"><span data-i18n="i2">Up to € 2,000</span></label>
+                <label><input type="radio" name="income" value="€ 2.000 – € 3.000"><span data-i18n="i3">€ 2,000 – 3,000</span></label>
+                <label><input type="radio" name="income" value="€ 3.000+"><span data-i18n="i4">€ 3,000+</span></label>
+              </div>
+            </fieldset>
+          </div>
+
+          <div class="pane" data-pane="4" hidden>
+            <fieldset>
+              <legend data-i18n="f8">You are</legend>
+              <div class="opts">
+                <label><input type="radio" name="who" value="Expat"><span>Expat</span></label>
+                <label><input type="radio" name="who" value="Student"><span data-i18n="oStudent">Student</span></label>
+                <label><input type="radio" name="who" value="Young professional"><span>Young professional</span></label>
+              </div>
+            </fieldset>
+            <div class="two">
+              <div class="field"><label for="naam" data-i18n="f9">Name</label><input type="text" id="naam" name="naam" autocomplete="name"></div>
+              <div class="field"><label for="email" data-i18n="f10">Email</label><input type="email" id="email" name="email" autocomplete="email" inputmode="email"></div>
+            </div>
+            <div class="field"><label for="tel" data-i18n="f11">Phone (optional)</label><input type="tel" id="tel" name="tel" autocomplete="tel" inputmode="tel"></div>
+            <label class="check"><input type="checkbox" id="akkoord" name="akkoord"><span data-i18n="f12">I agree that Property Direct Rental Agency uses my details to search for me. This is not yet a mandate and there are no costs.</span></label>
+            <div class="hp" aria-hidden="true"><label>Leave this empty <input type="checkbox" id="botcheck" name="botcheck" tabindex="-1" autocomplete="off"></label></div>
+          </div>
+
+          <p class="err" id="err" role="alert"></p>
+          <div class="actions">
+            <button type="button" class="btn btn-ghost" id="prev" hidden data-i18n="prev">Back</button>
+            <button type="button" class="btn btn-primary" id="next" data-i18n="next">Next</button>
+            <button type="submit" class="btn btn-primary" id="send" hidden data-i18n="send">Send request</button>
+          </div>
+
+          <div class="thanks" id="thanks" role="status" tabindex="-1" hidden>
+            <span class="label" data-i18n="okL">Received</span>
+            <h3 data-i18n="okH">Thank you.</h3>
+            <p data-i18n="okP">We will contact you about the next step. Signing up costs nothing.</p>
+          </div>
+        </form>
       </div>
-      <div class="about-text">
-        <p class="section-label" data-i18n="about.label">Over Property Direct</p>
-        <h2 data-i18n="about.h2">Bemiddeling met een persoonlijke aanpak</h2>
-        <p data-i18n="about.p">Property Direct Rental Agency is gespecialiseerd in de bemiddeling van kamers en appartementen in Groningen. Via ons uitgebreide, exclusieve netwerk van verhuurders en particuliere eigenaren vinden wij woonruimte die niet altijd via reguliere kanalen te vinden is. Van eerste kennismaking tot sleuteloverdracht begeleiden wij het volledige proces persoonlijk en professioneel.</p>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      <div class="cols">
+        <div>
+          <svg class="mark" viewBox="0 0 158 120" width="58" height="44" aria-hidden="true" focusable="false"><use href="#pd"/></svg>
+          <p class="label on-dark">Rental Agency</p>
+          <p class="about" data-i18n="fAbout">Personal rental search for tenants across the Netherlands.</p>
+        </div>
+        <div>
+          <h4 data-i18n="fc1">Navigate</h4>
+          <p>
+            <a href="#how-it-works" data-i18n="nav1">How it works</a><br>
+            <a href="#who" data-i18n="nav2">Who it's for</a><br>
+            <a href="#pricing" data-i18n="nav3">Pricing</a><br>
+            <a href="#faq" data-i18n="nav4">FAQ</a><br>
+            <a href="#sign-up" data-i18n="navcta">Sign up</a>
+          </p>
+        </div>
+        <div>
+          <h4 data-i18n="fc2">Company</h4>
+          <p>Property Direct Rental Agency<br><span data-i18n="fLoc">Groningen, the Netherlands</span></p>
+        </div>
       </div>
-    </div>
-  </section>
-
-  <section class="final-cta">
-    <div class="container final-cta-inner">
-      <h2 data-i18n="finalCta.h2">Klaar om te beginnen?</h2>
-      <p data-i18n="finalCta.p">Schrijf je in en wij gaan direct voor je op zoek binnen ons exclusieve netwerk.</p>
-      <a href="#contact" class="btn btn-primary" data-i18n="finalCta.cta">Schrijf je nu in</a>
-    </div>
-  </section>
-
-  <footer class="site-footer">
-    <div class="container footer-inner">
-      <p class="footer-brand">Property<span>Direct</span> Rental Agency</p>
-      <p>&copy; <span id="year"></span> Property Direct Rental Agency &middot; Groningen</p>
-      <p class="footer-fine" data-i18n="footer.fine">Bemiddelingskosten: 1 maand huur + 21% btw, uitsluitend verschuldigd bij een succesvolle match.</p>
+      <p class="fine" data-i18n="fine">Fee: 1.5 times the total monthly rent (including gas, water and electricity) plus 21% VAT, only due when a lease is signed through Property Direct Rental Agency. No upfront costs.</p>
+      <p class="copy">© <span id="year"></span> Property Direct Rental Agency</p>
     </div>
   </footer>
 

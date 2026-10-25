@@ -1,4 +1,7 @@
-<svg viewBox="0 0 44 44" xmlns="http://www.w3.org/2000/svg">
-  <rect width="44" height="44" rx="9" fill="#0f4d3a"/>
-  <text x="22" y="30" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="19" font-weight="600" letter-spacing="-0.5" fill="#ffffff">PD</text>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <rect width="64" height="64" fill="#0B1512"/>
+  <g transform="translate(1.8 8.8) scale(.38)" fill="none" stroke-width="11" stroke-linejoin="miter">
+    <path d="M16 108 V14 H48 A22 22 0 0 1 48 58 H16" stroke="#F6F5F0"/>
+    <path d="M86 108 V14 H96 A47 47 0 0 1 96 108 Z" stroke="#B9D1C3"/>
+  </g>
 </svg>

@@ -617,3 +617,6 @@ html:not(.js) .faq-a { grid-template-rows: 1fr; visibility: visible; }
 }
 
 .legal-links { display: flex; flex-wrap: wrap; gap: 0 28px; }
+
+/* Below-the-fold sections are only laid out and loaded when they come near the viewport. */
+.who, .register, .about, .faq-sec, .site-footer { content-visibility: auto; contain-intrinsic-size: auto 1000px; }

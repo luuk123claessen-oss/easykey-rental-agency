@@ -16,7 +16,7 @@ Live at https://propertydirect.nl
 ├── js/config.js          # Central config: KvK, BTW, email, phone, form endpoint, portraits
 ├── js/i18n.js            # Translations (EN/NL), language switch, applies config values
 ├── js/home.js            # Hero video, scroll effects, fee calculator, registration form, FAQ, menu
-├── fonts/                # Self-hosted Inter Tight and JetBrains Mono (latin, woff2)
+├── fonts/                # Self-hosted Inter Tight and JetBrains Mono (woff2, subset to the characters the site uses)
 ├── assets/media/         # Hero video + poster, persona and band photos (AVIF + WebP), CREDITS.md
 ├── assets/team/          # Founder portraits go here (see below)
 ├── favicon.svg, favicon-32.png, apple-touch-icon.png, icon-192.png, icon-512.png, site.webmanifest
@@ -61,6 +61,10 @@ The legal pages are plain-language summaries and say so at the top. They have no
 - The fee (1.5 × total monthly rent + 21% VAT) is set by `FEE_MULTIPLIER` and `VAT_RATE` in `js/home.js` and drives the calculator and the examples table. The FAQ answer and the fine print are plain text in `T`.
 - `?lang=nl` opens the site in Dutch (this is what the `hreflang="nl"` link points to). Otherwise the saved choice (localStorage) or English is used.
 - Registrations are sent as JSON. Field names and values are Dutch on purpose, so the emails stay the same for the team. No income or other sensitive data is collected.
+
+## Fonts
+
+The two variable fonts are subset to the characters used on the site (Basic Latin, Latin-1 accents, common punctuation, arrows, the euro sign) and limited to the weights in use. If you add characters outside that set (for example other accents), re-subset the fonts from the full families with `pyftsubset`, otherwise those characters fall back to a system font.
 
 ## Media
 

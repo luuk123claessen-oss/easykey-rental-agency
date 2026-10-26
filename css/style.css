@@ -335,7 +335,7 @@ section.s { padding-block: clamp(72px, 10vw, 140px); }
 }
 @keyframes dpProgress { from { --dp: 0; } to { --dp: 1; } }
 
-.door-stage { position: sticky; top: 0; height: 100vh; height: 100svh; overflow: hidden; background: radial-gradient(60% 50% at 82% 22%, rgba(143, 227, 190, .28), rgba(143, 227, 190, 0) 70%), var(--papier); --dw: min(74vw, 33svh, 320px); contain: layout paint; }
+.door-stage { position: sticky; top: 0; height: 100vh; height: 100svh; overflow: hidden; background: radial-gradient(60% 50% at 82% 22%, rgba(143, 227, 190, .28), rgba(143, 227, 190, 0) 70%), var(--papier); --dw: min(74vw, 33svh, 380px); contain: layout paint; }
 .door-room { position: absolute; inset: 0; opacity: var(--room-in); transform: scale(calc(1 + var(--wk) * .35)); transform-origin: 50% 54%; will-change: transform, opacity; }
 .door-room picture, .door-room img { display: block; width: 100%; height: 100%; }
 .door-room img { object-fit: cover; object-position: 50% 45%; }

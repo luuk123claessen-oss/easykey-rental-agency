@@ -741,7 +741,7 @@ html:not(.js) .reel-words span:first-child { opacity: 1; }
 .steps { counter-reset: s; margin-top: 8px; }
 .steps li { counter-increment: s; position: relative; padding: 26px 0 26px 68px; border-bottom: 1px solid var(--line); }
 .steps li::before { content: counter(s, decimal-leading-zero); position: absolute; left: 0; top: 28px; display: grid; place-items: center; width: 44px; height: 44px; border: 1px solid var(--smaragd); color: var(--smaragd); font: 500 12px/1 var(--f-mono); letter-spacing: .08em; }
-.steps h3 { margin-bottom: 8px; font-size: 22px; font-weight: 500; letter-spacing: -.01em; }
+.legal .steps h2, .legal .steps h3 { margin: 0 0 8px; font-size: 22px; font-weight: 500; letter-spacing: -.01em; line-height: 1.25; }
 .legal .steps li p { max-width: 58ch; }
 .legal .steps li p + p { margin-top: 10px; }
 .src-list li { padding-left: 0; }
@@ -757,7 +757,7 @@ html:not(.js) .reel-words span:first-child { opacity: 1; }
 /* Move-in checklist on the home page */
 .after { background: var(--papier); border-top: 1px solid var(--line); }
 .after-grid { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: clamp(32px, 6vw, 96px); align-items: start; }
-.after-head { position: sticky; top: 120px; }
+.after-head { position: sticky; top: 120px; display: flex; flex-direction: column; align-items: flex-start; gap: 18px; }
 .after-head .bar-track { margin: 22px 0 8px; }
 .after-count { font: 500 12px/1 var(--f-mono); letter-spacing: .14em; text-transform: uppercase; color: var(--mist-text); max-width: none; }
 .after-actions { display: flex; flex-wrap: wrap; gap: 8px 24px; align-items: center; margin-top: 18px; }
@@ -874,7 +874,14 @@ html:not(.js) .reel-words span:first-child { opacity: 1; }
 .legal-links { display: flex; flex-wrap: wrap; gap: 0 28px; }
 
 /* Below-the-fold sections are only laid out and loaded when they come near the viewport. */
-.who, .register, .about, .faq-sec, .site-footer, .sign { content-visibility: auto; contain-intrinsic-size: auto 1000px; }
+.who, .register, .about, .after, .faq-sec, .site-footer, .sign { content-visibility: auto; }
+/* Measured heights, so the page does not jump when sections render (desktop, then stacked layouts) */
+.who { contain-intrinsic-size: auto 1100px; } .register { contain-intrinsic-size: auto 1730px; } .about { contain-intrinsic-size: auto 1960px; }
+.after { contain-intrinsic-size: auto 1050px; } .faq-sec { contain-intrinsic-size: auto 1080px; } .sign { contain-intrinsic-size: auto 790px; } .site-footer { contain-intrinsic-size: auto 910px; }
+@media (max-width: 960px) {
+  .who { contain-intrinsic-size: auto 1650px; } .register { contain-intrinsic-size: auto 1600px; } .about { contain-intrinsic-size: auto 1480px; }
+  .after { contain-intrinsic-size: auto 1350px; } .faq-sec { contain-intrinsic-size: auto 1110px; } .sign { contain-intrinsic-size: auto 850px; } .site-footer { contain-intrinsic-size: auto 1280px; }
+}
 
 
 /* Logo as progress: the D of the header mark fills with Sage as you scroll */
@@ -884,13 +891,13 @@ html:not(.js) .reel-words span:first-child { opacity: 1; }
 
 /* Logo-draw intro (first visit only), pure CSS so it never waits for scripts */
 .intro { display: none; }
-.intro-on { --d0: .5s; }
-.intro-on .intro { position: fixed; inset: 0; z-index: 200; display: grid; place-items: center; pointer-events: none; animation: introHide 0s linear 1.05s forwards; }
-.intro .pl, .intro .pr { position: absolute; top: 0; bottom: 0; width: 50.2%; background: var(--nacht); animation: introLift .45s cubic-bezier(.76, 0, .24, 1) .6s forwards; }
+.intro-on { --d0: .3s; }
+.intro-on .intro { position: fixed; inset: 0; z-index: 200; display: grid; place-items: center; pointer-events: none; animation: introHide 0s linear .95s forwards; }
+.intro .pl, .intro .pr { position: absolute; top: 0; bottom: 0; width: 50.2%; background: var(--nacht); animation: introLift .42s cubic-bezier(.76, 0, .24, 1) .5s forwards; }
 .intro .pl { left: 0; }
-.intro .pr { right: 0; animation-delay: .68s; }
-.intro svg { position: relative; z-index: 1; width: clamp(96px, 16vw, 158px); height: auto; fill: none; stroke: var(--salie); stroke-width: 11; stroke-linejoin: miter; overflow: visible; animation: introFade .25s ease .58s forwards; }
-.intro svg path { stroke-dasharray: 1; stroke-dashoffset: 1; animation: draw .55s var(--ease) forwards; }
+.intro .pr { right: 0; animation-delay: .57s; }
+.intro svg { position: relative; z-index: 1; width: clamp(96px, 16vw, 158px); height: auto; fill: none; stroke: var(--salie); stroke-width: 11; stroke-linejoin: miter; overflow: visible; animation: introFade .2s ease .48s forwards; }
+.intro svg path { stroke-dasharray: 1; stroke-dashoffset: 1; animation: draw .45s var(--ease) forwards; }
 .intro svg path + path { animation-delay: .1s; }
 @keyframes introLift { to { transform: translateY(-101%); } }
 @keyframes introFade { to { opacity: 0; } }

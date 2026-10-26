@@ -910,6 +910,54 @@
     }, { threshold: 0.35 }).observe(stage);
   }
 
+  /* ------------------------------------------------------------------ Move-in checklist (saved locally, shareable by link) */
+
+  function initChecklist() {
+    var list = $('#checklist');
+    if (!list) return;
+    var boxes = $$('input[type=checkbox]', list);
+    var n = boxes.length;
+    var bar = $('#af-bar'), count = $('#af-count'), track = $('#af-track');
+    var STORE = 'pd-checklist';
+    function read() {
+      var m = /^#after=([0-9a-f]+)$/.exec(window.location.hash);
+      if (m) {
+        var v = parseInt(m[1], 16);
+        return boxes.map(function (b, i) { return !!(v & (1 << i)); });
+      }
+      try {
+        var s = localStorage.getItem(STORE);
+        if (s && s.length === n) return s.split('').map(function (c) { return c === '1'; });
+      } catch (e) { /* storage unavailable */ }
+      return boxes.map(function () { return false; });
+    }
+    function mask() { return boxes.reduce(function (a, b, i) { return a | (b.checked ? (1 << i) : 0); }, 0); }
+    function render() {
+      var done = boxes.filter(function (b) { return b.checked; }).length;
+      bar.style.setProperty('--f', (done / n).toFixed(3));
+      track.setAttribute('aria-valuenow', done);
+      count.textContent = PD.t('afCount').replace('{n}', done).replace('{m}', n);
+    }
+    function save() {
+      try { localStorage.setItem(STORE, boxes.map(function (b) { return b.checked ? '1' : '0'; }).join('')); } catch (e) { /* ignore */ }
+    }
+    var initial = read();
+    boxes.forEach(function (b, i) {
+      b.checked = initial[i];
+      b.addEventListener('change', function () { save(); render(); });
+    });
+    render();
+    document.addEventListener('pd:lang', render);
+    $('#af-reset').addEventListener('click', function () { boxes.forEach(function (b) { b.checked = false; }); save(); render(); });
+    $('#af-copy').addEventListener('click', function () {
+      var url = window.location.origin + window.location.pathname + '#after=' + mask().toString(16);
+      function done() { toast(PD.t('afCopied')); }
+      if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(url).then(done, function () { window.prompt('', url); });
+      else window.prompt('', url);
+    });
+    if (/^#after=/.test(window.location.hash)) setTimeout(function () { goTo($('#after')); }, 300);
+  }
+
   /* ------------------------------------------------------------------ FAQ accordion (single open) */
 
   var faqItems = $$('.faq-item');
@@ -988,5 +1036,6 @@
   initKey3d();
   initSign();
   initReel();
+  initChecklist();
   tick();
 })();

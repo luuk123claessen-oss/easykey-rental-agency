@@ -129,11 +129,29 @@
     }, { passive: true });
   }
 
+  /* ------------------------------------------------------------------ Amsterdam now + time-of-day tint */
+
+  function initClock() {
+    var el = $('#ams-time');
+    if (el && window.Intl && Intl.DateTimeFormat) {
+      var fmt = new Intl.DateTimeFormat('en-GB', { timeZone: 'Europe/Amsterdam', hour: '2-digit', minute: '2-digit', hour12: false });
+      var tickClock = function () { el.textContent = fmt.format(new Date()); };
+      tickClock();
+      setInterval(tickClock, 15000);
+    }
+    if (hero) {
+      var hr = new Date().getHours();
+      var tod = hr >= 5 && hr < 8 ? 'dawn' : hr >= 8 && hr < 17 ? 'day' : hr >= 17 && hr < 21 ? 'dusk' : 'night';
+      hero.classList.add('tod', 'tod-' + tod);
+    }
+  }
+
   /* ------------------------------------------------------------------ scroll effects */
 
   var header = $('#site-header');
   var heroMedia = $('.hero-media');
-  var topBar = $('#progress-top');
+  var dClip = $('#dclip-rect');
+  var wordmark = $('#wordmark');
   var statementWords = [];
   var navLinks = $$('nav.menu a');
   var sectionIds = ['how', 'who', 'fee', 'register', 'about', 'faq'];
@@ -205,7 +223,13 @@
     var max = document.documentElement.scrollHeight - vh;
     if (!stmtArmed && y > 0) { stmtArmed = true; }
     header.classList.toggle('is-solid', y > 80);
-    topBar.style.setProperty('--sp', max > 0 ? clamp(y / max, 0, 1).toFixed(4) : 0);
+    var prog = max > 0 ? clamp(y / max, 0, 1) : 0;
+    if (dClip) {
+      var fillH = 120 * prog;
+      dClip.setAttribute('y', (120 - fillH).toFixed(1));
+      dClip.setAttribute('height', fillH.toFixed(1));
+    }
+    if (wordmark) wordmark.classList.toggle('lit', prog > 0.985);
 
     if (hero && !reduced && y < vh * 1.1) {
       var inner = $('#hero-inner');
@@ -734,6 +758,7 @@
   if (yearEl) yearEl.textContent = String(new Date().getFullYear());
 
   initHeroVideo();
+  initClock();
   initPointerEffects();
   splitStatement();
   renderAmounts();

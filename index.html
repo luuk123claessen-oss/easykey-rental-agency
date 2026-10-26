@@ -41,6 +41,12 @@
   (function () {
     var d = document, r = d.documentElement, done = 0;
     r.classList.add('js');
+    try {
+      if (!sessionStorage.getItem('pd-intro') && !matchMedia('(prefers-reduced-motion: reduce)').matches && !location.hash) {
+        r.classList.add('intro-on');
+        sessionStorage.setItem('pd-intro', '1');
+      }
+    } catch (e) { /* storage unavailable: no intro */ }
     setTimeout(function () { if (!window.__pdReady) r.classList.add('pd-late'); }, 4000);
     function load() {
       if (done) return;
@@ -97,7 +103,10 @@
 </head>
 <body>
   <a class="skip" href="#main" data-i18n="skip">Skip to content</a>
-  <div class="progress-top" id="progress-top" aria-hidden="true"></div>
+  <div class="intro" id="intro" aria-hidden="true">
+    <i class="pl"></i><i class="pr"></i>
+    <svg viewBox="0 0 158 120" width="158" height="120" focusable="false"><path pathLength="1" d="M16 108 V14 H48 A22 22 0 0 1 48 58 H16"/><path pathLength="1" d="M86 108 V14 H96 A47 47 0 0 1 96 108 Z"/></svg>
+  </div>
   <div class="cursor-glow" id="cursor-glow" aria-hidden="true"></div>
 
   <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
@@ -110,7 +119,12 @@
   <header class="site-header" id="site-header">
     <div class="wrap bar">
       <a class="brand" href="#top" aria-label="PD Rental Agency – Property Direct">
-        <svg class="mark" viewBox="0 0 158 120" width="45" height="34" aria-hidden="true" focusable="false"><use href="#pd"/></svg>
+        <svg class="mark mark-progress" viewBox="0 0 158 120" width="45" height="34" aria-hidden="true" focusable="false">
+          <defs><clipPath id="dclip"><rect id="dclip-rect" x="0" y="120" width="158" height="0"/></clipPath></defs>
+          <path class="d-fill" d="M86 108 V14 H96 A47 47 0 0 1 96 108 Z" clip-path="url(#dclip)"/>
+          <path class="mp" d="M16 108 V14 H48 A22 22 0 0 1 48 58 H16" fill="none" stroke-width="11" stroke-linejoin="miter"/>
+          <path class="md" d="M86 108 V14 H96 A47 47 0 0 1 96 108 Z" fill="none" stroke-width="11" stroke-linejoin="miter"/>
+        </svg>
         <span>Rental Agency</span>
       </a>
       <nav class="menu" aria-label="Main" data-i18n-aria="mainNav">
@@ -149,6 +163,7 @@
       <div class="hero-media" aria-hidden="true">
         <img class="hero-poster" src="assets/media/hero-poster-800.webp" srcset="assets/media/hero-poster-800.webp 800w, assets/media/hero-poster.webp 1600w" sizes="100vw" width="1600" height="900" alt="" decoding="async">
         <video class="hero-video" id="hero-video" muted loop playsinline preload="metadata" tabindex="-1" disablepictureinpicture></video>
+        <i class="hero-tint"></i>
       </div>
 
       <div class="wrap hero-inner" id="hero-inner">
@@ -176,6 +191,7 @@
             <li data-i18n="t2">No upfront costs</li>
             <li data-i18n="t3">No cure, no pay</li>
           </ul>
+          <p class="ams label" aria-hidden="true">Amsterdam · <time id="ams-time">––:––</time></p>
           <div class="scroll-line" aria-hidden="true"><i></i></div>
         </div>
       </div>

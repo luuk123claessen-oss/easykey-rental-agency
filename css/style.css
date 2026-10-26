@@ -122,8 +122,6 @@ section[id], .s { scroll-margin-top: 88px; }
 .grain { position: relative; }
 .grain::after { content: ""; position: absolute; inset: 0; z-index: 0; pointer-events: none; background: var(--noise); background-size: 180px 180px; opacity: .04; }
 
-/* Top scroll progress */
-.progress-top { position: fixed; top: 0; left: 0; right: 0; height: 2px; z-index: 70; transform-origin: 0 50%; transform: scaleX(var(--sp, 0)); background: var(--glow); pointer-events: none; }
 
 /* Cursor glow (desktop pointers only) */
 .cursor-glow { position: fixed; left: 0; top: 0; width: 200px; height: 200px; margin: -100px 0 0 -100px; z-index: 65; pointer-events: none; opacity: 0; transition: opacity .5s; background: radial-gradient(circle, rgba(185, 209, 195, .16), rgba(185, 209, 195, 0) 65%); will-change: transform; }
@@ -259,14 +257,14 @@ nav.menu a:hover::after, nav.menu a.is-current::after { transform: scaleX(1); }
    animation ends fully opaque. Without JS the .js class is missing and everything is simply visible. */
 @keyframes maskUp { from { transform: translateY(104%); clip-path: inset(0 0 100% 0); } to { transform: none; clip-path: inset(-12% -12% -24% -12%); } }
 @keyframes fadeUp { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: none; } }
-.js .hero .line-in { display: block; animation: maskUp .7s var(--ease-reveal) .05s both; }
-.js .hero .line:nth-child(2) .line-in { animation-delay: .15s; }
-.js .hero .hero-label { animation: fadeUp .8s var(--ease-reveal) 0s both; }
-.js .hero .hero-sub { animation: fadeUp .8s var(--ease-reveal) .3s both; }
-.js .hero .cta { animation: fadeUp .8s var(--ease-reveal) .4s both; }
-.js .hero .trust { animation: fadeUp .8s var(--ease-reveal) .5s both; }
-.js .sig path { stroke-dashoffset: 1; animation: draw 1.6s .8s var(--ease) forwards; }
-.js .sig .sig-line { animation-delay: 1.6s; animation-duration: 1s; }
+.js .hero .line-in { display: block; animation: maskUp .7s var(--ease-reveal) calc(var(--d0, 0s) + .05s) both; }
+.js .hero .line:nth-child(2) .line-in { animation-delay: calc(var(--d0, 0s) + .15s); }
+.js .hero .hero-label { animation: fadeUp .8s var(--ease-reveal) var(--d0, 0s) both; }
+.js .hero .hero-sub { animation: fadeUp .8s var(--ease-reveal) calc(var(--d0, 0s) + .3s) both; }
+.js .hero .cta { animation: fadeUp .8s var(--ease-reveal) calc(var(--d0, 0s) + .4s) both; }
+.js .hero .trust { animation: fadeUp .8s var(--ease-reveal) calc(var(--d0, 0s) + .5s) both; }
+.js .sig path { stroke-dashoffset: 1; animation: draw 1.6s calc(var(--d0, 0s) + .8s) var(--ease) forwards; }
+.js .sig .sig-line { animation-delay: calc(var(--d0, 0s) + 1.6s); animation-duration: 1s; }
 @keyframes draw { to { stroke-dashoffset: 0; } }
 
 .trust { position: relative; z-index: 2; border-top: 1px solid var(--line-d); background: rgba(11, 21, 18, .5); }
@@ -613,6 +611,8 @@ html:not(.js) .faq-a { grid-template-rows: 1fr; visibility: visible; }
   .hero .cta .btn { width: 100%; }
   .hero .cta .magnet-wrap { flex: 1 1 100%; }
   .scroll-line { display: none; }
+  .trust-row { flex-direction: column; align-items: flex-start; gap: 0; }
+  .trust-row .ams { padding-bottom: 16px; }
   .calc-input input[type=text] { width: 4.6ch; }
   .cmp-grid { grid-template-columns: 1fr; }
   .cmp-b { border-left: 0; box-shadow: none; border-top: 1px solid var(--smaragd); }
@@ -646,3 +646,33 @@ html:not(.js) .faq-a { grid-template-rows: 1fr; visibility: visible; }
 
 /* Below-the-fold sections are only laid out and loaded when they come near the viewport. */
 .who, .register, .about, .faq-sec, .site-footer { content-visibility: auto; contain-intrinsic-size: auto 1000px; }
+
+
+/* Logo as progress: the D of the header mark fills with Sage as you scroll */
+.mark-progress .d-fill { fill: var(--salie); stroke: none; }
+.wordmark.lit { background: linear-gradient(180deg, #fff 8%, var(--salie) 100%); -webkit-background-clip: text; background-clip: text; filter: drop-shadow(0 0 28px rgba(22, 110, 80, .65)); }
+.site-footer .wordmark { transition: filter 1.2s var(--ease); }
+
+/* Logo-draw intro (first visit only), pure CSS so it never waits for scripts */
+.intro { display: none; }
+.intro-on { --d0: .5s; }
+.intro-on .intro { position: fixed; inset: 0; z-index: 200; display: grid; place-items: center; pointer-events: none; animation: introHide 0s linear 1.05s forwards; }
+.intro .pl, .intro .pr { position: absolute; top: 0; bottom: 0; width: 50.2%; background: var(--nacht); animation: introLift .45s cubic-bezier(.76, 0, .24, 1) .6s forwards; }
+.intro .pl { left: 0; }
+.intro .pr { right: 0; animation-delay: .68s; }
+.intro svg { position: relative; z-index: 1; width: clamp(96px, 16vw, 158px); height: auto; fill: none; stroke: var(--salie); stroke-width: 11; stroke-linejoin: miter; overflow: visible; animation: introFade .25s ease .58s forwards; }
+.intro svg path { stroke-dasharray: 1; stroke-dashoffset: 1; animation: draw .55s var(--ease) forwards; }
+.intro svg path + path { animation-delay: .1s; }
+@keyframes introLift { to { transform: translateY(-101%); } }
+@keyframes introFade { to { opacity: 0; } }
+@keyframes introHide { to { visibility: hidden; } }
+
+/* Amsterdam now, and a tint that follows the visitor's local time of day */
+.ams { font-size: 11px; letter-spacing: .18em; color: #8C9A93; white-space: nowrap; margin: 0; max-width: none; }
+.ams time { color: var(--salie); font-variant-numeric: tabular-nums; }
+.hero-tint { position: absolute; inset: 0; pointer-events: none; opacity: 0; background: var(--tint, transparent); mix-blend-mode: screen; transition: opacity 3s var(--ease), background 3s var(--ease); }
+.hero.tod .hero-tint { opacity: 1; }
+.hero.tod-dawn { --tint: radial-gradient(90% 70% at 20% 100%, rgba(214, 170, 120, .16), transparent 70%); }
+.hero.tod-day { --tint: linear-gradient(180deg, rgba(185, 209, 195, .12), rgba(185, 209, 195, .03)); }
+.hero.tod-dusk { --tint: radial-gradient(90% 80% at 80% 90%, rgba(220, 140, 80, .15), transparent 70%); }
+.hero.tod-night { --tint: radial-gradient(80% 60% at 70% 0%, rgba(22, 110, 80, .12), transparent 70%); }

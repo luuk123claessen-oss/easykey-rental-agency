@@ -19,7 +19,15 @@ jobs:
           printf 'User-agent: *\nDisallow: /\n' > robots.txt
 
       - name: Deploy preview
-        run: npx wrangler deploy --name pd-preview
+        run: |
+          # redesign-v2 keeps the original preview Worker; every other branch gets its own.
+          if [ "$GITHUB_REF_NAME" = "redesign-v2" ]; then
+            NAME=pd-preview
+          else
+            NAME="pd-preview-$(echo "$GITHUB_REF_NAME" | tr 'A-Z' 'a-z' | tr -c 'a-z0-9\n' '-' | sed 's/-*$//' | cut -c1-40)"
+          fi
+          echo "Deploying to $NAME"
+          npx wrangler deploy --name "$NAME"
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}

@@ -27,7 +27,12 @@
     var video = $('#hero-video');
     if (!video || !hero) return;
     var conn = navigator.connection || {};
-    if (reduced || conn.saveData || /(^|-)2g$/.test(conn.effectiveType || '')) return;
+    var lowData = conn.saveData || /(^|-)2g$/.test(conn.effectiveType || '') || window.matchMedia('(prefers-reduced-data: reduce)').matches;
+    if (reduced || lowData) {
+      // A calm still beats a shaky video: slow Ken Burns on the poster (not for reduced motion).
+      if (!reduced) video.parentNode.classList.add('kb');
+      return;
+    }
     var started = false;
 
     function start() {
@@ -117,6 +122,7 @@
   /* ------------------------------------------------------------------ scroll effects */
 
   var header = $('#site-header');
+  var heroMedia = $('.hero-media');
   var topBar = $('#progress-top');
   var statementWords = [];
   var navLinks = $$('nav.menu a');
@@ -194,6 +200,7 @@
     if (hero && !reduced && y < vh * 1.1) {
       var inner = $('#hero-inner');
       var k = clamp(y / (vh * 0.75), 0, 1);
+      heroMedia.style.setProperty('--vy', Math.min(y * 0.08, 40).toFixed(1) + 'px');
       inner.style.transform = k > 0 ? 'translate3d(0,' + (y * 0.12).toFixed(1) + 'px,0)' : '';
       inner.style.opacity = k > 0 ? (1 - k * 0.92).toFixed(3) : '';
     }

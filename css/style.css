@@ -718,7 +718,7 @@ html:not(.js) .faq-a { grid-template-rows: 1fr; visibility: visible; }
    scroll timeline where supported, otherwise from a small scroll handler. Only transform and opacity move. */
 @property --fp { syntax: '<number>'; inherits: true; initial-value: 0; }
 .film { background: var(--nacht); color: var(--papier); color-scheme: dark; border-top: 1px solid rgba(185, 209, 195, .16); }
-.film-track { position: relative; height: 420vh; --fp: 0; }
+.film-track { position: relative; height: 330vh; --fp: 0; }
 .film-stage { position: sticky; top: 0; height: 100vh; height: 100svh; overflow: hidden; display: flex; align-items: center; }
 .film-strip { display: flex; gap: 4vw; padding: 0 10vw; width: max-content; transform: translate3d(calc(var(--fp) * -252vw), 0, 0); will-change: transform; }
 .frame { position: relative; flex: none; width: 80vw; height: 70vh; --d: max(calc(var(--fp) * 3 - var(--i)), calc(var(--i) - var(--fp) * 3)); opacity: clamp(.55, calc(1 - var(--d) * .45), 1); }
@@ -791,7 +791,7 @@ html:not(.js) .faq-a { grid-template-rows: 1fr; visibility: visible; }
 .reel-video { opacity: 0; transition: opacity .8s var(--ease); }
 .reel-video.on { opacity: 1; }
 .reel-shade { position: absolute; inset: 0; background: linear-gradient(0deg, rgba(11, 21, 18, .7), rgba(11, 21, 18, 0) 45%); pointer-events: none; }
-.reel-words { position: absolute; left: max(20px, 5vw); bottom: clamp(40px, 9vw, 120px); margin: 0; max-width: none; height: 1em; font-size: clamp(56px, 12vw, 200px); line-height: 1; letter-spacing: -.05em; font-weight: 300; text-transform: uppercase; }
+.reel-words { position: absolute; left: max(20px, 5vw); bottom: clamp(40px, 9vw, 120px); margin: 0; max-width: none; height: 1em; font-size: clamp(38px, 11vw, 200px); line-height: 1; letter-spacing: -.05em; font-weight: 300; text-transform: uppercase; }
 .reel-words span { position: absolute; left: 0; bottom: 0; white-space: nowrap; opacity: 0; transform: scale(.94); transform-origin: 0 100%; }
 .reel-words span.on { opacity: 1; animation: punch .35s cubic-bezier(.2, .9, .2, 1) both; }
 @keyframes punch { from { transform: scale(.94); } to { transform: scale(1); } }
@@ -855,7 +855,8 @@ html:not(.js) .reel-words span:first-child { opacity: 1; }
 .fact-line { display: block; height: 1px; background: var(--salie); transform-origin: 0 50%; }
 .js .fact .fact-line { transform: scaleX(0); transition: transform 1.2s var(--ease); }
 .js .fact.counting .fact-line, .pd-late .fact .fact-line { transform: scaleX(1); }
-.fact-label { margin: 0; max-width: 26em; font: 400 12px/1.6 var(--f-mono); letter-spacing: .08em; text-transform: uppercase; color: var(--salie); }
+.fact-label { margin: 0; max-width: 26em; font: 400 12px/1.6 var(--f-mono); letter-spacing: .08em; text-transform: uppercase; color: var(--salie); overflow-wrap: anywhere; hyphens: auto; }
+@media (max-width: 560px) { .fact { padding: 16px 14px; } .fact-label { font-size: 10.5px; letter-spacing: .03em; } .fact-num .unit { letter-spacing: .08em; } }
 .facts-note { margin-top: clamp(20px, 3vw, 32px); max-width: 60em; font: 400 12px/1.6 var(--f-mono); letter-spacing: .04em; color: #94A19A; }
 @media (max-width: 960px) {
   .facts-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }

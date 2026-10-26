@@ -258,6 +258,7 @@ nav.menu a:hover::after, nav.menu a.is-current::after { transform: scaleX(1); }
 @keyframes kenburns { from { transform: scale(1); } to { transform: scale(1.06); } }
 .hero::before { content: ""; position: absolute; inset: 0; z-index: -1; background: linear-gradient(90deg, rgba(246, 245, 240, .35) 0%, rgba(246, 245, 240, .35) 48%, rgba(246, 245, 240, 0) 88%), linear-gradient(180deg, rgba(246, 245, 240, .3) 0%, rgba(246, 245, 240, 0) 20%); }
 .hero-inner { position: relative; z-index: 2; padding-top: calc(var(--header-h) + 56px); padding-bottom: clamp(28px, 5vh, 56px); will-change: transform, opacity; }
+.hero-label, .hero h1, .hero-sub { text-shadow: 0 0 22px rgba(246, 245, 240, .75), 0 0 6px rgba(246, 245, 240, .45); }
 .hero-label { display: flex; align-items: center; gap: 14px; margin-bottom: clamp(16px, 3vh, 28px); color: var(--nacht); }
 .hero-label::before { content: ""; width: 36px; height: 2px; background: var(--smaragd); }
 .hero h1 { font-size: clamp(46px, min(12.5vw, 19svh), 184px); line-height: .92; letter-spacing: -.045em; color: var(--nacht); font-weight: 400; }
@@ -334,7 +335,7 @@ section.s { padding-block: clamp(72px, 10vw, 140px); }
 }
 @keyframes dpProgress { from { --dp: 0; } to { --dp: 1; } }
 
-.door-stage { position: sticky; top: 0; height: 100vh; height: 100svh; overflow: hidden; background: radial-gradient(60% 50% at 82% 0%, rgba(143, 227, 190, .3), rgba(143, 227, 190, 0) 70%), var(--papier); --dw: min(74vw, 33svh, 320px); contain: layout paint; }
+.door-stage { position: sticky; top: 0; height: 100vh; height: 100svh; overflow: hidden; background: radial-gradient(60% 50% at 82% 22%, rgba(143, 227, 190, .28), rgba(143, 227, 190, 0) 70%), var(--papier); --dw: min(74vw, 33svh, 320px); contain: layout paint; }
 .door-room { position: absolute; inset: 0; opacity: var(--room-in); transform: scale(calc(1 + var(--wk) * .35)); transform-origin: 50% 54%; will-change: transform, opacity; }
 .door-room picture, .door-room img { display: block; width: 100%; height: 100%; }
 .door-room img { object-fit: cover; object-position: 50% 45%; }
@@ -354,9 +355,9 @@ section.s { padding-block: clamp(72px, 10vw, 140px); }
 .door-key svg { display: block; width: 100%; height: 100%; overflow: visible; filter: drop-shadow(0 4px 4px rgba(11, 21, 18, .28)); }
 .door-key .spark { left: 30%; top: 8%; opacity: clamp(0, calc(min(var(--k2) * 3, (1 - var(--k2)) * 3)), 1); transform: scale(calc(.4 + var(--k2) * 1.2)) rotate(calc(var(--k2) * 90deg)); }
 .door-ping { position: absolute; left: 80%; top: 52.5%; z-index: 2; width: 14%; aspect-ratio: 1; margin: -7% 0 0 -7%; border-radius: 50%; border: 3px solid var(--mint); box-shadow: 0 0 40px 10px rgba(143, 227, 190, .7); transform: scale(calc(.4 + var(--pg) * 6)); opacity: calc(clamp(0, calc(var(--pg) * 6), 1) * (1 - var(--pg))); pointer-events: none; }
-.door-flood { position: absolute; inset: -10%; background: radial-gradient(circle at 50% 50%, #fff 0, #fff 24%, rgba(143, 227, 190, .92) 52%, rgba(143, 227, 190, 0) 78%); transform: scale(calc(.15 + var(--fl) * 1.9)); opacity: calc(min(var(--fl) * 2.5, 1) * (1 - var(--flo))); pointer-events: none; will-change: transform, opacity; }
+.door-flood { position: absolute; left: 50%; top: 46%; width: 170vmax; height: 170vmax; margin: -85vmax 0 0 -85vmax; border-radius: 50%; background: radial-gradient(closest-side, #fff 0, #fff 30%, rgba(143, 227, 190, .92) 60%, rgba(143, 227, 190, 0) 100%); transform: scale(calc(.01 + var(--fl) * .8)); opacity: calc(min(var(--fl) * 2.5, 1) * (1 - var(--flo))); pointer-events: none; will-change: transform, opacity; }
 .door-caps { position: absolute; inset: 0; pointer-events: none; }
-.dcap { position: absolute; left: 50%; max-width: min(92vw, 17em); margin: 0; text-align: center; font-size: clamp(30px, 5.6vw, 76px); line-height: 1.02; letter-spacing: -.035em; font-weight: 300; }
+.dcap { position: absolute; left: 50%; width: max-content; max-width: min(92vw, 17em); margin: 0; text-align: center; font-size: clamp(30px, 5.6vw, 76px); line-height: 1.02; letter-spacing: -.035em; font-weight: 300; }
 .dcap.d1 { top: calc(var(--header-h) + 3svh); transform: translate(-50%, calc((1 - var(--c1)) * -22px)); opacity: var(--c1); }
 .dcap.d2 { bottom: 9svh; max-width: min(92vw, 24em); font-size: clamp(26px, 3.6vw, 52px); padding: .35em .7em .4em; background: rgba(246, 245, 240, .94); border: 1px solid var(--line); box-shadow: 0 20px 50px -20px rgba(11, 21, 18, .35); transform: translate(-50%, calc((1 - var(--c2)) * 26px)); opacity: var(--c2); }
 .door-fade { position: absolute; left: 0; right: 0; bottom: 0; height: 24%; background: linear-gradient(0deg, #fff, rgba(255, 255, 255, 0)); opacity: clamp(0, calc((var(--dp) - .84) * 6), 1); pointer-events: none; }
@@ -943,6 +944,7 @@ html:not(.js) .reel-words span:first-child { opacity: 1; clip-path: none; }
   .calc, .profile { box-shadow: 5px 5px 0 var(--mint); }
   .story .cap { bottom: calc(8svh + 24px); }
   .pb-cap { bottom: 14px; }
+  .reel-cap { right: auto; left: 14px; bottom: auto; top: 14px; font-size: 10px; letter-spacing: .12em; padding: 7px 10px; }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -982,11 +984,11 @@ html:not(.js) .reel-words span:first-child { opacity: 1; clip-path: none; }
 /* Below-the-fold sections are only laid out and loaded when they come near the viewport. */
 .who, .register, .about, .after, .faq-sec, .site-footer, .sign { content-visibility: auto; }
 /* Measured heights, so the page does not jump when sections render (desktop, then stacked layouts) */
-.who { contain-intrinsic-size: auto 1100px; } .register { contain-intrinsic-size: auto 1730px; } .about { contain-intrinsic-size: auto 1700px; }
-.after { contain-intrinsic-size: auto 1050px; } .faq-sec { contain-intrinsic-size: auto 1080px; } .sign { contain-intrinsic-size: auto 790px; } .site-footer { contain-intrinsic-size: auto 910px; }
+.who { contain-intrinsic-size: auto 1070px; } .register { contain-intrinsic-size: auto 1140px; } .about { contain-intrinsic-size: auto 2160px; }
+.after { contain-intrinsic-size: auto 1050px; } .faq-sec { contain-intrinsic-size: auto 1085px; } .sign { contain-intrinsic-size: auto 785px; } .site-footer { contain-intrinsic-size: auto 910px; }
 @media (max-width: 960px) {
-  .who { contain-intrinsic-size: auto 1650px; } .register { contain-intrinsic-size: auto 1600px; } .about { contain-intrinsic-size: auto 1480px; }
-  .after { contain-intrinsic-size: auto 1350px; } .faq-sec { contain-intrinsic-size: auto 1110px; } .sign { contain-intrinsic-size: auto 850px; } .site-footer { contain-intrinsic-size: auto 1280px; }
+  .who { contain-intrinsic-size: auto 1610px; } .register { contain-intrinsic-size: auto 1600px; } .about { contain-intrinsic-size: auto 1840px; }
+  .after { contain-intrinsic-size: auto 1435px; } .faq-sec { contain-intrinsic-size: auto 1105px; } .sign { contain-intrinsic-size: auto 850px; } .site-footer { contain-intrinsic-size: auto 1275px; }
 }
 
 /* Logo as progress: the D of the header mark fills with Mint as you scroll */

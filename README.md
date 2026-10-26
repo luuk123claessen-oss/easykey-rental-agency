@@ -24,9 +24,17 @@ Live at https://propertydirect.nl
 └── wrangler.toml          # Cloudflare Workers (static assets) config
 ```
 
+## Look and feel (v4)
+
+A bright Dutch morning. Paper (`#F6F5F0`) and White carry the page, Smaragd (`#0E4634`) is the ink of buttons and the two dark moments (The Shield and the signature finale), Nacht (`#0B1512`) is text and the foot of the footer. **Mint** (`#8FE3BE`) and **Sun** (`#FFC857`) are sparks: Mint highlights, glows and focus rings (never as text on Paper or White), Sun stays under 2% of any screen. Photos and video are shown in natural colour with one shared grade (the `.gr` class in `css/style.css`); there are no duotones or green overlays.
+
 ## Chapters on the home page
 
-Hero, statement, How it works (with the 3D key), Who we help, marquee, The Shield (interactive sample lease), the scrubbed day-to-night story, principles strip, Where we search (interactive map), the montage reel, Fee (calculator), Register (3 steps and live profile), About (the founders), After you sign (tickable checklist), FAQ, the signature finale and the footer. A chapter index sits on the left edge on wide screens.
+Hero, statement, **Turn the key** (a pinned scroll sequence: a drawn front door, a key that turns, light that floods the room), How it works (with the 3D key), Who we help, marquee, The Shield (interactive sample lease), the scrubbed morning-to-golden-hour story, principles strip, Where we search (interactive map), the montage reel, Fee (calculator), Register (3 steps and live profile), About (the founders), After you sign (tickable checklist), FAQ, the signature finale and the footer. A chapter index sits on the left edge on wide screens.
+
+### Turn the key
+
+`#door` is built from SVG and CSS only (under 30 KB, transform and opacity). Progress `--dp` (0 to 1) comes from a CSS scroll timeline (`animation-timeline: view()`), with a small scroll handler in `js/home.js` (`updateDoor`) for browsers without it. The copy is in `js/i18n.js` (`doorCap1`, `doorCap2`, `doorPlate`). Reduced motion, Save-Data, reduced-data, 2G and low-end devices get a still, open door (class `door-static` on `<html>`, set by the inline script in `index.html`). The optional sound toggle makes a click and a soft whoosh with Web Audio (off by default, no audio files). If a visitor signs on the finale during the same browser session, their name appears on the door's nameplate (`sessionStorage` only).
 
 ## Running locally
 
@@ -67,9 +75,10 @@ The legal pages and the guides are plain-language drafts. They say so, and they 
 
 See `assets/media/CREDITS.md` for the source, creator and licence of every file.
 
-- **Hero video**: `hero.webm` + `hero.mp4` (silent, 1280×720, under 2.5 MB each, stabilised and slowed, looped with a crossfade), with `hero-poster*.webp` as fallback. The video starts after the page has loaded; reduced motion, Save-Data, reduced-data and 2G get the poster only (with a slow Ken Burns when motion is allowed). To use another clip, replace `hero.mp4` and delete `hero.webm`.
-- **Reel**: `reel.webm` + `reel.mp4` (16 cuts, under 1.2 MB each) and `reel-9x16.mp4` (the same cut for Instagram, LinkedIn and WhatsApp, with the words burnt in). Drop in your own `reel.mp4` (and delete `reel.webm`) and the same player picks it up.
-- **Photos**: each exists as AVIF and WebP at 800 and 1600 px wide. The cards are duotoned with CSS (emerald and sage), so any photo that fits the mood works.
+- **Hero video**: `hero.webm` + `hero.mp4` (silent, 1600×900, about 2 MB each, stabilised and looped with a crossfade), with `hero-poster*.avif/.webp` as fallback (the AVIF poster is preloaded and is what paints first). The video starts after the page has loaded; reduced motion, Save-Data, reduced-data and 2G get the poster only (with a slow Ken Burns when motion is allowed). To use another clip, replace `hero.mp4` and delete `hero.webm`.
+- **Reel**: `reel.webm` + `reel.mp4` (16 cuts of bright daylight clips, about 1.5 to 2 MB each) and `reel-9x16.mp4` (the same cut for Instagram, LinkedIn and WhatsApp, with the words burnt in). Drop in your own `reel.mp4` (and delete `reel.webm`) and the same player picks it up.
+- **Photos**: each exists as AVIF and WebP at 800 and 1600 px wide, in natural colour. Any bright daylight photo works; the `.gr` class adds the shared grade.
+- **Photo bands** (`.pband`) are full-bleed daylight photos between chapters, with a mono caption and a parallax drift of 30 px at most (`data-par`).
 
 ## Performance notes
 
@@ -79,7 +88,7 @@ Scripts load progressively (after the page has loaded, on first interaction, or 
 
 Every push to `main` runs `.github/workflows/deploy.yml`, which deploys the site to Cloudflare Workers (static assets) with `wrangler deploy`.
 
-Every push to any other branch runs `.github/workflows/preview.yml`, which deploys to a separate, noindex Worker: `pd-preview` for `redesign-v2`, and `pd-preview-<branch>` for every other branch (for example https://pd-preview-redesign-v3.luuk123-claessen.workers.dev).
+Every push to any other branch runs `.github/workflows/preview.yml`, which deploys to a separate, noindex Worker: `pd-preview` for `redesign-v2`, and `pd-preview-<branch>` for every other branch (for example https://pd-preview-redesign-v4.luuk123-claessen.workers.dev).
 
 Required GitHub repository secrets:
 

@@ -80,7 +80,7 @@ The legal pages and the guides are plain-language drafts. They say so, and they 
 
 See `assets/media/CREDITS.md` for the source, creator and licence of every file.
 
-- **Hero video**: `hero.webm` + `hero.mp4` (the montage of sixteen daylight cuts, 1280×720, silent, about 1.2 MB each) and `hero-9x16.mp4` (portrait screens), with `hero-poster*.avif/.webp` as the poster (the AVIF is preloaded). The video starts after the page has loaded; reduced motion, Save-Data, reduced-data and 2G get the poster only. `reel-9x16.mp4` is the same cut with the words burnt in, for social media.
+- **Hero video**: `hero-2.webm` + `hero-2.mp4` (the montage of sixteen daylight cuts, 1280×720, silent, about 1.2 MB each) and `hero-2-9x16.mp4` (portrait screens), with `hero-2-poster*.avif/.webp` as the poster (the AVIF is preloaded). The video starts after the page has loaded; reduced motion, Save-Data, reduced-data and 2G get the poster only. `reel-9x16.mp4` is the same cut with the words burnt in, for social media.
 - **Night band** (`#reel`): `houses.webm` + `houses.mp4` with `houses-poster*.webp`, plays while in view.
 - **Photos**: each exists as AVIF and WebP at 800 and 1600 px wide. They keep their real colours; the shared grade (`--media-filter`, `--media-tint`) is applied in CSS.
 

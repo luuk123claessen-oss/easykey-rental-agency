@@ -39,7 +39,7 @@
       if (started) return;
       started = true;
       var portrait = window.innerHeight > window.innerWidth;
-      (portrait ? [['assets/media/hero-9x16.mp4', 'video/mp4']] : [['assets/media/hero.webm', 'video/webm'], ['assets/media/hero.mp4', 'video/mp4']]).forEach(function (s) {
+      (portrait ? [['assets/media/hero-2-9x16.mp4', 'video/mp4']] : [['assets/media/hero-2.webm', 'video/webm'], ['assets/media/hero-2.mp4', 'video/mp4']]).forEach(function (s) {
         var src = document.createElement('source');
         src.src = s[0];
         src.type = s[1];

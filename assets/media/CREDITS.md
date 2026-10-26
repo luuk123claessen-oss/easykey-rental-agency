@@ -2,7 +2,7 @@
 
 Photos and video are free to use commercially under the [Pexels License](https://www.pexels.com/license/) (no attribution required; we list it anyway). Files were downloaded in October 2026 and re-encoded for the web: resized, cropped, colour-graded and compressed. None of them show people's faces or brand logos, and none of them are homes we offer. They set a mood.
 
-## Hero: the daylight montage (`hero.webm`, `hero.mp4`, `hero-9x16.mp4`, `hero-poster*`, and `reel-9x16.mp4` with the words burnt in)
+## Hero: the daylight montage (`hero-2.webm`, `hero-2.mp4`, `hero-2-9x16.mp4`, `hero-2-poster*`, and `reel-9x16.mp4` with the words burnt in)
 
 Nine cuts of 1.25 seconds, natural colour, with a slow push-in on every cut. The poster is the first frame.
 

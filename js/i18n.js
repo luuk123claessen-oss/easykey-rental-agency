@@ -247,6 +247,16 @@
       ck7d: 'Requirements differ per bank, so ask what yours needs.',
       ck8t: 'Keep your lease and deposit confirmation',
       ck8d: 'Both must be given to you in writing.',
+      chSearch: 'Search',
+      chHow: 'How',
+      chWho: 'Who',
+      chShield: 'Shield',
+      chWhere: 'Where',
+      chFee: 'Fee',
+      chAbout: 'About',
+      chFaq: 'FAQ',
+      chNav: 'Chapters',
+      mobileBar: 'Register',
       fine: 'Fee: 1.5× the total monthly rent (including gas, water and electricity) plus 21% VAT, only due when a lease is signed through Property Direct. No costs upfront. No fee for homes you find yourself.'
     },
     nl: {
@@ -492,6 +502,16 @@
       ck7d: 'De eisen verschillen per bank, vraag dus wat de jouwe nodig heeft.',
       ck8t: 'Bewaar je huurcontract en borgbevestiging',
       ck8d: 'Beide moet je schriftelijk krijgen.',
+      chSearch: 'Zoek',
+      chHow: 'Werkwijze',
+      chWho: 'Voor wie',
+      chShield: 'Shield',
+      chWhere: 'Waar',
+      chFee: 'Tarief',
+      chAbout: 'Over ons',
+      chFaq: 'Vragen',
+      chNav: 'Hoofdstukken',
+      mobileBar: 'Schrijf je in',
       fine: 'Tarief: 1,5× de totale maandhuur (inclusief gas, water en licht) plus 21% btw, alleen verschuldigd bij een getekend huurcontract via Property Direct. Geen kosten vooraf. Geen fee voor woningen die je zelf vindt.'
     }
   };
@@ -581,7 +601,12 @@
   window.PD = PD;
 
   document.querySelectorAll('.lang button').forEach(function (btn) {
-    btn.addEventListener('click', function () { PD.setLang(btn.getAttribute('data-lang')); });
+    btn.addEventListener('click', function () {
+      var l = btn.getAttribute('data-lang');
+      var calm = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if (document.startViewTransition && !calm && l !== PD.lang) document.startViewTransition(function () { PD.setLang(l); });
+      else PD.setLang(l);
+    });
   });
 
   // Language: ?lang=nl wins (used by the hreflang link), then the saved choice, then English.

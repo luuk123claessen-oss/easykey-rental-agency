@@ -12,6 +12,14 @@ window.PD_CONFIG = {
   FORM_ENDPOINT: 'https://api.web3forms.com/submit',
   FORM_ACCESS_KEY: 'fe9f8c84-09c5-4b3f-8d23-d21589cfe188',
 
+  // Montage reel: the four words (search, check, sign, move in) are shown in HTML on top of
+  // assets/media/reel.mp4. Set this to false if you replace the reel with one that has its own type.
+  reelOverlay: true,
+
+  // Proof strip. Left empty on purpose: add only real, provable numbers, for example
+  // [{ value: '1', label: 'Fixed contact per client' }]. Nothing is shown while the list is empty.
+  proof: [],
+
   // Founder portraits. Add the photo to assets/team/ and put its path here, for example
   // 'assets/team/luuk.jpg'. While a value is empty, an elegant monogram is shown instead
   // (and no request for a missing file is made).

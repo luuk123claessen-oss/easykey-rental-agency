@@ -27,7 +27,12 @@
     var video = $('#hero-video');
     if (!video || !hero) return;
     var conn = navigator.connection || {};
-    if (reduced || conn.saveData || /(^|-)2g$/.test(conn.effectiveType || '')) return;
+    var lowData = conn.saveData || /(^|-)2g$/.test(conn.effectiveType || '') || window.matchMedia('(prefers-reduced-data: reduce)').matches;
+    if (reduced || lowData) {
+      // A calm still beats a shaky video: slow Ken Burns on the poster (not for reduced motion).
+      if (!reduced) video.parentNode.classList.add('kb');
+      return;
+    }
     var started = false;
 
     function start() {
@@ -85,6 +90,33 @@
       hero.addEventListener('pointerleave', reset);
     }
 
+    var ring = $('#cursor-ring');
+    if (ring) {
+      var rx = 0, ry = 0, rtx = 0, rty = 0, rrun = false;
+      var rloop = function () {
+        rx += (rtx - rx) * 0.28;
+        ry += (rty - ry) * 0.28;
+        ring.style.transform = 'translate3d(' + rx.toFixed(1) + 'px,' + ry.toFixed(1) + 'px,0)';
+        if (Math.abs(rtx - rx) > 0.3 || Math.abs(rty - ry) > 0.3) requestAnimationFrame(rloop);
+        else rrun = false;
+      };
+      document.addEventListener('pointermove', function (e) {
+        if (e.pointerType && e.pointerType !== 'mouse') return;
+        rtx = e.clientX; rty = e.clientY;
+        if (!ring.classList.contains('on')) { rx = rtx; ry = rty; ring.classList.add('on'); }
+        if (!rrun) { rrun = true; requestAnimationFrame(rloop); }
+      }, { passive: true });
+      document.addEventListener('mouseover', function (e) {
+        var t = e.target.closest ? e.target : null;
+        if (!t) return;
+        var primary = t.closest('.btn-light, .btn-primary');
+        var link = !primary && t.closest('a, button, input, label, summary, [role=button]');
+        ring.classList.toggle('key', !!primary);
+        ring.classList.toggle('link', !!link);
+      });
+      document.documentElement.addEventListener('pointerleave', function () { ring.classList.remove('on', 'key', 'link'); });
+    }
+
     var glow = $('#cursor-glow');
     if (glow) {
       var tx = 0, ty = 0, cx = 0, cy = 0, running = false;
@@ -104,6 +136,16 @@
       document.documentElement.addEventListener('pointerleave', function () { glow.classList.remove('on'); });
     }
 
+    // Subtle tilt on the founders' monograms
+    $$('[data-tilt]').forEach(function (el) {
+      el.addEventListener('pointermove', function (e) {
+        var r = el.getBoundingClientRect();
+        el.style.setProperty('--ry', (((e.clientX - r.left) / r.width - 0.5) * 14).toFixed(1) + 'deg');
+        el.style.setProperty('--rx', ((0.5 - (e.clientY - r.top) / r.height) * 14).toFixed(1) + 'deg');
+      });
+      el.addEventListener('pointerleave', function () { el.style.setProperty('--rx', '0deg'); el.style.setProperty('--ry', '0deg'); });
+    });
+
     // Spotlight inside cards
     document.addEventListener('pointermove', function (e) {
       var t = e.target.closest ? e.target.closest('.spot') : null;
@@ -114,14 +156,75 @@
     }, { passive: true });
   }
 
+  // Scroll to an element below the sticky header (smooth unless reduced motion)
+  var lenis = null;
+  function goTo(el) {
+    if (!el) return;
+    if (lenis) { lenis.scrollTo(el, { offset: -72, duration: 1.2 }); return; }
+    var top = el.getBoundingClientRect().top + window.scrollY - 72;
+    window.scrollTo({ top: top, behavior: reduced ? 'auto' : 'smooth' });
+  }
+
+  // Lenis-style smooth wheel scrolling: desktop mouse only, never for reduced motion or touch.
+  function initSmoothScroll() {
+    if (!finePointer || reduced) return;
+    var conn = navigator.connection || {};
+    if (conn.saveData || window.matchMedia('(prefers-reduced-data: reduce)').matches) return;
+    var loading = false;
+    function boot() {
+      if (loading) return;
+      loading = true;
+      var s = document.createElement('script');
+      s.src = 'js/vendor/lenis.min.js';
+      s.onload = function () {
+        if (!window.Lenis) return;
+        lenis = new window.Lenis({ duration: 1.05, smoothWheel: true, wheelMultiplier: 0.9 });
+        (function raf(t) { lenis.raf(t); requestAnimationFrame(raf); })(performance.now());
+        $$('a[href^="#"]').forEach(function (a) {
+          a.addEventListener('click', function (e) {
+            var id = a.getAttribute('href');
+            var target = id.length > 1 ? document.getElementById(id.slice(1)) : null;
+            if (id === '#top') { e.preventDefault(); lenis.scrollTo(0, { duration: 1.4 }); }
+            else if (target) { e.preventDefault(); lenis.scrollTo(target, { offset: -72, duration: 1.2 }); history.replaceState(null, '', id); }
+          });
+        });
+      };
+      document.body.appendChild(s);
+    }
+    window.addEventListener('wheel', boot, { once: true, passive: true });
+  }
+
+  /* ------------------------------------------------------------------ Amsterdam now + time-of-day tint */
+
+  function initClock() {
+    var el = $('#ams-time');
+    if (el && window.Intl && Intl.DateTimeFormat) {
+      var fmt = new Intl.DateTimeFormat('en-GB', { timeZone: 'Europe/Amsterdam', hour: '2-digit', minute: '2-digit', hour12: false });
+      var tickClock = function () { el.textContent = fmt.format(new Date()); };
+      tickClock();
+      setInterval(tickClock, 15000);
+    }
+    if (hero) {
+      var hr = new Date().getHours();
+      var tod = hr >= 5 && hr < 8 ? 'dawn' : hr >= 8 && hr < 17 ? 'day' : hr >= 17 && hr < 21 ? 'dusk' : 'night';
+      hero.classList.add('tod', 'tod-' + tod);
+    }
+  }
+
   /* ------------------------------------------------------------------ scroll effects */
 
   var header = $('#site-header');
-  var topBar = $('#progress-top');
+  var heroMedia = $('.hero-media');
+  var dClip = $('#dclip-rect');
+  var wordmark = $('#wordmark');
   var statementWords = [];
   var navLinks = $$('nav.menu a');
-  var sectionIds = ['how', 'who', 'fee', 'register', 'about', 'faq'];
-  var vis = { stmt: false, how: false, who: false };
+  var sectionIds = ['how', 'who', 'shield', 'story', 'where', 'reel', 'fee', 'register', 'about', 'after', 'faq', 'sign'];
+  var navOf = { how: 'how', who: 'who', shield: 'shield', story: 'shield', where: 'where', reel: 'where', fee: 'fee', register: 'fee', about: 'about', after: 'faq', faq: 'faq', sign: 'faq' };
+  var chapterOf = { top: 1, statement: 1, how: 2, who: 3, shield: 4, story: 4, where: 5, reel: 5, fee: 6, register: 6, about: 7, after: 8, faq: 8, sign: 8 };
+  var chapterLinks = $$('#chapters a');
+  var vis = { stmt: false, how: false, who: false, story: false };
+  var cssTimeline = !!(window.CSS && CSS.supports && CSS.supports('animation-timeline: view()'));
   var menuOpen = false;
   var stmtArmed = false;
 
@@ -160,7 +263,9 @@
     var vh = window.innerHeight;
     var r = ol.getBoundingClientRect();
     var trig = vh * 0.56;
-    ol.style.setProperty('--p', clamp((trig - r.top) / r.height, 0, 1).toFixed(4));
+    var hp = clamp((trig - r.top) / r.height, 0, 1);
+    ol.style.setProperty('--p', hp.toFixed(4));
+    if (keyCtrl) keyCtrl.progress = hp;
     var steps = $$('.how-step', ol);
     var active = -1;
     steps.forEach(function (s, i) { if (s.getBoundingClientRect().top < trig) active = i; });
@@ -168,6 +273,14 @@
       s.classList.toggle('is-active', i === active);
       s.classList.toggle('is-past', i < active);
     });
+  }
+
+  function updateStory() {
+    var track = $('#story-track');
+    if (!track) return;
+    var r = track.getBoundingClientRect();
+    var p = clamp(-r.top / Math.max(1, r.height - window.innerHeight), 0, 1);
+    track.style.setProperty('--sp', p.toFixed(4));
   }
 
   function updateParallax() {
@@ -188,36 +301,54 @@
     var vh = window.innerHeight;
     var max = document.documentElement.scrollHeight - vh;
     if (!stmtArmed && y > 0) { stmtArmed = true; }
+    if (max > 0 && y >= max - 40) $$('[data-reveal]:not(.in)').forEach(function (n) { n.classList.add('in'); });
     header.classList.toggle('is-solid', y > 80);
-    topBar.style.setProperty('--sp', max > 0 ? clamp(y / max, 0, 1).toFixed(4) : 0);
+    var prog = max > 0 ? clamp(y / max, 0, 1) : 0;
+    if (dClip) {
+      var fillH = 120 * prog;
+      dClip.setAttribute('y', (120 - fillH).toFixed(1));
+      dClip.setAttribute('height', fillH.toFixed(1));
+    }
+    if (wordmark) wordmark.classList.toggle('lit', prog > 0.985);
 
     if (hero && !reduced && y < vh * 1.1) {
       var inner = $('#hero-inner');
       var k = clamp(y / (vh * 0.75), 0, 1);
+      heroMedia.style.setProperty('--vy', Math.min(y * 0.08, 40).toFixed(1) + 'px');
       inner.style.transform = k > 0 ? 'translate3d(0,' + (y * 0.12).toFixed(1) + 'px,0)' : '';
       inner.style.opacity = k > 0 ? (1 - k * 0.92).toFixed(3) : '';
     }
     if (vis.stmt) updateStatement();
     if (vis.how) updateHow();
     if (vis.who) updateParallax();
+    if (vis.story && !cssTimeline) updateStory();
 
-    var current = '';
-    sectionIds.forEach(function (id) {
+    var current = '', chapter = 1;
+    ['top', 'statement'].concat(sectionIds).forEach(function (id) {
       var s = document.getElementById(id);
-      if (s && s.getBoundingClientRect().top < vh * 0.4) current = id;
+      if (s && s.getBoundingClientRect().top < vh * 0.4) {
+        if (navOf[id]) current = navOf[id];
+        if (chapterOf[id]) chapter = chapterOf[id];
+      }
     });
     navLinks.forEach(function (a) {
       var on = a.getAttribute('href') === '#' + current;
       a.classList.toggle('is-current', on);
       if (on) a.setAttribute('aria-current', 'true'); else a.removeAttribute('aria-current');
     });
+    chapterLinks.forEach(function (a) { a.classList.toggle('is-on', Number(a.getAttribute('data-ch')) === chapter); });
 
     var fab = $('#fab');
-    var reg = $('#register');
-    if (fab && reg) {
-      var rr = reg.getBoundingClientRect();
-      var inReg = rr.top < vh * 0.7 && rr.bottom > vh * 0.2;
-      fab.classList.toggle('show', y > vh * 0.8 && !inReg && !menuOpen);
+    if (fab) {
+      var hide = false;
+      ['register', 'sign'].forEach(function (id) {
+        var el = document.getElementById(id);
+        if (!el) return;
+        var rr = el.getBoundingClientRect();
+        if (rr.top < vh * 0.7 && rr.bottom > vh * 0.2) hide = true;
+      });
+      var kb = window.visualViewport && window.visualViewport.height < window.innerHeight * 0.75;
+      fab.classList.toggle('show', y > vh * 0.8 && !hide && !menuOpen && !kb);
     }
   }
   function requestTick() {
@@ -225,6 +356,7 @@
   }
   window.addEventListener('scroll', requestTick, { passive: true });
   window.addEventListener('resize', requestTick);
+  if (window.visualViewport) window.visualViewport.addEventListener('resize', requestTick);
 
   if ('IntersectionObserver' in window) {
     var watch = function (sel, key) {
@@ -238,6 +370,7 @@
     watch('#statement', 'stmt');
     watch('#how', 'how');
     watch('#who', 'who');
+    watch('#story', 'story');
   } else {
     vis.stmt = vis.how = vis.who = true;
   }
@@ -248,7 +381,7 @@
       entries.forEach(function (en) {
         if (en.isIntersecting) { en.target.classList.add('in'); io.unobserve(en.target); }
       });
-    }, { threshold: 0, rootMargin: '0px 0px -6% 0px' });
+    }, { threshold: 0, rootMargin: '0px 0px -3% 0px' });
     $$('[data-reveal]').forEach(function (n) { io.observe(n); });
   } else {
     $$('[data-reveal]').forEach(function (n) { n.classList.add('in'); });
@@ -270,6 +403,7 @@
     menuLabel();
     header.classList.toggle('menu-open', open);
     document.body.style.overflow = open ? 'hidden' : '';
+    if (lenis) { if (open) lenis.stop(); else lenis.start(); }
     inertTargets = $$('main, .site-footer, #fab');
     inertTargets.forEach(function (el) { if (open) el.setAttribute('inert', ''); else el.removeAttribute('inert'); });
     if (open) {
@@ -658,6 +792,245 @@
     });
   }
 
+  /* ------------------------------------------------------------------ The Shield: hotspots on a sample lease */
+
+  function initShield() {
+    var rows = $$('.lrow');
+    if (!rows.length) return;
+    var panels = $$('.chk');
+    var current = '';
+    function show(k, pin) {
+      if (k === current && !pin) return;
+      current = k;
+      rows.forEach(function (r) {
+        var on = r.getAttribute('data-k') === k;
+        r.classList.toggle('is-active', on);
+        r.setAttribute('aria-pressed', on ? 'true' : 'false');
+      });
+      panels.forEach(function (p) { p.hidden = p.getAttribute('data-k') !== k; });
+    }
+    rows.forEach(function (r) {
+      var k = r.getAttribute('data-k');
+      r.addEventListener('pointerenter', function (e) { if (e.pointerType === 'mouse') show(k); });
+      r.addEventListener('focus', function () { show(k); });
+      r.addEventListener('click', function () { show(k, true); });
+    });
+    show(rows[0].getAttribute('data-k'));
+  }
+
+  /* ------------------------------------------------------------------ Where we search: interactive map */
+
+  var toastEl = null;
+  function toast(text) {
+    if (!toastEl) { toastEl = document.createElement('div'); toastEl.className = 'region-toast'; toastEl.setAttribute('role', 'status'); document.body.appendChild(toastEl); }
+    toastEl.textContent = text;
+    toastEl.classList.add('show');
+    clearTimeout(toastEl._t);
+    toastEl._t = setTimeout(function () { toastEl.classList.remove('show'); }, 2600);
+  }
+
+  function initMap() {
+    var map = $('#nl-map');
+    if (!map) return;
+    var pins = $$('.pin', map);
+    pins.forEach(function (p, i) { p.style.setProperty('--k', i); });
+    var cityBtns = $$('.city');
+    var nameEl = $('#city-name');
+    var vibeEl = $('#city-vibe');
+    var current = '';
+    function preview(k) {
+      current = k;
+      pins.forEach(function (p) { p.classList.toggle('is-active', p.getAttribute('data-city') === k); });
+      cityBtns.forEach(function (b) { b.classList.toggle('is-active', b.getAttribute('data-city') === k); });
+      nameEl.textContent = PD.t('c_' + k);
+      vibeEl.textContent = PD.t('v_' + k);
+    }
+    function pick(k) {
+      preview(k);
+      var reg = field('regio');
+      if (reg) {
+        reg.value = PD.t('c_' + k);
+        reg.dispatchEvent(new Event('input', { bubbles: true }));
+        syncProfile('region');
+        if (msgKeys.regio) showMsg('regio', '');
+      }
+      toast(PD.t('mapSet').replace('{city}', PD.t('c_' + k)));
+      goTo($('#register'));
+      setTimeout(function () { if (reg) reg.focus({ preventScroll: true }); }, reduced ? 0 : 700);
+    }
+    pins.concat(cityBtns).forEach(function (el) {
+      var k = el.getAttribute('data-city');
+      el.addEventListener('pointerenter', function (e) { if (e.pointerType === 'mouse') preview(k); });
+      el.addEventListener('focus', function () { preview(k); });
+      el.addEventListener('click', function () { pick(k); });
+    });
+    document.addEventListener('pd:lang', function () { if (current) preview(current); });
+  }
+
+  /* ------------------------------------------------------------------ Emerald-glass key (lazy WebGL) */
+
+  var keyCtrl = null;
+  function initKey3d() {
+    var box = $('#key3d');
+    if (!box || !('IntersectionObserver' in window)) return;
+    var conn = navigator.connection || {};
+    var lowData = conn.saveData || /(^|-)2g$/.test(conn.effectiveType || '') || window.matchMedia('(prefers-reduced-data: reduce)').matches;
+    if (reduced || lowData) return; // the static SVG key stays
+    var canvas = $('canvas', box);
+    var loading = false, visible = false;
+    function ready() {
+      keyCtrl = window.PDKey && window.PDKey.init(canvas);
+      if (!keyCtrl) return;
+      box.classList.add('ready');
+      if (visible) keyCtrl.start(); else keyCtrl.drawOnce();
+    }
+    new IntersectionObserver(function (entries) {
+      visible = entries[0].isIntersecting;
+      if (visible && !loading) {
+        loading = true;
+        var s = document.createElement('script');
+        s.src = 'js/key3d.js';
+        s.onload = ready;
+        document.body.appendChild(s);
+      } else if (keyCtrl) {
+        if (visible) keyCtrl.start(); else keyCtrl.stop();
+      }
+    }, { rootMargin: '300px 0px' }).observe(box);
+  }
+
+  /* ------------------------------------------------------------------ Finale: the signature draws itself */
+
+  function initSign() {
+    var form = $('#sign-form');
+    if (!form) return;
+    var input = $('#sign-name');
+    var text = $('#sig-text');
+    var box = $('.ls-signature', form);
+    var msg = $('#sign-msg');
+    var busy = false;
+    input.addEventListener('input', function () {
+      text.textContent = input.value;
+      box.classList.remove('inked');
+      msg.textContent = '';
+    });
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var name = input.value.trim();
+      if (!name) {
+        msg.textContent = PD.t('signErr');
+        form.classList.remove('shake'); void form.offsetWidth; form.classList.add('shake');
+        input.focus();
+        return;
+      }
+      if (busy) return;
+      busy = true;
+      text.textContent = name;
+      box.classList.remove('inked'); void box.offsetWidth; box.classList.add('inked');
+      setTimeout(function () {
+        var naam = field('naam');
+        if (naam) { naam.value = name; if (msgKeys.naam) showMsg('naam', ''); }
+        showStep(1, false);
+        goTo($('#register'));
+        setTimeout(function () { var first = form && document.querySelector('#intake .pane[data-pane="1"] input'); if (first) first.focus({ preventScroll: true }); busy = false; }, reduced ? 0 : 900);
+      }, reduced ? 100 : 1500);
+    });
+  }
+
+  /* ------------------------------------------------------------------ Montage reel (plays while in view) */
+
+  function initReel() {
+    var stage = $('#reel-stage');
+    var video = $('#reel-video');
+    if (!stage || !video || !('IntersectionObserver' in window)) return;
+    var words = $$('#reel-words span');
+    var conn = navigator.connection || {};
+    var lowData = conn.saveData || /(^|-)2g$/.test(conn.effectiveType || '') || window.matchMedia('(prefers-reduced-data: reduce)').matches;
+    var overlay = CFG.reelOverlay !== false;
+    var started = false, raf = 0, last = -1;
+    if (!overlay) $('#reel-words').hidden = true;
+    function setWord(i) {
+      if (i === last) return;
+      last = i;
+      words.forEach(function (w, k) { w.classList.toggle('on', k === i); });
+    }
+    function loop() {
+      if (video.duration) setWord(Math.min(words.length - 1, Math.floor(video.currentTime / video.duration * words.length)));
+      raf = requestAnimationFrame(loop);
+    }
+    function start() {
+      if (started) return;
+      started = true;
+      [['assets/media/reel.webm', 'video/webm'], ['assets/media/reel.mp4', 'video/mp4']].forEach(function (s) {
+        var src = document.createElement('source');
+        src.src = s[0]; src.type = s[1];
+        video.appendChild(src);
+      });
+      video.addEventListener('playing', function () { video.classList.add('on'); }, { once: true });
+      video.load();
+    }
+    if (reduced || lowData) { setWord(0); return; } // poster and the first word only
+    new IntersectionObserver(function (entries) {
+      var vis = entries[0].isIntersecting;
+      if (vis) {
+        start();
+        var p = video.play();
+        if (p && p.catch) p.catch(function () {});
+        if (!raf) raf = requestAnimationFrame(loop);
+      } else {
+        video.pause();
+        cancelAnimationFrame(raf); raf = 0;
+      }
+    }, { threshold: 0.35 }).observe(stage);
+  }
+
+  /* ------------------------------------------------------------------ Move-in checklist (saved locally, shareable by link) */
+
+  function initChecklist() {
+    var list = $('#checklist');
+    if (!list) return;
+    var boxes = $$('input[type=checkbox]', list);
+    var n = boxes.length;
+    var bar = $('#af-bar'), count = $('#af-count'), track = $('#af-track');
+    var STORE = 'pd-checklist';
+    function read() {
+      var m = /^#after=([0-9a-f]+)$/.exec(window.location.hash);
+      if (m) {
+        var v = parseInt(m[1], 16);
+        return boxes.map(function (b, i) { return !!(v & (1 << i)); });
+      }
+      try {
+        var s = localStorage.getItem(STORE);
+        if (s && s.length === n) return s.split('').map(function (c) { return c === '1'; });
+      } catch (e) { /* storage unavailable */ }
+      return boxes.map(function () { return false; });
+    }
+    function mask() { return boxes.reduce(function (a, b, i) { return a | (b.checked ? (1 << i) : 0); }, 0); }
+    function render() {
+      var done = boxes.filter(function (b) { return b.checked; }).length;
+      bar.style.setProperty('--f', (done / n).toFixed(3));
+      track.setAttribute('aria-valuenow', done);
+      count.textContent = PD.t('afCount').replace('{n}', done).replace('{m}', n);
+    }
+    function save() {
+      try { localStorage.setItem(STORE, boxes.map(function (b) { return b.checked ? '1' : '0'; }).join('')); } catch (e) { /* ignore */ }
+    }
+    var initial = read();
+    boxes.forEach(function (b, i) {
+      b.checked = initial[i];
+      b.addEventListener('change', function () { save(); render(); });
+    });
+    render();
+    document.addEventListener('pd:lang', render);
+    $('#af-reset').addEventListener('click', function () { boxes.forEach(function (b) { b.checked = false; }); save(); render(); });
+    $('#af-copy').addEventListener('click', function () {
+      var url = window.location.origin + window.location.pathname + '#after=' + mask().toString(16);
+      function done() { toast(PD.t('afCopied')); }
+      if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(url).then(done, function () { window.prompt('', url); });
+      else window.prompt('', url);
+    });
+    if (/^#after=/.test(window.location.hash)) setTimeout(function () { goTo($('#after')); }, 300);
+  }
+
   /* ------------------------------------------------------------------ FAQ accordion (single open) */
 
   var faqItems = $$('.faq-item');
@@ -717,6 +1090,8 @@
   if (yearEl) yearEl.textContent = String(new Date().getFullYear());
 
   initHeroVideo();
+  initClock();
+  initSmoothScroll();
   initPointerEffects();
   splitStatement();
   renderAmounts();
@@ -724,11 +1099,46 @@
     shown = calc(currentRent);
     setRent(currentRent, 'init');
     paint(shown, false);
+    if ('IntersectionObserver' in window && !reduced && $('#calc')) {
+      var calcIo = new IntersectionObserver(function (entries) {
+        if (!entries[0].isIntersecting) return;
+        calcIo.disconnect();
+        shown = { fee: 0, vat: 0, total: 0 };
+        paint(shown, true);
+        tweenTo(calc(currentRent));
+      }, { threshold: 0.35 });
+      calcIo.observe($('#calc'));
+    }
   }
   if (form) {
     showStep(1, false);
     syncProfile();
   }
   renderFounders();
+  initShield();
+  initMap();
+  initKey3d();
+  initSign();
+  initReel();
+  initChecklist();
+  (function initProof() {
+    var items = CFG.proof;
+    if (!items || !items.length) return;
+    var after = $('#who');
+    if (!after) return;
+    var sec = document.createElement('section');
+    sec.className = 'proof';
+    sec.setAttribute('aria-label', 'Proof');
+    var wrap = document.createElement('div'); wrap.className = 'wrap';
+    var ul = document.createElement('ul');
+    items.forEach(function (it) {
+      var li = document.createElement('li');
+      var s = document.createElement('strong'); s.textContent = it.value;
+      var l = document.createElement('span'); l.textContent = it.label;
+      li.appendChild(s); li.appendChild(l); ul.appendChild(li);
+    });
+    wrap.appendChild(ul); sec.appendChild(wrap);
+    after.parentNode.insertBefore(sec, after.nextSibling);
+  })();
   tick();
 })();

@@ -8,23 +8,25 @@ Live at https://propertydirect.nl
 
 ```
 .
-├── index.html            # Single page: hero, statement, how it works, who we help, fee, register, about, FAQ
-├── privacy.html          # Privacy Policy (EN + NL)
-├── terms.html            # Terms and Conditions (EN + NL)
-├── mandate.html          # Mandate and cancellation (EN + NL)
-├── css/style.css         # Design system (tokens, type, layout, motion)
-├── js/config.js          # Central config: KvK, BTW, email, phone, form endpoint, portraits
-├── js/i18n.js            # Translations (EN/NL), language switch, applies config values
-├── js/home.js            # Hero video, scroll effects, fee calculator, registration form, FAQ, menu
-├── fonts/                # Self-hosted Inter Tight and JetBrains Mono (woff2, subset to the characters the site uses)
-├── assets/media/         # Hero video + poster, persona and band photos (AVIF + WebP), CREDITS.md
-├── assets/team/          # Founder portraits go here (see below)
-├── favicon.svg, favicon-32.png, apple-touch-icon.png, icon-192.png, icon-512.png, site.webmanifest
-├── og-image.png          # Share image, 1200×630
-├── robots.txt, sitemap.xml
-├── .assetsignore         # Files that are not published to the live site
-└── wrangler.toml         # Cloudflare Workers (static assets) config
+├── index.html             # The one-pager (see "Chapters" below)
+├── privacy.html, terms.html, mandate.html     # Supporting pages (EN + NL), marked as drafts
+├── guides/                # Move-in guides: index, first week, rental contract, rental scams (EN + NL)
+├── css/style.css          # Design system (tokens, type, layout, motion)
+├── js/config.js           # Central config: KvK, BTW, email, phone, form endpoint, reel, proof, portraits
+├── js/i18n.js             # Translations (EN/NL), language switch (with a view transition)
+├── js/home.js             # Hero, scroll effects, calculator, form, Shield, map, story, reel, signature, checklist, menu
+├── js/key3d.js            # The rotating emerald-glass key (plain WebGL, lazy)
+├── js/vendor/             # Lenis smooth scrolling (MIT)
+├── fonts/                 # Self-hosted Inter Tight, JetBrains Mono and a handwriting face (woff2)
+├── assets/media/          # Hero video, reel, photos (AVIF + WebP), CREDITS.md
+├── assets/team/           # Founder portraits go here (see below)
+├── _headers               # Cache and security headers (Cloudflare)
+└── wrangler.toml          # Cloudflare Workers (static assets) config
 ```
+
+## Chapters on the home page
+
+Hero, statement, How it works (with the 3D key), Who we help, marquee, The Shield (interactive sample lease), the scrubbed day-to-night story, principles strip, Where we search (interactive map), the montage reel, Fee (calculator), Register (3 steps and live profile), About (the founders), After you sign (tickable checklist), FAQ, the signature finale and the footer. A chapter index sits on the left edge on wide screens.
 
 ## Running locally
 
@@ -42,42 +44,42 @@ Everything lives in one object, `js/config.js` (`window.PD_CONFIG`):
 
 | Key | What it is |
 | --- | --- |
-| `kvk` | KvK number (shown in the footer and legal pages). Currently `[KvK]`. |
-| `btw` | VAT number. Currently `[BTW]`. |
-| `email` | Contact email. Currently `[email]`. While it is a placeholder, the "or email us instead" link in the form error is left out. |
-| `phone` | Contact phone. Currently `[phone]`. |
-| `FORM_ENDPOINT` | The one URL the registration form POSTs JSON to. Currently Web3Forms. |
-| `FORM_ACCESS_KEY` | Web3Forms access key (public by design; it only delivers to its own inbox). |
-| `portraits.luuk`, `portraits.jalal` | Paths of the founder photos, for example `assets/team/luuk.jpg`. While empty, an elegant monogram (L / J) is shown and no file is requested. |
+| `kvk`, `btw`, `email`, `phone` | Shown in the footer and on the legal pages. Currently `[KvK]`, `[BTW]`, `[email]`, `[phone]`. While `email` is a placeholder, the "or email us instead" link in the form error is left out. |
+| `FORM_ENDPOINT`, `FORM_ACCESS_KEY` | The one URL the registration form POSTs JSON to (Web3Forms, key is public by design). |
+| `reelOverlay` | `true` shows the four words (search, check, sign, move in) over the reel. Set it to `false` if you replace the reel with one that has its own type. |
+| `proof` | Empty on purpose. Add real, provable numbers only, for example `[{ value: '1', label: 'Fixed contact per client' }]`. A proof strip appears only when the list has items. |
+| `portraits.luuk`, `portraits.jalal` | Paths of the founder photos, for example `assets/team/luuk.jpg`. While empty, a monogram (L / J) is shown and no file is requested. |
 
-The JSON-LD in `index.html` also carries a `[KvK]` placeholder in `identifier`. Replace it when you have the number. The retention period in `privacy.html` (`[retention period]`) is a placeholder as well.
+Also: the founders' quote (`aboutQuote` in `js/i18n.js`, marked `FOUNDER-EDIT`), `[KvK]` in the JSON-LD of `index.html`, `[retention period]` in `privacy.html`, and the `[VERIFY]` markers in the guides.
 
-The legal pages are plain-language summaries and say so at the top. They have not been reviewed by a legal professional.
+The legal pages and the guides are plain-language drafts. They say so, and they have not been reviewed by a legal professional.
 
 ## Content and tone
 
-- All copy lives in the `T` object in `js/i18n.js` (`en` and `nl`). The HTML carries the English text, which is what shows without JavaScript. The legal pages keep their EN and NL text in the HTML itself.
+- All copy lives in the `T` object in `js/i18n.js` (`en` and `nl`). The HTML carries the English text, which is what shows without JavaScript. The legal pages and guides keep their EN and NL text in the HTML itself.
 - **Dutch uses "je" throughout** (warm and direct, matching the English tone), never "u". Keep that when you edit copy.
-- The fee (1.5 × total monthly rent + 21% VAT) is set by `FEE_MULTIPLIER` and `VAT_RATE` in `js/home.js` and drives the calculator and the examples table. The FAQ answer and the fine print are plain text in `T`.
-- `?lang=nl` opens the site in Dutch (this is what the `hreflang="nl"` link points to). Otherwise the saved choice (localStorage) or English is used.
+- The fee (1.5 × total monthly rent + 21% VAT) is set by `FEE_MULTIPLIER` and `VAT_RATE` in `js/home.js`.
+- `?lang=nl` opens the site in Dutch (this is what `hreflang="nl"` points to). Otherwise the saved choice (localStorage) or English is used.
 - Registrations are sent as JSON. Field names and values are Dutch on purpose, so the emails stay the same for the team. No income or other sensitive data is collected.
-
-## Fonts
-
-The two variable fonts are subset to the characters used on the site (Basic Latin, Latin-1 accents, common punctuation, arrows, the euro sign) and limited to the weights in use. If you add characters outside that set (for example other accents), re-subset the fonts from the full families with `pyftsubset`, otherwise those characters fall back to a system font.
+- Legal statements in the Shield and the guides were checked against rijksoverheid.nl, Volkshuisvesting Nederland, ACM ConsuWijzer and the Fraudehelpdesk on 26 October 2026, with the sources linked on the page. Rent limits change every January: update the 2026 figures then.
 
 ## Media
 
 See `assets/media/CREDITS.md` for the source, creator and licence of every file.
 
-- **Hero video**: `assets/media/hero.webm` + `hero.mp4` (silent, 1280×720, each under 2.5 MB), with `hero-poster.webp` as the fallback. The video starts after the page has loaded, and not at all for reduced motion, Save-Data or 2G connections. To use another clip (for example a Canva export), replace `hero.mp4` and delete `hero.webm` (the browser then falls through to the MP4). No code changes needed.
-- **Photos**: each photo exists as AVIF and WebP at 800 and 1600 px wide. The "who we help" cards are duotoned with CSS (emerald and sage), so any photo that fits the mood works.
+- **Hero video**: `hero.webm` + `hero.mp4` (silent, 1280×720, under 2.5 MB each, stabilised and slowed, looped with a crossfade), with `hero-poster*.webp` as fallback. The video starts after the page has loaded; reduced motion, Save-Data, reduced-data and 2G get the poster only (with a slow Ken Burns when motion is allowed). To use another clip, replace `hero.mp4` and delete `hero.webm`.
+- **Reel**: `reel.webm` + `reel.mp4` (16 cuts, under 1.2 MB each) and `reel-9x16.mp4` (the same cut for Instagram, LinkedIn and WhatsApp, with the words burnt in). Drop in your own `reel.mp4` (and delete `reel.webm`) and the same player picks it up.
+- **Photos**: each exists as AVIF and WebP at 800 and 1600 px wide. The cards are duotoned with CSS (emerald and sage), so any photo that fits the mood works.
+
+## Performance notes
+
+Scripts load progressively (after the page has loaded, on first interaction, or at once for Dutch visitors). The hero renders without JavaScript. Below-the-fold sections use `content-visibility` with measured intrinsic sizes. The key, the reel, the map and Lenis only load when needed.
 
 ## Deployment
 
 Every push to `main` runs `.github/workflows/deploy.yml`, which deploys the site to Cloudflare Workers (static assets) with `wrangler deploy`.
 
-Every push to any other branch runs `.github/workflows/preview.yml`, which deploys to a separate Worker, `pd-preview` (https://pd-preview.luuk123-claessen.workers.dev), marked noindex. Use it to review changes before merging to `main`.
+Every push to any other branch runs `.github/workflows/preview.yml`, which deploys to a separate, noindex Worker: `pd-preview` for `redesign-v2`, and `pd-preview-<branch>` for every other branch (for example https://pd-preview-redesign-v3.luuk123-claessen.workers.dev).
 
 Required GitHub repository secrets:
 

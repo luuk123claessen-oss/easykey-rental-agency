@@ -625,10 +625,6 @@ html:not(.js) .faq-a { grid-template-rows: 1fr; visibility: visible; }
 .chk .src { align-self: flex-start; display: inline-flex; align-items: center; min-height: 44px; font: 500 12px/1.3 var(--f-mono); letter-spacing: .1em; text-transform: uppercase; color: var(--salie); padding: 0; background: linear-gradient(currentColor, currentColor) 0 100% / 0 1px no-repeat, linear-gradient(rgba(185, 209, 195, .35), rgba(185, 209, 195, .35)) 0 100% / 100% 1px no-repeat; text-decoration: none; transition: background-size .4s var(--ease); }
 .chk .src:hover { background-size: 100% 1px, 100% 1px; }
 .sh-note { margin-top: auto; padding-top: 14px; border-top: 1px solid var(--line-d); font: 400 12px/1.5 var(--f-mono); letter-spacing: .06em; color: var(--dim-dark); max-width: none; }
-.sources { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 22px; margin-top: clamp(32px, 4vw, 48px); max-width: none; }
-.sources a { display: inline-flex; align-items: center; min-height: 44px; font: 400 12px/1.3 var(--f-mono); letter-spacing: .06em; color: var(--on-dark); text-decoration: none; padding: 0; background: linear-gradient(var(--salie), var(--salie)) 0 100% / 0 1px no-repeat, linear-gradient(rgba(185, 209, 195, .25), rgba(185, 209, 195, .25)) 0 100% / 100% 1px no-repeat; background-position: 0 calc(100% - 10px), 0 calc(100% - 10px); transition: background-size .4s var(--ease), color .2s; }
-.sources a:hover { color: var(--papier); background-size: 100% 1px, 100% 1px; }
-.sources .checked { font: 400 12px/1.3 var(--f-mono); letter-spacing: .06em; color: var(--dim-dark); margin-left: auto; }
 
 /* Bento grid: seven tiles, each with one micro-animation that plays once when it enters the screen */
 .bento { background: #0F1B17; color: var(--papier); color-scheme: dark; padding-block: clamp(56px, 8vw, 110px); border-top: 1px solid rgba(185, 209, 195, .16); }
@@ -915,8 +911,7 @@ html:not(.js) .reel-words span:first-child { opacity: 1; }
   .cities { grid-template-columns: 1fr; }
   .lrow { grid-template-columns: 30px minmax(0, 1fr); }
   .lrow .fld { display: none; }
-  .sources .checked { margin-left: 0; }
-  .cmp-b { border-left: 0; box-shadow: none; border-top: 1px solid var(--smaragd); }
+    .cmp-b { border-left: 0; box-shadow: none; border-top: 1px solid var(--smaragd); }
   table { font-size: 15px; }
   th { font-size: 10px; letter-spacing: .06em; }
   .actions .btn { flex: 1 1 auto; }

@@ -129,6 +129,13 @@
     }, { passive: true });
   }
 
+  // Scroll to an element below the sticky header (smooth unless reduced motion)
+  function goTo(el) {
+    if (!el) return;
+    var top = el.getBoundingClientRect().top + window.scrollY - 72;
+    window.scrollTo({ top: top, behavior: reduced ? 'auto' : 'smooth' });
+  }
+
   /* ------------------------------------------------------------------ Amsterdam now + time-of-day tint */
 
   function initClock() {
@@ -725,6 +732,55 @@
     show(rows[0].getAttribute('data-k'));
   }
 
+  /* ------------------------------------------------------------------ Where we search: interactive map */
+
+  var toastEl = null;
+  function toast(text) {
+    if (!toastEl) { toastEl = document.createElement('div'); toastEl.className = 'region-toast'; toastEl.setAttribute('role', 'status'); document.body.appendChild(toastEl); }
+    toastEl.textContent = text;
+    toastEl.classList.add('show');
+    clearTimeout(toastEl._t);
+    toastEl._t = setTimeout(function () { toastEl.classList.remove('show'); }, 2600);
+  }
+
+  function initMap() {
+    var map = $('#nl-map');
+    if (!map) return;
+    var pins = $$('.pin', map);
+    pins.forEach(function (p, i) { p.style.setProperty('--k', i); });
+    var cityBtns = $$('.city');
+    var nameEl = $('#city-name');
+    var vibeEl = $('#city-vibe');
+    var current = '';
+    function preview(k) {
+      current = k;
+      pins.forEach(function (p) { p.classList.toggle('is-active', p.getAttribute('data-city') === k); });
+      cityBtns.forEach(function (b) { b.classList.toggle('is-active', b.getAttribute('data-city') === k); });
+      nameEl.textContent = PD.t('c_' + k);
+      vibeEl.textContent = PD.t('v_' + k);
+    }
+    function pick(k) {
+      preview(k);
+      var reg = field('regio');
+      if (reg) {
+        reg.value = PD.t('c_' + k);
+        reg.dispatchEvent(new Event('input', { bubbles: true }));
+        syncProfile('region');
+        if (msgKeys.regio) showMsg('regio', '');
+      }
+      toast(PD.t('mapSet').replace('{city}', PD.t('c_' + k)));
+      goTo($('#register'));
+      setTimeout(function () { if (reg) reg.focus({ preventScroll: true }); }, reduced ? 0 : 700);
+    }
+    pins.concat(cityBtns).forEach(function (el) {
+      var k = el.getAttribute('data-city');
+      el.addEventListener('pointerenter', function (e) { if (e.pointerType === 'mouse') preview(k); });
+      el.addEventListener('focus', function () { preview(k); });
+      el.addEventListener('click', function () { pick(k); });
+    });
+    document.addEventListener('pd:lang', function () { if (current) preview(current); });
+  }
+
   /* ------------------------------------------------------------------ FAQ accordion (single open) */
 
   var faqItems = $$('.faq-item');
@@ -799,5 +855,6 @@
   }
   renderFounders();
   initShield();
+  initMap();
   tick();
 })();

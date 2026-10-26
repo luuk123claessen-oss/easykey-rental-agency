@@ -78,9 +78,6 @@
       cardNote: 'Built from your own answers. It is not a list of homes.',
 
       aboutLabel: 'Who we are',
-      aboutQuote: 'We work on the tenant’s side only. One fixed contact, from your first message until you sign your lease.',
-      aboutCite: 'Luuk Claessen and Jalal Selmani, founders. Our principle.',
-      founderLuuk: 'Closing, platform & technology', founderJalal: 'First contact & client qualification',
       portraitAlt: 'Portrait of {name}',
 
       faqLabel: 'FAQ', faqTitle: 'What to know before you start',
@@ -102,6 +99,16 @@
       fEmail2: 'Email', fPhone2: 'Phone', fKvk: 'KvK', fVat: 'VAT',
       privacyLink: 'Privacy Policy', termsLink: 'Terms and Conditions', mandateLink: 'Mandate and cancellation', creditsLink: 'Photography credits',
       toTop: 'Back to top',
+      // FOUNDER-EDIT: the founders' quote below is a placeholder draft. Edit the wording here (EN and NL).
+      aboutQuote: 'The Dutch rental market is hard on people who simply need a place to live. We stand on the tenant’s side only — and we want to make finding a home feel a lot less hard.',
+      aboutCite: 'Founders',
+      believeLabel: 'What we believe',
+      bel1k: 'Fair',
+      bel1: 'You pay only when your lease is signed.',
+      bel2k: 'Transparent',
+      bel2: 'One fee, shown in full before you register.',
+      bel3k: 'Human',
+      bel3: 'One fixed contact, from first message to signature.',
       fine: 'Fee: 1.5× the total monthly rent (including gas, water and electricity) plus 21% VAT, only due when a lease is signed through Property Direct. No costs upfront. No fee for homes you find yourself.'
     },
     nl: {
@@ -178,9 +185,6 @@
       cardNote: 'Opgebouwd uit je eigen antwoorden. Dit is geen lijst met woningen.',
 
       aboutLabel: 'Wie we zijn',
-      aboutQuote: 'Wij werken alleen aan de kant van de huurder. Eén vast aanspreekpunt, vanaf je eerste bericht tot je je huurcontract tekent.',
-      aboutCite: 'Luuk Claessen en Jalal Selmani, oprichters. Ons uitgangspunt.',
-      founderLuuk: 'Afronding, platform & techniek', founderJalal: 'Eerste contact & intake',
       portraitAlt: 'Portret van {name}',
 
       faqLabel: 'Vragen', faqTitle: 'Wat je wilt weten voordat je begint',
@@ -202,6 +206,16 @@
       fEmail2: 'E-mail', fPhone2: 'Telefoon', fKvk: 'KvK', fVat: 'Btw',
       privacyLink: 'Privacybeleid', termsLink: 'Algemene voorwaarden', mandateLink: 'Opdracht en annuleren', creditsLink: 'Fotocredits',
       toTop: 'Terug naar boven',
+      // FOUNDER-EDIT: the founders' quote below is a placeholder draft. Edit the wording here (EN and NL).
+      aboutQuote: 'De Nederlandse huurmarkt is zwaar voor mensen die gewoon een plek nodig hebben om te wonen. Wij staan alleen aan de kant van de huurder — en willen het vinden van een woning veel lichter laten voelen.',
+      aboutCite: 'Oprichters',
+      believeLabel: 'Waar we in geloven',
+      bel1k: 'Eerlijk',
+      bel1: 'Je betaalt pas als je huurcontract getekend is.',
+      bel2k: 'Transparant',
+      bel2: 'Eén tarief, vooraf volledig zichtbaar.',
+      bel3k: 'Menselijk',
+      bel3: 'Eén vast aanspreekpunt, van eerste bericht tot handtekening.',
       fine: 'Tarief: 1,5× de totale maandhuur (inclusief gas, water en licht) plus 21% btw, alleen verschuldigd bij een getekend huurcontract via Property Direct. Geen kosten vooraf. Geen fee voor woningen die je zelf vindt.'
     }
   };

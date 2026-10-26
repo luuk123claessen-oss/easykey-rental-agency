@@ -476,23 +476,35 @@
       </div>
     </section>
 
-    <section class="s about" id="about" aria-labelledby="about-title">
+    <section class="s about" id="about" aria-labelledby="about-title" data-chapter="07">
       <div class="wrap">
         <div class="head" data-reveal>
           <span class="label" id="about-title" data-i18n="aboutLabel">Who we are</span>
         </div>
-        <blockquote class="about-quote" data-reveal style="--i:1">
-          <p data-i18n="aboutQuote">We work on the tenant’s side only. One fixed contact, from your first message until you sign your lease.</p>
-          <footer data-i18n="aboutCite">Luuk Claessen and Jalal Selmani, founders. Our principle.</footer>
-        </blockquote>
+        <!-- FOUNDER-EDIT: placeholder quote, edit it in js/i18n.js (aboutQuote, aboutCite) -->
+        <figure class="fquote" data-reveal style="--i:1">
+          <blockquote><p data-i18n="aboutQuote">The Dutch rental market is hard on people who simply need a place to live. We stand on the tenant’s side only — and we want to make finding a home feel a lot less hard.</p></blockquote>
+          <figcaption>
+            <span class="initials" aria-hidden="true">L · J</span>
+            <span class="cite"><strong>Luuk Claessen</strong> &amp; <strong>Jalal Selmani</strong> — <span data-i18n="aboutCite">Founders</span></span>
+          </figcaption>
+        </figure>
+        <div class="believe" data-reveal style="--i:1">
+          <p class="label" data-i18n="believeLabel">What we believe</p>
+          <ul>
+            <li><span class="label on-dark-soft" data-i18n="bel1k">Fair</span><p data-i18n="bel1">You pay only when your lease is signed.</p></li>
+            <li><span class="label on-dark-soft" data-i18n="bel2k">Transparent</span><p data-i18n="bel2">One fee, shown in full before you register.</p></li>
+            <li><span class="label on-dark-soft" data-i18n="bel3k">Human</span><p data-i18n="bel3">One fixed contact, from first message to signature.</p></li>
+          </ul>
+        </div>
         <div class="founders">
           <figure class="founder" data-reveal style="--i:1" id="founder-luuk" data-name="Luuk Claessen" data-key="luuk">
-            <div class="avatar"><span aria-hidden="true">L</span></div>
-            <figcaption><strong>Luuk Claessen</strong><span data-i18n="founderLuuk">Closing, platform &amp; technology</span></figcaption>
+            <div class="avatar" data-tilt><i class="ring" aria-hidden="true"></i><span class="mono" aria-hidden="true">L</span></div>
+            <figcaption><strong>Luuk Claessen</strong></figcaption>
           </figure>
           <figure class="founder" data-reveal style="--i:2" id="founder-jalal" data-name="Jalal Selmani" data-key="jalal">
-            <div class="avatar"><span aria-hidden="true">J</span></div>
-            <figcaption><strong>Jalal Selmani</strong><span data-i18n="founderJalal">First contact &amp; client qualification</span></figcaption>
+            <div class="avatar" data-tilt><i class="ring" aria-hidden="true"></i><span class="mono" aria-hidden="true">J</span></div>
+            <figcaption><strong>Jalal Selmani</strong></figcaption>
           </figure>
         </div>
       </div>

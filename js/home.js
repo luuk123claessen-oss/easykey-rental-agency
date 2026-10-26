@@ -109,6 +109,16 @@
       document.documentElement.addEventListener('pointerleave', function () { glow.classList.remove('on'); });
     }
 
+    // Subtle tilt on the founders' monograms
+    $$('[data-tilt]').forEach(function (el) {
+      el.addEventListener('pointermove', function (e) {
+        var r = el.getBoundingClientRect();
+        el.style.setProperty('--ry', (((e.clientX - r.left) / r.width - 0.5) * 14).toFixed(1) + 'deg');
+        el.style.setProperty('--rx', ((0.5 - (e.clientY - r.top) / r.height) * 14).toFixed(1) + 'deg');
+      });
+      el.addEventListener('pointerleave', function () { el.style.setProperty('--rx', '0deg'); el.style.setProperty('--ry', '0deg'); });
+    });
+
     // Spotlight inside cards
     document.addEventListener('pointermove', function (e) {
       var t = e.target.closest ? e.target.closest('.spot') : null;

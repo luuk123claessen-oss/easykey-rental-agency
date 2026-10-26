@@ -16,6 +16,14 @@
   font-style: normal;
   font-display: swap;
 }
+/* Handwriting face for signatures and initials (SIL Open Font License, Mrs Saint Delafield). Loaded only when used. */
+@font-face {
+  font-family: 'Signature';
+  src: url('../fonts/signature-latin.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
 /* Metric-matched fallback so the swap to Inter Tight does not move the layout. */
 @font-face {
   font-family: 'Inter Tight Fallback';
@@ -466,19 +474,29 @@ input[aria-invalid="true"] { border-color: var(--err); }
 
 /* About */
 .about { background: var(--papier); border-top: 1px solid var(--line); padding-bottom: 0; }
-.about-quote { margin: 0 0 clamp(48px, 7vw, 96px); }
-.about-quote p { font-size: clamp(28px, 4.2vw, 58px); line-height: 1.08; letter-spacing: -.03em; font-weight: 300; max-width: 22em; }
-.about-quote footer { display: flex; align-items: center; gap: 14px; margin-top: 28px; font: 400 12px/1.5 var(--f-mono); letter-spacing: .12em; text-transform: uppercase; color: var(--mist-text); }
-.about-quote footer::before { content: ""; flex: none; width: 36px; height: 1px; background: var(--smaragd); }
-.founders { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: clamp(16px, 4vw, 64px); max-width: 760px; }
+.fquote { margin: 0 0 clamp(48px, 7vw, 96px); padding-top: clamp(32px, 4vw, 56px); border-top: 1px solid var(--nacht); }
+.fquote blockquote { margin: 0; }
+.fquote blockquote p { max-width: 21em; font-size: clamp(30px, 4.8vw, 76px); line-height: 1.04; letter-spacing: -.035em; font-weight: 300; text-wrap: balance; }
+.fquote figcaption { display: flex; flex-wrap: wrap; align-items: center; gap: 16px 28px; margin-top: clamp(28px, 4vw, 48px); }
+.fquote .initials { font: 400 clamp(44px, 6vw, 84px)/1 'Signature', 'Inter Tight', cursive; color: var(--smaragd); letter-spacing: 0; white-space: nowrap; padding-right: 28px; border-right: 1px solid var(--line); }
+.fquote .cite { font: 400 13px/1.6 var(--f-mono); letter-spacing: .12em; text-transform: uppercase; color: var(--mist-text); }
+.fquote .cite strong { font-weight: 500; color: var(--nacht); }
+.believe { margin: 0 0 clamp(48px, 7vw, 96px); }
+.believe > .label { display: block; margin-bottom: 18px; }
+.believe ul { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); border-top: 1px solid var(--line); }
+.believe li { padding: 22px clamp(14px, 2vw, 28px) 4px 0; display: flex; flex-direction: column; gap: 10px; }
+.believe li + li { padding-left: clamp(14px, 2vw, 28px); border-left: 1px solid var(--line); }
+.believe li .label { color: var(--smaragd); }
+.believe li p { font-size: 18px; font-weight: 300; line-height: 1.35; color: var(--nacht); }
+.founders { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: clamp(16px, 4vw, 64px); max-width: 640px; }
 .founder { margin: 0; display: flex; flex-direction: column; gap: 22px; align-items: flex-start; }
-.avatar { position: relative; width: min(100%, 220px); aspect-ratio: 1; border: 1px solid var(--line); border-radius: 50%; display: grid; place-items: center; overflow: hidden; background: var(--wit); }
+.avatar { position: relative; width: min(100%, 220px); aspect-ratio: 1; border: 1px solid var(--line); border-radius: 50%; display: grid; place-items: center; background: var(--wit); transform: perspective(700px) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg)); transition: transform .5s var(--ease); }
+.avatar .ring { position: absolute; inset: -9px; border-radius: 50%; border: 1px solid rgba(14, 70, 52, .35); border-top-color: var(--smaragd); border-right-color: transparent; animation: spin 24s linear infinite; pointer-events: none; }
+@keyframes spin { to { transform: rotate(360deg); } }
 .avatar::before { content: ""; position: absolute; inset: 7px; border: 1px solid var(--line); border-radius: 50%; }
-.avatar span { font-size: clamp(64px, 9vw, 104px); font-weight: 300; letter-spacing: -.05em; line-height: 1; color: var(--smaragd); }
-.avatar img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
-.founder figcaption { display: flex; flex-direction: column; gap: 6px; }
-.founder strong { font-weight: 500; font-size: clamp(18px, 2vw, 22px); }
-.founder figcaption span { font: 400 12px/1.5 var(--f-mono); letter-spacing: .1em; text-transform: uppercase; color: var(--mist-text); }
+.avatar .mono { font-size: clamp(64px, 9vw, 104px); font-weight: 300; letter-spacing: -.05em; line-height: 1; color: var(--smaragd); }
+.avatar img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; border-radius: 50%; }
+.founder figcaption strong { font-weight: 500; font-size: clamp(18px, 2vw, 22px); }
 .band { position: relative; margin-top: clamp(56px, 8vw, 112px); height: clamp(200px, 30vw, 400px); overflow: hidden; background: var(--smaragd); isolation: isolate; }
 .band img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 62%; filter: grayscale(1) contrast(1.08) brightness(.9); }
 .band::before, .band::after { content: ""; position: absolute; inset: 0; pointer-events: none; }
@@ -603,6 +621,8 @@ html:not(.js) .faq-a { grid-template-rows: 1fr; visibility: visible; }
   .actions .btn { flex: 1 1 auto; }
   .founders { gap: 16px; }
   .founder { gap: 16px; }
+  .believe ul { grid-template-columns: 1fr; }
+  .believe li + li { padding-left: 0; border-left: 0; border-top: 1px solid var(--line); margin-top: 18px; }
   .f-bottom { flex-direction: column; align-items: flex-start; }
   .fee-band { grid-template-columns: 1fr; }
 }
@@ -618,6 +638,8 @@ html:not(.js) .faq-a { grid-template-rows: 1fr; visibility: visible; }
   .cursor-glow { display: none; }
   .magnet-wrap .btn { transform: none; }
   .duo img { transform: none; }
+  .avatar .ring { animation: none; }
+  .avatar { transform: none; }
 }
 
 .legal-links { display: flex; flex-wrap: wrap; gap: 0 28px; }

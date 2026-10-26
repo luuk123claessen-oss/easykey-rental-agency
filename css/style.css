@@ -717,6 +717,20 @@ html:not(.js) .faq-a { grid-template-rows: 1fr; visibility: visible; }
 .ls-actions .hint { margin: 0; color: var(--mist-text); font-size: 14px; }
 .lease-sign.shake { animation: shake .4s var(--ease); }
 
+/* Montage reel: fast cuts in emerald duotone, one word per beat */
+.reel { position: relative; background: var(--nacht); color: var(--papier); color-scheme: dark; }
+.reel-stage { position: relative; width: 100%; aspect-ratio: 16 / 9; max-height: 100vh; max-height: 100svh; min-height: 280px; overflow: hidden; background: var(--nacht); }
+.reel-poster, .reel-video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.reel-video { opacity: 0; transition: opacity .8s var(--ease); }
+.reel-video.on { opacity: 1; }
+.reel-shade { position: absolute; inset: 0; background: linear-gradient(0deg, rgba(11, 21, 18, .75), rgba(11, 21, 18, 0) 55%), linear-gradient(180deg, rgba(11, 21, 18, .55), rgba(11, 21, 18, 0) 25%); pointer-events: none; }
+.reel-words { position: absolute; left: max(20px, 5vw); bottom: clamp(40px, 9vw, 120px); margin: 0; max-width: none; height: 1em; font-size: clamp(56px, 12vw, 200px); line-height: 1; letter-spacing: -.05em; font-weight: 300; text-transform: uppercase; }
+.reel-words span { position: absolute; left: 0; bottom: 0; white-space: nowrap; opacity: 0; transform: scale(.94); transform-origin: 0 100%; }
+.reel-words span.on { opacity: 1; animation: punch .35s cubic-bezier(.2, .9, .2, 1) both; }
+@keyframes punch { from { transform: scale(.94); } to { transform: scale(1); } }
+.reel-cap { position: absolute; right: max(20px, 5vw); bottom: clamp(24px, 3vw, 40px); margin: 0; max-width: none; text-align: right; }
+html:not(.js) .reel-words span:first-child { opacity: 1; }
+
 /* Responsive */
 @media (max-width: 1080px) {
   nav.menu { gap: 0; }
@@ -796,6 +810,7 @@ html:not(.js) .faq-a { grid-template-rows: 1fr; visibility: visible; }
   .js .to-top path { stroke-dashoffset: 0; }
   .stmt .w { opacity: 1; }
   .mq-track { animation: none; }
+  .reel-words span.on { animation: none; }
   .js .provs path { stroke-dashoffset: 0; fill-opacity: 1; }
   .pin::after { animation: none !important; }
   .scroll-line i { animation: none; transform: scaleY(1); }

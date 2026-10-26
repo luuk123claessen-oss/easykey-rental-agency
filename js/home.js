@@ -863,6 +863,53 @@
     });
   }
 
+  /* ------------------------------------------------------------------ Montage reel (plays while in view) */
+
+  function initReel() {
+    var stage = $('#reel-stage');
+    var video = $('#reel-video');
+    if (!stage || !video || !('IntersectionObserver' in window)) return;
+    var words = $$('#reel-words span');
+    var conn = navigator.connection || {};
+    var lowData = conn.saveData || /(^|-)2g$/.test(conn.effectiveType || '') || window.matchMedia('(prefers-reduced-data: reduce)').matches;
+    var overlay = CFG.reelOverlay !== false;
+    var started = false, raf = 0, last = -1;
+    if (!overlay) $('#reel-words').hidden = true;
+    function setWord(i) {
+      if (i === last) return;
+      last = i;
+      words.forEach(function (w, k) { w.classList.toggle('on', k === i); });
+    }
+    function loop() {
+      if (video.duration) setWord(Math.min(words.length - 1, Math.floor(video.currentTime / video.duration * words.length)));
+      raf = requestAnimationFrame(loop);
+    }
+    function start() {
+      if (started) return;
+      started = true;
+      [['assets/media/reel.webm', 'video/webm'], ['assets/media/reel.mp4', 'video/mp4']].forEach(function (s) {
+        var src = document.createElement('source');
+        src.src = s[0]; src.type = s[1];
+        video.appendChild(src);
+      });
+      video.addEventListener('playing', function () { video.classList.add('on'); }, { once: true });
+      video.load();
+    }
+    if (reduced || lowData) { setWord(0); return; } // poster and the first word only
+    new IntersectionObserver(function (entries) {
+      var vis = entries[0].isIntersecting;
+      if (vis) {
+        start();
+        var p = video.play();
+        if (p && p.catch) p.catch(function () {});
+        if (!raf) raf = requestAnimationFrame(loop);
+      } else {
+        video.pause();
+        cancelAnimationFrame(raf); raf = 0;
+      }
+    }, { threshold: 0.35 }).observe(stage);
+  }
+
   /* ------------------------------------------------------------------ FAQ accordion (single open) */
 
   var faqItems = $$('.faq-item');
@@ -940,5 +987,6 @@
   initMap();
   initKey3d();
   initSign();
+  initReel();
   tick();
 })();

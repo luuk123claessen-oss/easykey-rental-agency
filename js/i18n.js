@@ -198,6 +198,11 @@
       signErr: 'Please type your name first.',
       signHint: 'You only pay after the lease is signed.',
       navSign: 'Start',
+      rw1: 'Search',
+      rw2: 'Check',
+      rw3: 'Sign',
+      rw4: 'Move in',
+      reelAlt: 'Short film in four beats: search, check, sign, move in.',
       fine: 'Fee: 1.5× the total monthly rent (including gas, water and electricity) plus 21% VAT, only due when a lease is signed through Property Direct. No costs upfront. No fee for homes you find yourself.'
     },
     nl: {
@@ -394,6 +399,11 @@
       signErr: 'Typ eerst je naam.',
       signHint: 'Je betaalt pas nadat het huurcontract getekend is.',
       navSign: 'Start',
+      rw1: 'Zoek',
+      rw2: 'Controleer',
+      rw3: 'Teken',
+      rw4: 'Intrekken',
+      reelAlt: 'Korte film in vier stappen: zoeken, controleren, tekenen, intrekken.',
       fine: 'Tarief: 1,5× de totale maandhuur (inclusief gas, water en licht) plus 21% btw, alleen verschuldigd bij een getekend huurcontract via Property Direct. Geen kosten vooraf. Geen fee voor woningen die je zelf vindt.'
     }
   };

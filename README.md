@@ -81,8 +81,8 @@ The legal pages and the guides are plain-language drafts. They say so, and they 
 
 See `assets/media/CREDITS.md` for the source, creator and licence of every file.
 
-- **Hero video**: `hero.webm` + `hero.mp4` (silent, 1280×720, under 2.5 MB each, stabilised and slowed, looped with a crossfade), with `hero-poster*.webp` as fallback. The video starts after the page has loaded; reduced motion, Save-Data, reduced-data and 2G get the poster only (with a slow Ken Burns when motion is allowed). To use another clip, replace `hero.mp4` and delete `hero.webm`.
-- **Reel**: `reel.webm` + `reel.mp4` (16 cuts in natural colour, about 1.2 MB each) and `reel-9x16.mp4` (the same cut for Instagram, LinkedIn and WhatsApp, with the words burnt in). Drop in your own `reel.mp4` (and delete `reel.webm`) and the same player picks it up.
+- **Hero video**: `hero.webm` + `hero.mp4` (the montage of sixteen daylight cuts, 1280×720, silent, about 1.2 MB each) and `hero-9x16.mp4` (portrait screens), with `hero-poster*.avif/.webp` as the poster (the AVIF is preloaded). The video starts after the page has loaded; reduced motion, Save-Data, reduced-data and 2G get the poster only. `reel-9x16.mp4` is the same cut with the words burnt in, for social media.
+- **Night band** (`#reel`): `houses.webm` + `houses.mp4` with `houses-poster*.webp`, plays while in view.
 - **Photos**: each exists as AVIF and WebP at 800 and 1600 px wide. They keep their real colours; the shared grade (`--media-filter`, `--media-tint`) is applied in CSS.
 
 ## Performance notes

@@ -32,6 +32,7 @@
   <meta name="twitter:description" content="Personal tenant representation in the Netherlands. We search for your rental home, on your side only. You pay only when your lease is signed.">
   <meta name="twitter:image" content="https://propertydirect.nl/og-image.png">
 
+  <link rel="preload" href="assets/media/hero-poster.avif" as="image" type="image/avif" imagesrcset="assets/media/hero-poster-800.avif 800w, assets/media/hero-poster.avif 1280w" imagesizes="100vw" fetchpriority="high">
   <link rel="preload" href="fonts/inter-tight-latin.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="fonts/jetbrains-mono-latin.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="css/style.css">
@@ -172,9 +173,11 @@
     <div class="hero-track" id="hero-track">
     <section class="hero grain" id="top">
       <div class="hero-media" aria-hidden="true">
-        <img class="hero-poster" src="assets/media/hero-poster-800.webp" srcset="assets/media/hero-poster-800.webp 800w, assets/media/hero-poster.webp 1600w" sizes="100vw" width="1600" height="900" alt="" decoding="async">
+        <picture class="hero-poster">
+          <source type="image/avif" srcset="assets/media/hero-poster-800.avif 800w, assets/media/hero-poster.avif 1280w" sizes="100vw">
+          <img src="assets/media/hero-poster-800.webp" srcset="assets/media/hero-poster-800.webp 800w, assets/media/hero-poster.webp 1280w" sizes="100vw" width="1280" height="720" alt="" decoding="async" fetchpriority="high">
+        </picture>
         <video class="hero-video" id="hero-video" muted loop playsinline preload="metadata" tabindex="-1" disablepictureinpicture></video>
-        <i class="hero-glow"></i>
         <i class="hero-tint"></i>
       </div>
 
@@ -209,7 +212,7 @@
 
     <section class="statement" id="statement" aria-label="Summary">
       <div class="wrap">
-        <p class="stmt" id="stmt" data-i18n="stmt">You describe what you need. We search for it, check the landlord and the lease, and you sign only what you’re happy with.</p>
+        <p class="stmt" id="stmt" data-i18n="stmt">We find the match for what you’re looking for, within our own network. We come back with options, and you sign only if you’re happy with one.</p>
       </div>
     </section>
 
@@ -217,12 +220,11 @@
       <div class="wrap">
         <p class="label on-dark" id="facts-title" data-i18n="factsLabel">Facts &amp; figures</p>
         <ul class="facts-grid" id="facts-grid">
-          <li class="fact spot" data-fact="0" data-reveal><p class="fact-num"><span class="pre">€</span><span class="n" data-to="5">5</span><span class="suf">M<span class="plus">+</span></span></p><i class="fact-line" aria-hidden="true"></i><p class="fact-label">Rental contract value, indicative</p></li>
+          <li class="fact spot" data-fact="0" data-reveal><p class="fact-num"><span class="pre">€</span><span class="n" data-to="5">5</span><span class="suf">M<span class="plus">+</span></span></p><i class="fact-line" aria-hidden="true"></i><p class="fact-label">Rental contract value</p></li>
           <li class="fact spot" data-fact="1" data-reveal style="--i:1"><p class="fact-num"><span class="n" data-to="8">8</span><span class="suf"><span class="plus">+</span></span><span class="unit">years</span></p><i class="fact-line" aria-hidden="true"></i><p class="fact-label">Experience in residential renting</p></li>
           <li class="fact spot" data-fact="2" data-reveal style="--i:2"><p class="fact-num"><span class="n" data-to="5">5</span><span class="unit">regions</span></p><i class="fact-line" aria-hidden="true"></i><p class="fact-label">Amsterdam · Rotterdam · The Hague · Utrecht · Groningen — and active nationwide</p></li>
           <li class="fact spot" data-fact="3" data-reveal style="--i:3"><p class="fact-num"><span class="n" data-to="30">30</span><span class="suf"><span class="plus">+</span></span><span class="unit">partners</span></p><i class="fact-line" aria-hidden="true"></i><p class="fact-label">Landlords, property professionals and business contacts in our network</p></li>
         </ul>
-        <p class="facts-note" data-i18n="factsNote">Indicative figures based on the combined experience of the team and network behind Property Direct, not on the company’s own trading history.</p>
       </div>
     </section>
 
@@ -429,13 +431,12 @@
       </div>
     </section>
 
-    <section class="reel grain" id="reel" aria-label="Short film in four beats: search, check, sign, move in." data-i18n-aria="reelAlt">
+    <section class="reel houses" id="reel" aria-labelledby="houses-title">
       <div class="reel-stage" id="reel-stage">
-        <img class="reel-poster" src="assets/media/reel-poster.webp" width="1280" height="720" loading="lazy" decoding="async" alt="">
+        <img class="reel-poster" src="assets/media/houses-poster-800.webp" srcset="assets/media/houses-poster-800.webp 800w, assets/media/houses-poster.webp 1600w" sizes="100vw" width="1600" height="900" loading="lazy" decoding="async" alt="">
         <video class="reel-video" id="reel-video" muted loop playsinline preload="none" tabindex="-1" disablepictureinpicture aria-hidden="true"></video>
         <div class="reel-shade" aria-hidden="true"></div>
-        <p class="reel-words" id="reel-words" aria-hidden="true"><span class="on" data-i18n="rw1">Search</span><span data-i18n="rw2">Check</span><span data-i18n="rw3">Sign</span><span data-i18n="rw4">Move in</span></p>
-        <p class="reel-cap label on-dark" aria-hidden="true">Property Direct · <span data-i18n="t1">Tenant side only</span></p>
+        <div class="houses-copy"><span class="label on-dark">Property Direct</span><h2 class="houses-t" id="houses-title" data-i18n="housesT">We search across the Netherlands.</h2></div>
       </div>
     </section>
 
@@ -500,6 +501,11 @@
                 </tbody>
               </table>
             </div>
+          </div>
+
+          <div class="extras spot" data-reveal>
+            <span class="label on-dark" data-i18n="extrasLabel">More than a search</span>
+            <p data-i18n="extrasText">We can also help with consultancy and advice around renting. Prices are personal and agreed with you first.</p>
           </div>
         </div>
       </div>
@@ -648,15 +654,15 @@
         </div>
         <!-- FOUNDER-EDIT: placeholder quote, edit it in js/i18n.js (aboutQuote). No names here on purpose. -->
         <figure class="fquote" data-reveal style="--i:1">
-          <blockquote><p data-i18n="aboutQuote">The Dutch rental market is hard on people who simply need a place to live. We stand on the tenant’s side only.</p></blockquote>
+          <blockquote><p data-i18n="aboutQuote">We want to solve the problem in the Dutch rental market by being transparent and treating people like people. We are always here for you.</p></blockquote>
           <figcaption><span class="initials" data-i18n-aria="aboutSigAria" aria-label="Signed by the two founders">LC <i aria-hidden="true">·</i> JS</span></figcaption>
         </figure>
         <div class="believe" data-reveal style="--i:1">
           <p class="label" data-i18n="believeLabel">What we believe</p>
           <ul>
-            <li><span class="label on-dark-soft" data-i18n="bel1k">Fair</span><p data-i18n="bel1">You pay only when your lease is signed.</p></li>
-            <li><span class="label on-dark-soft" data-i18n="bel2k">Transparent</span><p data-i18n="bel2">One fee, shown in full before you register.</p></li>
-            <li><span class="label on-dark-soft" data-i18n="bel3k">Human</span><p data-i18n="bel3">One fixed contact, from first message to signature.</p></li>
+            <li><span class="label on-dark-soft" data-i18n="bel1k">Fair</span><p data-i18n="bel1">You pay only when your lease is signed. If we don’t find your home, you owe us nothing.</p></li>
+            <li><span class="label on-dark-soft" data-i18n="bel2k">Transparent</span><p data-i18n="bel2">You see the full fee before you register. No small print, no surprises.</p></li>
+            <li><span class="label on-dark-soft" data-i18n="bel3k">Human</span><p data-i18n="bel3">You get one fixed contact, a real person who knows your story and is there for you.</p></li>
           </ul>
         </div>
       </div>
@@ -667,24 +673,6 @@
           <img src="assets/media/band-canal-800.webp" width="1600" height="900" loading="lazy" decoding="async" alt="">
         </picture>
         <i class="fade"></i>
-      </div>
-    </section>
-
-    <section class="s after" id="after" data-chapter="08" aria-labelledby="after-title">
-      <div class="wrap after-grid">
-        <div class="after-head" data-reveal>
-          <span class="label" data-i18n="afLabel">After you sign</span>
-          <h2 id="after-title" data-i18n="afTitle">Your first week</h2>
-          <p class="sub" data-i18n="afLead">Tick things off as you go. Your progress stays in this browser, and you can share it with a link.</p>
-          <div class="bar-track" id="af-track" role="progressbar" aria-valuemin="0" aria-valuemax="8" aria-valuenow="0" aria-label="Progress"><i id="af-bar"></i></div>
-          <p class="after-count" id="af-count" aria-live="polite">0 of 8 done</p>
-          <div class="after-actions">
-            <button type="button" class="link-cta" id="af-copy" data-i18n="afCopy">Copy link to my list</button>
-            <button type="button" class="link-cta" id="af-reset" data-i18n="afReset">Start over</button>
-            <a class="link-cta" href="guides/first-week.html" data-i18n="afGuide">Read the full guide</a>
-          </div>
-        </div>
-        <ul class="checklist" id="checklist" data-reveal style="--i:1"><li><label><input type="checkbox" data-i="0"><span class="tick" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="square" stroke-linejoin="miter"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span><span class="ct" data-i18n="ck1t">Book your registration appointment</span><span class="cd" data-i18n="ck1d">Within 5 days of arrival if you stay longer than 4 months.</span></label></li><li><label><input type="checkbox" data-i="1"><span class="tick" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="square" stroke-linejoin="miter"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span><span class="ct" data-i18n="ck2t">Get your BSN</span><span class="cd" data-i18n="ck2d">Registering gives you your citizen service number.</span></label></li><li><label><input type="checkbox" data-i="2"><span class="tick" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="square" stroke-linejoin="miter"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span><span class="ct" data-i18n="ck3t">Apply for a DigiD</span><span class="cd" data-i18n="ck3d">Your digital ID for Dutch government services.</span></label></li><li><label><input type="checkbox" data-i="3"><span class="tick" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="square" stroke-linejoin="miter"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span><span class="ct" data-i18n="ck4t">Take out health insurance</span><span class="cd" data-i18n="ck4d">As soon as possible, and within 4 months of arriving.</span></label></li><li><label><input type="checkbox" data-i="4"><span class="tick" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="square" stroke-linejoin="miter"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span><span class="ct" data-i18n="ck5t">Report your meter readings</span><span class="cd" data-i18n="ck5d">Within 5 working days of moving in. Take a dated photo.</span></label></li><li><label><input type="checkbox" data-i="5"><span class="tick" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="square" stroke-linejoin="miter"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span><span class="ct" data-i18n="ck6t">Choose your energy supplier</span><span class="cd" data-i18n="ck6d">You can choose one for your new address.</span></label></li><li><label><input type="checkbox" data-i="6"><span class="tick" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="square" stroke-linejoin="miter"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span><span class="ct" data-i18n="ck7t">Open a Dutch bank account</span><span class="cd" data-i18n="ck7d">Requirements differ per bank, so ask what yours needs.</span></label></li><li><label><input type="checkbox" data-i="7"><span class="tick" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="square" stroke-linejoin="miter"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span><span class="ct" data-i18n="ck8t">Keep your lease and deposit confirmation</span><span class="cd" data-i18n="ck8d">Both must be given to you in writing.</span></label></li></ul>
       </div>
     </section>
 
@@ -701,12 +689,15 @@
           <div class="faq-item"><h3><button type="button" class="faq-q" id="fq3" aria-expanded="false" aria-controls="fa3"><span data-i18n="q3">What if you don’t find a home?</span></button></h3><div class="faq-a" id="fa3" role="region" aria-labelledby="fq3"><div><p data-i18n="a3">Then you pay nothing. No cure, no pay.</p></div></div></div>
           <div class="faq-item"><h3><button type="button" class="faq-q" id="fq4" aria-expanded="false" aria-controls="fa4"><span data-i18n="q4">Do you list homes?</span></button></h3><div class="faq-a" id="fa4" role="region" aria-labelledby="fq4"><div><p data-i18n="a4">No. We do not publish or sell listings and we never show “available homes”. We search per tenant, based on your search profile.</p></div></div></div>
           <div class="faq-item"><h3><button type="button" class="faq-q" id="fq5" aria-expanded="false" aria-controls="fa5"><span data-i18n="q5">Do you work for landlords?</span></button></h3><div class="faq-a" id="fa5" role="region" aria-labelledby="fq5"><div><p data-i18n="a5">No. We work for tenants only and never take money from landlords. Landlords do not pay us anything.</p></div></div></div>
+          <div class="faq-more" id="faq-more"><div class="faq-more-in">
           <div class="faq-item"><h3><button type="button" class="faq-q" id="fq6" aria-expanded="false" aria-controls="fa6"><span data-i18n="q6">What is the mandate?</span></button></h3><div class="faq-a" id="fa6" role="region" aria-labelledby="fq6"><div><p data-i18n="a6">The mandate is the written agreement in which you instruct us to search for you. We only start searching once you have signed it. Registering on this site is not a mandate.</p></div></div></div>
           <div class="faq-item"><h3><button type="button" class="faq-q" id="fq7" aria-expanded="false" aria-controls="fa7"><span data-i18n="q7">Can I cancel?</span></button></h3><div class="faq-a" id="fa7" role="region" aria-labelledby="fq7"><div><p data-i18n="a7">Yes, at any time before you sign a lease, and no fee is due then. As a consumer you also have a 14-day right of withdrawal. We only start within that period if you explicitly ask us to.</p></div></div></div>
           <div class="faq-item"><h3><button type="button" class="faq-q" id="fq8" aria-expanded="false" aria-controls="fa8"><span data-i18n="q8">How do you handle my data?</span></button></h3><div class="faq-a" id="fa8" role="region" aria-labelledby="fq8"><div><p data-i18n="a8">We only use your details to contact you and to search for a home for you. We share them with a landlord only when you ask us to. We use no tracking or advertising cookies.</p></div></div></div>
           <div class="faq-item"><h3><button type="button" class="faq-q" id="fq9" aria-expanded="false" aria-controls="fa9"><span data-i18n="q9">Which areas and home types?</span></button></h3><div class="faq-a" id="fa9" role="region" aria-labelledby="fq9"><div><p data-i18n="a9">We search throughout the Netherlands. In the registration you tell us the city or region and whether you want a room, studio, apartment or house.</p></div></div></div>
           <div class="faq-item"><h3><button type="button" class="faq-q" id="fq10" aria-expanded="false" aria-controls="fa10"><span data-i18n="q10">How long does it take?</span></button></h3><div class="faq-a" id="fa10" role="region" aria-labelledby="fq10"><div><p data-i18n="a10">That depends on the market, your budget and how flexible you are, so we do not promise a timeline. Registering takes about a minute.</p></div></div></div>
           <div class="faq-item"><h3><button type="button" class="faq-q" id="fq11" aria-expanded="false" aria-controls="fa11"><span data-i18n="q11">Can you help me buy a home later?</span></button></h3><div class="faq-a" id="fa11" role="region" aria-labelledby="fq11"><div><p data-i18n="a11">We can point you to licensed advisers; we do not give regulated financial advice.</p></div></div></div>
+          </div></div>
+          <button type="button" class="faq-toggle" id="faq-toggle" aria-expanded="false" aria-controls="faq-more"><span class="t-more" data-i18n="faqMore">More questions</span><span class="t-less" data-i18n="faqLess">Fewer questions</span></button>
         </div>
       </div>
     </section>
@@ -775,10 +766,6 @@
             <button type="button" data-lang="nl" aria-pressed="false">NL</button>
           </div>
         </div>
-      </div>
-      <div class="fee-band">
-        <span class="label on-dark" data-i18n="feeLabel">Fee</span>
-        <p class="fine" data-i18n="fine">Fee: 1.5× the total monthly rent (including gas, water and electricity) plus 21% VAT, only due when a lease is signed through Property Direct. No costs upfront. No fee for homes you find yourself.</p>
       </div>
       <p class="f-vof" data-i18n="fVof">Property Direct is a trade name of a general partnership (vof).</p>
       <div class="f-bottom" data-reveal>

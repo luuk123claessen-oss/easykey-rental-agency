@@ -38,7 +38,8 @@
     function start() {
       if (started) return;
       started = true;
-      [['assets/media/hero.webm', 'video/webm'], ['assets/media/hero.mp4', 'video/mp4']].forEach(function (s) {
+      var portrait = window.innerHeight > window.innerWidth;
+      (portrait ? [['assets/media/hero-9x16.mp4', 'video/mp4']] : [['assets/media/hero.webm', 'video/webm'], ['assets/media/hero.mp4', 'video/mp4']]).forEach(function (s) {
         var src = document.createElement('source');
         src.src = s[0];
         src.type = s[1];
@@ -956,29 +957,18 @@
 
   /* ------------------------------------------------------------------ Montage reel (plays while in view) */
 
+  // The night-canal band plays while it is in view
   function initReel() {
     var stage = $('#reel-stage');
     var video = $('#reel-video');
     if (!stage || !video || !('IntersectionObserver' in window)) return;
-    var words = $$('#reel-words span');
     var conn = navigator.connection || {};
     var lowData = conn.saveData || /(^|-)2g$/.test(conn.effectiveType || '') || window.matchMedia('(prefers-reduced-data: reduce)').matches;
-    var overlay = CFG.reelOverlay !== false;
-    var started = false, raf = 0, last = -1;
-    if (!overlay) $('#reel-words').hidden = true;
-    function setWord(i) {
-      if (i === last) return;
-      last = i;
-      words.forEach(function (w, k) { w.classList.toggle('on', k === i); });
-    }
-    function loop() {
-      if (video.duration) setWord(Math.min(words.length - 1, Math.floor(video.currentTime / video.duration * words.length)));
-      raf = requestAnimationFrame(loop);
-    }
+    var started = false;
     function start() {
       if (started) return;
       started = true;
-      [['assets/media/reel.webm', 'video/webm'], ['assets/media/reel.mp4', 'video/mp4']].forEach(function (s) {
+      [['assets/media/houses.webm', 'video/webm'], ['assets/media/houses.mp4', 'video/mp4']].forEach(function (s) {
         var src = document.createElement('source');
         src.src = s[0]; src.type = s[1];
         video.appendChild(src);
@@ -986,18 +976,13 @@
       video.addEventListener('playing', function () { video.classList.add('on'); }, { once: true });
       video.load();
     }
-    if (reduced || lowData) { setWord(0); return; } // poster and the first word only
+    if (reduced || lowData) return; // poster only
     new IntersectionObserver(function (entries) {
-      var vis = entries[0].isIntersecting;
-      if (vis) {
+      if (entries[0].isIntersecting) {
         start();
         var p = video.play();
         if (p && p.catch) p.catch(function () {});
-        if (!raf) raf = requestAnimationFrame(loop);
-      } else {
-        video.pause();
-        cancelAnimationFrame(raf); raf = 0;
-      }
+      } else video.pause();
     }, { threshold: 0.35 }).observe(stage);
   }
 
@@ -1051,6 +1036,15 @@
 
   /* ------------------------------------------------------------------ FAQ accordion (single open) */
 
+  var faqToggle = $('#faq-toggle');
+  var faqMore = $('#faq-more');
+  if (faqToggle && faqMore) {
+    faqToggle.addEventListener('click', function () {
+      var open = faqToggle.getAttribute('aria-expanded') !== 'true';
+      faqToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+      faqMore.classList.toggle('open', open);
+    });
+  }
   var faqItems = $$('.faq-item');
   faqItems.forEach(function (item) {
     var btn = $('.faq-q', item);
@@ -1101,29 +1095,45 @@
     });
     renderFacts();
     factsReady = true;
-    function run(li) {
-      var n = $('.n', li), to = Number(n.getAttribute('data-to'));
+    // Odometer: every digit is a column of 0-9 that rolls to its final value, one digit after the other
+    function roll(li) {
+      var n = $('.n', li), to = String(n.getAttribute('data-to'));
       li.classList.add('counting');
-      if (reduced || !to) { n.textContent = String(to); li.classList.add('done'); return; }
-      var t0 = performance.now(), dur = 1200;
-      n.textContent = '0';
-      (function step(now) {
-        var k = clamp((now - t0) / dur, 0, 1);
-        n.textContent = String(Math.round(to * (1 - Math.pow(1 - k, 3))));
-        if (k < 1) requestAnimationFrame(step);
-        else { n.textContent = String(to); li.classList.add('done'); }
-      })(t0);
+      if (reduced) { li.classList.add('done'); return; }
+      n.setAttribute('aria-label', to);
+      n.textContent = '';
+      var wrap = document.createElement('span');
+      wrap.className = 'odo';
+      wrap.setAttribute('aria-hidden', 'true');
+      to.split('').forEach(function (d, i) {
+        var col = document.createElement('span');
+        col.className = 'odo-col';
+        var cycles = 2 + i;
+        for (var k = 0; k < (cycles + 1) * 10; k++) { var c = document.createElement('i'); c.textContent = String(k % 10); col.appendChild(c); }
+        col.style.setProperty('--to', String(cycles * 10 + Number(d)));
+        col.style.transitionDelay = (i * 160) + 'ms';
+        col.style.transitionDuration = (1500 + i * 400) + 'ms';
+        wrap.appendChild(col);
+      });
+      n.appendChild(wrap);
+      void wrap.offsetWidth;
+      requestAnimationFrame(function () { wrap.classList.add('go'); });
+      setTimeout(function () { li.classList.add('done'); }, 1500 + to.length * 400);
     }
+    var grid = $('#facts-grid');
     if ('IntersectionObserver' in window && !reduced) {
       var fio = new IntersectionObserver(function (entries) {
         entries.forEach(function (en) {
           if (!en.isIntersecting) return;
           fio.unobserve(en.target);
-          run(en.target);
+          if (grid) grid.classList.add('go');
+          var idx = items.indexOf(en.target);
+          setTimeout(function () { roll(en.target); }, 120 * Math.max(0, idx));
         });
       }, { threshold: 0.4 });
       items.forEach(function (li) { fio.observe(li); });
     } else {
+      if (grid) grid.classList.add('go');
       items.forEach(function (li) { li.classList.add('counting', 'done'); });
     }
   }

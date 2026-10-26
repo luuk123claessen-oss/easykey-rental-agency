@@ -2,11 +2,27 @@
 
 Photos and video are free to use commercially under the [Pexels License](https://www.pexels.com/license/) (no attribution required; we list it anyway). Files were downloaded in October 2026 and re-encoded for the web: resized, cropped, colour-graded and compressed. None of them show people's faces or brand logos, and none of them are homes we offer. They set a mood.
 
-## Hero video
+## Hero: the daylight montage (`hero.webm`, `hero.mp4`, `hero-9x16.mp4`, `hero-poster*`, and `reel-9x16.mp4` with the words burnt in)
+
+Nine cuts of 1.25 seconds, natural colour, with a slow push-in on every cut. The poster is the first frame.
+
+| Clip | Creator | Source |
+| --- | --- | --- |
+| A Water Canal in the City of Amsterdam | Mikhail Fesenko | https://www.pexels.com/video/a-water-canal-in-the-city-of-amsterdam-14754279/ |
+| A row of purple bicycles parked in front of a bridge | Ali Alcántara | https://www.pexels.com/video/a-row-of-purple-bicycles-parked-in-front-of-a-bridge-19810593/ |
+| Cozy Kitchen at Sunrise with Window View | Waqas ilyas | https://www.pexels.com/video/cozy-kitchen-at-sunrise-with-window-view-38756590/ |
+| A Hinge Attached on the Door | Monstera Production | https://www.pexels.com/video/a-hinge-attached-on-the-door-7830154/ |
+| Kitchen Area and Living Room Interior | Yan Krukau | https://www.pexels.com/video/kitchen-area-and-living-room-interior-7314522/ |
+| Person Holding Keys | SHVETS production | https://www.pexels.com/video/person-holding-keys-7986204/ |
+| A living room with a fireplace and a large window | Алан Албегов | https://www.pexels.com/video/a-living-room-with-a-fireplace-and-a-large-window-20707771/ |
+| Sunlit Curtains Gently Sway in the Breeze | Melike | https://www.pexels.com/video/sunlit-curtains-gently-sway-in-the-breeze-38781079/ |
+| A Cozy Home | Max Vakhtbovych | https://www.pexels.com/video/a-cozy-home-7614417/ |
+
+## Night band (`houses.webm`, `houses.mp4`, `houses-poster*.webp`)
 
 | Files | Title | Creator | Source |
 | --- | --- | --- | --- |
-| `hero.webm`, `hero.mp4`, `hero-poster*.webp` | Amsterdam Canal Houses at Night (video) | Anh Nguyen | https://www.pexels.com/video/amsterdam-canal-houses-at-night-40319720/ |
+| `houses.*` | Amsterdam Canal Houses at Night (video) | Anh Nguyen | https://www.pexels.com/video/amsterdam-canal-houses-at-night-40319720/ |
 
 The clip is stabilised (two-pass vidstab), slowed to about 0.65×, and looped with a 1.2 s crossfade.
 
@@ -23,26 +39,6 @@ The clip is stabilised (two-pass vidstab), slowed to about 0.65×, and looped wi
 | `story-night-*` | Canal Between Buildings during Twilight | Sven Förter | https://www.pexels.com/photo/canal-between-buildings-during-twilight-6743735/ |
 | `finale-stair-*` | Window at the End of a Staircase Behind the Hall | Ahmet Cantürk | https://www.pexels.com/photo/window-at-the-end-of-a-staircase-behind-the-hall-11084003/ |
 | `bridge-bike-*` | Bike on Bridge over Canal in Amsterdam, Netherlands | Ahmet Yüksek | https://www.pexels.com/photo/bike-on-bridge-over-canal-in-amsterdam-netherlands-17387591/ |
-
-## Montage reel (`reel.mp4`, `reel.webm`, `reel-9x16.mp4`, `reel-poster.webp`)
-
-Sixteen cuts of about half a second each, graded in emerald duotone. Several clips are used twice.
-
-| Clip | Creator | Source |
-| --- | --- | --- |
-| Historic Amsterdam Dome and Iconic Canals | Anh Nguyen | https://www.pexels.com/video/historic-amsterdam-dome-and-iconic-canals-40319812/ |
-| Charming Amsterdam Canal and Classic Architecture | Anh Nguyen | https://www.pexels.com/video/charming-amsterdam-canal-and-classic-architecture-40319672/ |
-| Historic Red Tram on European City Street | Elena Shevchuk | https://www.pexels.com/video/historic-red-tram-on-european-city-street-34626564/ |
-| Person Opening the Door | Alena Darmel | https://www.pexels.com/video/person-opening-the-door-7646797/ |
-| A Hinge Attached on the Door | Monstera Production | https://www.pexels.com/video/a-hinge-attached-on-the-door-7830154/ |
-| Zoom Out Shot of a Window Knob | David Donesana Tacla | https://www.pexels.com/video/zoom-out-shot-of-a-window-knob-4153742/ |
-| Person Holding Keys | SHVETS production | https://www.pexels.com/video/person-holding-keys-7986204/ |
-| Sunlight Streaming Through Sheer Curtains | Ivett M | https://www.pexels.com/video/sunlight-streaming-through-sheer-curtains-35434114/ |
-| Elegant Sheer Curtains Gently Fluttering | Melike | https://www.pexels.com/video/elegant-sheer-curtains-gently-fluttering-39209651/ |
-| A row of purple bicycles parked in front of a bridge | Ali Alcántara | https://www.pexels.com/video/a-row-of-purple-bicycles-parked-in-front-of-a-bridge-19810593/ |
-| Historic Tram in Prague's Cobblestone Streets (not the Netherlands) | Airam Dato-on | https://www.pexels.com/video/historic-tram-in-prague-s-cobblestone-streets-34900853/ |
-
-The red tram clip is also a European city, not necessarily Dutch. They are used as mood shots.
 
 ## Other
 

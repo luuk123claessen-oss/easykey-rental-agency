@@ -825,6 +825,44 @@
     }, { rootMargin: '300px 0px' }).observe(box);
   }
 
+  /* ------------------------------------------------------------------ Finale: the signature draws itself */
+
+  function initSign() {
+    var form = $('#sign-form');
+    if (!form) return;
+    var input = $('#sign-name');
+    var text = $('#sig-text');
+    var box = $('.ls-signature', form);
+    var msg = $('#sign-msg');
+    var busy = false;
+    input.addEventListener('input', function () {
+      text.textContent = input.value;
+      box.classList.remove('inked');
+      msg.textContent = '';
+    });
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var name = input.value.trim();
+      if (!name) {
+        msg.textContent = PD.t('signErr');
+        form.classList.remove('shake'); void form.offsetWidth; form.classList.add('shake');
+        input.focus();
+        return;
+      }
+      if (busy) return;
+      busy = true;
+      text.textContent = name;
+      box.classList.remove('inked'); void box.offsetWidth; box.classList.add('inked');
+      setTimeout(function () {
+        var naam = field('naam');
+        if (naam) { naam.value = name; if (msgKeys.naam) showMsg('naam', ''); }
+        showStep(1, false);
+        goTo($('#register'));
+        setTimeout(function () { var first = form && document.querySelector('#intake .pane[data-pane="1"] input'); if (first) first.focus({ preventScroll: true }); busy = false; }, reduced ? 0 : 900);
+      }, reduced ? 100 : 1500);
+    });
+  }
+
   /* ------------------------------------------------------------------ FAQ accordion (single open) */
 
   var faqItems = $$('.faq-item');
@@ -901,5 +939,6 @@
   initShield();
   initMap();
   initKey3d();
+  initSign();
   tick();
 })();

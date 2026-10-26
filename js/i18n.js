@@ -186,6 +186,18 @@
       story2s: 'We look for homes that fit, and we check the landlord and the lease.',
       story3: 'You sign. We’re done.',
       story3s: 'Only then is the fee due.',
+      signLabel: 'The last step',
+      signTitle: 'You sign.',
+      signLead: 'Type your name and start your search. Nothing is due until your lease is signed.',
+      signDoc: 'Rental agreement · signature page',
+      signTenant: 'Tenant',
+      signNameLabel: 'Your name',
+      signPh: 'Type your name',
+      signFee: '€ 0 until here',
+      signCta: 'Start my search',
+      signErr: 'Please type your name first.',
+      signHint: 'You only pay after the lease is signed.',
+      navSign: 'Start',
       fine: 'Fee: 1.5× the total monthly rent (including gas, water and electricity) plus 21% VAT, only due when a lease is signed through Property Direct. No costs upfront. No fee for homes you find yourself.'
     },
     nl: {
@@ -370,6 +382,18 @@
       story2s: 'We zoeken woningen die passen en controleren de verhuurder en het huurcontract.',
       story3: 'Jij tekent. Wij zijn klaar.',
       story3s: 'Pas dan is de fee verschuldigd.',
+      signLabel: 'De laatste stap',
+      signTitle: 'Jij tekent.',
+      signLead: 'Typ je naam en start je zoektocht. Er is niets verschuldigd tot je huurcontract getekend is.',
+      signDoc: 'Huurovereenkomst · handtekeningpagina',
+      signTenant: 'Huurder',
+      signNameLabel: 'Je naam',
+      signPh: 'Typ je naam',
+      signFee: '€ 0 tot hier',
+      signCta: 'Start mijn zoektocht',
+      signErr: 'Typ eerst je naam.',
+      signHint: 'Je betaalt pas nadat het huurcontract getekend is.',
+      navSign: 'Start',
       fine: 'Tarief: 1,5× de totale maandhuur (inclusief gas, water en licht) plus 21% btw, alleen verschuldigd bij een getekend huurcontract via Property Direct. Geen kosten vooraf. Geen fee voor woningen die je zelf vindt.'
     }
   };

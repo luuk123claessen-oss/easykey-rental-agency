@@ -13,6 +13,13 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      - name: Minify CSS and JavaScript
+        run: |
+          npx --yes esbuild@0.25.9 css/style.css --minify --outfile=css/style.css --allow-overwrite
+          for f in js/config.js js/i18n.js js/home.js js/key3d.js; do
+            npx --yes esbuild@0.25.9 "$f" --minify --outfile="$f" --allow-overwrite
+          done
+
       - name: Keep the preview out of search engines
         run: |
           printf '\n/*\n  X-Robots-Tag: noindex, nofollow\n' >> _headers

@@ -179,6 +179,13 @@
       v_maastricht: 'Cobbled streets and the Maas, in the far south.',
       c_enschede: 'Enschede',
       v_enschede: 'A university town near the German border.',
+      storyTitle: 'From first message to signature',
+      story1: 'You tell us what you need',
+      story1s: 'Type of home, region and budget. It takes a minute.',
+      story2: 'We search and check',
+      story2s: 'We look for homes that fit, and we check the landlord and the lease.',
+      story3: 'You sign. We’re done.',
+      story3s: 'Only then is the fee due.',
       fine: 'Fee: 1.5× the total monthly rent (including gas, water and electricity) plus 21% VAT, only due when a lease is signed through Property Direct. No costs upfront. No fee for homes you find yourself.'
     },
     nl: {
@@ -356,6 +363,13 @@
       v_maastricht: 'Kasseien en de Maas, in het uiterste zuiden.',
       c_enschede: 'Enschede',
       v_enschede: 'Een universiteitsstad vlak bij de Duitse grens.',
+      storyTitle: 'Van eerste bericht tot handtekening',
+      story1: 'Jij vertelt wat je nodig hebt',
+      story1s: 'Soort woning, regio en budget. Het kost een minuut.',
+      story2: 'Wij zoeken en controleren',
+      story2s: 'We zoeken woningen die passen en controleren de verhuurder en het huurcontract.',
+      story3: 'Jij tekent. Wij zijn klaar.',
+      story3s: 'Pas dan is de fee verschuldigd.',
       fine: 'Tarief: 1,5× de totale maandhuur (inclusief gas, water en licht) plus 21% btw, alleen verschuldigd bij een getekend huurcontract via Property Direct. Geen kosten vooraf. Geen fee voor woningen die je zelf vindt.'
     }
   };

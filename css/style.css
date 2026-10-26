@@ -628,6 +628,35 @@ html:not(.js) .faq-a { grid-template-rows: 1fr; visibility: visible; }
 .key-fallback { position: absolute; left: 50%; top: 50%; width: 62%; transform: translate(-50%, -50%); transition: opacity .6s; }
 .key3d.ready .key-fallback { opacity: 0; }
 
+/* Scroll-scrubbed story: day to night, pinned for ~250vh. Progress --sp (0 to 1) comes from a CSS
+   scroll timeline where supported, otherwise from a small scroll handler. */
+@property --sp { syntax: '<number>'; inherits: true; initial-value: 0; }
+.story { background: var(--nacht); color: var(--papier); color-scheme: dark; }
+.story-track { position: relative; height: 260vh; --sp: 0; }
+.story-stage { position: sticky; top: 0; height: 100vh; height: 100svh; overflow: hidden; background: var(--nacht); }
+.story .layer { position: absolute; inset: 0; margin: 0; isolation: isolate; background: var(--smaragd); transform: scale(calc(1 + var(--sp) * .08)); will-change: opacity, transform; }
+.story .layer img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; filter: grayscale(1) contrast(1.08) brightness(.8); }
+.story .layer::before, .story .layer::after { content: ""; position: absolute; inset: 0; pointer-events: none; }
+.story .layer::before { z-index: 1; background: var(--smaragd); mix-blend-mode: screen; }
+.story .layer::after { z-index: 2; background: var(--salie); mix-blend-mode: multiply; }
+.story .layer:nth-child(1) { opacity: clamp(0, calc(1 - (var(--sp) - .24) * 8), 1); }
+.story .layer:nth-child(2) { opacity: min(clamp(0, calc((var(--sp) - .24) * 8), 1), clamp(0, calc(1 - (var(--sp) - .58) * 8), 1)); }
+.story .layer:nth-child(3) { opacity: clamp(0, calc((var(--sp) - .58) * 8), 1); }
+.story-shade { position: absolute; inset: 0; z-index: 3; background: linear-gradient(90deg, rgba(11, 21, 18, .86), rgba(11, 21, 18, .3) 60%, rgba(11, 21, 18, .1)), linear-gradient(0deg, rgba(11, 21, 18, .75), rgba(11, 21, 18, 0) 45%); }
+.story-copy { position: absolute; inset: 0; z-index: 4; display: flex; align-items: center; pointer-events: none; }
+.story .cap { position: absolute; left: max(20px, env(safe-area-inset-left, 0px)); right: 20px; max-width: 760px; display: flex; flex-direction: column; gap: 16px; opacity: var(--c); transform: translateY(calc((1 - var(--c)) * 28px)); }
+.story .c1 { --c: clamp(0, calc(1 - (var(--sp) - .2) * 10), 1); }
+.story .c2 { --c: min(clamp(0, calc((var(--sp) - .3) * 10), 1), clamp(0, calc(1 - (var(--sp) - .52) * 10), 1)); }
+.story .c3 { --c: clamp(0, calc((var(--sp) - .64) * 10), 1); }
+.story .cap-t { max-width: 14em; font-size: clamp(40px, 7.4vw, 108px); line-height: .98; letter-spacing: -.04em; font-weight: 300; }
+.story .cap-s { max-width: 30em; font-size: clamp(17px, 1.8vw, 22px); font-weight: 300; color: var(--on-dark); }
+.story-meter { position: absolute; z-index: 4; left: max(20px, env(safe-area-inset-left, 0px)); right: 20px; bottom: 28px; height: 1px; background: var(--line-d); }
+.story-meter i { position: absolute; inset: 0; background: var(--salie); transform-origin: 0 50%; transform: scaleX(var(--sp)); }
+@supports (animation-timeline: view()) {
+  .story-track { animation: spProgress linear both; animation-timeline: view(); animation-range: contain 0% contain 100%; }
+}
+@keyframes spProgress { from { --sp: 0; } to { --sp: 1; } }
+
 /* Where we search */
 .where { background: var(--wit); border-top: 1px solid var(--line); }
 .where-grid { display: grid; grid-template-columns: minmax(0, 6fr) minmax(0, 5fr); gap: clamp(32px, 6vw, 96px); align-items: center; }
@@ -725,6 +754,10 @@ html:not(.js) .faq-a { grid-template-rows: 1fr; visibility: visible; }
 
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
+  .story-track { height: auto; animation: none !important; }
+  .story-stage { position: relative; height: auto; display: grid; gap: 0; }
+  .story .layer { position: relative; height: 56vh; opacity: 1 !important; transform: none; }
+  .story-copy, .story-meter, .story-shade { display: none; }
   *, *::before, *::after { animation-duration: .001ms !important; animation-delay: 0s !important; animation-iteration-count: 1 !important; transition-duration: .001ms !important; transition-delay: 0s !important; }
   .js .sig path { stroke-dashoffset: 0; }
   .js [data-reveal] { opacity: 1; transform: none; }

@@ -162,7 +162,8 @@
   var statementWords = [];
   var navLinks = $$('nav.menu a');
   var sectionIds = ['how', 'who', 'fee', 'register', 'about', 'faq'];
-  var vis = { stmt: false, how: false, who: false };
+  var vis = { stmt: false, how: false, who: false, story: false };
+  var cssTimeline = !!(window.CSS && CSS.supports && CSS.supports('animation-timeline: view()'));
   var menuOpen = false;
   var stmtArmed = false;
 
@@ -213,6 +214,14 @@
     });
   }
 
+  function updateStory() {
+    var track = $('#story-track');
+    if (!track) return;
+    var r = track.getBoundingClientRect();
+    var p = clamp(-r.top / Math.max(1, r.height - window.innerHeight), 0, 1);
+    track.style.setProperty('--sp', p.toFixed(4));
+  }
+
   function updateParallax() {
     if (reduced) return;
     var vh = window.innerHeight;
@@ -250,6 +259,7 @@
     if (vis.stmt) updateStatement();
     if (vis.how) updateHow();
     if (vis.who) updateParallax();
+    if (vis.story && !cssTimeline) updateStory();
 
     var current = '';
     sectionIds.forEach(function (id) {
@@ -288,6 +298,7 @@
     watch('#statement', 'stmt');
     watch('#how', 'how');
     watch('#who', 'who');
+    watch('#story', 'story');
   } else {
     vis.stmt = vis.how = vis.who = true;
   }

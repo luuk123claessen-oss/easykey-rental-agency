@@ -301,6 +301,7 @@
     var vh = window.innerHeight;
     var max = document.documentElement.scrollHeight - vh;
     if (!stmtArmed && y > 0) { stmtArmed = true; }
+    if (max > 0 && y >= max - 40) $$('[data-reveal]:not(.in)').forEach(function (n) { n.classList.add('in'); });
     header.classList.toggle('is-solid', y > 80);
     var prog = max > 0 ? clamp(y / max, 0, 1) : 0;
     if (dClip) {
@@ -380,7 +381,7 @@
       entries.forEach(function (en) {
         if (en.isIntersecting) { en.target.classList.add('in'); io.unobserve(en.target); }
       });
-    }, { threshold: 0, rootMargin: '0px 0px -6% 0px' });
+    }, { threshold: 0, rootMargin: '0px 0px -3% 0px' });
     $$('[data-reveal]').forEach(function (n) { io.observe(n); });
   } else {
     $$('[data-reveal]').forEach(function (n) { n.classList.add('in'); });

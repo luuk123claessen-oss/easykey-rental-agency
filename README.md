@@ -60,7 +60,6 @@ Everything lives in one object, `js/config.js` (`window.PD_CONFIG`):
 | --- | --- |
 | `kvk`, `btw`, `email`, `phone` | Shown in the footer and on the legal pages. Currently `[KvK]`, `[BTW]`, `[email]`, `[phone]`. While `email` is a placeholder, the "or email us instead" link in the form error is left out. |
 | `FORM_ENDPOINT`, `FORM_ACCESS_KEY` | The one URL the registration form POSTs JSON to (Web3Forms, key is public by design). |
-| `reelOverlay` | `true` shows the four words (search, check, sign, move in) over the reel. Set it to `false` if you replace the reel with one that has its own type. |
 | `proof` | Empty on purpose. Add real, provable numbers only, for example `[{ value: '1', label: 'Fixed contact per client' }]`. A proof strip appears only when the list has items. |
 | `FACTS` | The four tiles of the Facts & figures band, see above. |
 

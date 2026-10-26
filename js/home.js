@@ -7,6 +7,7 @@
 
   var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   var finePointer = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+  var doorStatic = document.documentElement.classList.contains('door-static');
 
   var FEE_MULTIPLIER = 1.5;
   var VAT_RATE = 0.21;
@@ -221,25 +222,37 @@
   var navLinks = $$('nav.menu a');
   var sectionIds = ['how', 'who', 'shield', 'story', 'where', 'reel', 'fee', 'register', 'about', 'after', 'faq', 'sign'];
   var navOf = { how: 'how', who: 'who', shield: 'shield', story: 'shield', where: 'where', reel: 'where', fee: 'fee', register: 'fee', about: 'about', after: 'faq', faq: 'faq', sign: 'faq' };
-  var chapterOf = { top: 1, statement: 1, how: 2, who: 3, shield: 4, story: 4, where: 5, reel: 5, fee: 6, register: 6, about: 7, after: 8, faq: 8, sign: 8 };
+  var chapterOf = { top: 1, statement: 1, door: 2, how: 2, who: 3, shield: 4, story: 4, where: 5, reel: 5, fee: 6, register: 6, about: 7, after: 8, faq: 8, sign: 8 };
   var chapterLinks = $$('#chapters a');
-  var vis = { stmt: false, how: false, who: false, story: false };
+  var vis = { stmt: false, how: false, who: false, story: false, door: false };
+  var parEls = [];
   var cssTimeline = !!(window.CSS && CSS.supports && CSS.supports('animation-timeline: view()'));
   var menuOpen = false;
   var stmtArmed = false;
 
+  // Wraps every word of the statement in a span (for the word-by-word fade) and keeps the Mint highlighter marks
   function splitStatement() {
     var el = $('#stmt');
     if (!el) return;
-    var words = el.textContent.trim().split(/\s+/);
-    el.textContent = '';
-    statementWords = words.map(function (word, i) {
-      var span = document.createElement('span');
-      span.className = 'w';
-      span.textContent = word + (i < words.length - 1 ? ' ' : '');
-      el.appendChild(span);
-      return span;
-    });
+    $$('.w', el).forEach(function (w) { w.parentNode.replaceChild(document.createTextNode(w.textContent), w); });
+    el.normalize();
+    statementWords = [];
+    (function walk(node) {
+      Array.prototype.slice.call(node.childNodes).forEach(function (ch) {
+        if (ch.nodeType === 3) {
+          var frag = document.createDocumentFragment();
+          (ch.textContent.match(/\S+\s*|\s+/g) || []).forEach(function (part) {
+            if (!part.trim()) { frag.appendChild(document.createTextNode(part)); return; }
+            var span = document.createElement('span');
+            span.className = 'w';
+            span.textContent = part;
+            frag.appendChild(span);
+            statementWords.push(span);
+          });
+          node.replaceChild(frag, ch);
+        } else if (ch.nodeType === 1) walk(ch);
+      });
+    })(el);
     updateStatement();
   }
 
@@ -283,15 +296,27 @@
     track.style.setProperty('--sp', p.toFixed(4));
   }
 
+  // Gentle parallax: persona photos drift by 12px, the full-bleed bands by 30px at most
   function updateParallax() {
     if (reduced) return;
     var vh = window.innerHeight;
-    $$('[data-par]').forEach(function (fig) {
+    if (!parEls.length) parEls = $$('[data-par]');
+    parEls.forEach(function (fig) {
       var r = fig.getBoundingClientRect();
       if (r.bottom < -50 || r.top > vh + 50) return;
+      var amp = Math.min(30, Number(fig.getAttribute('data-par')) || 12);
       var p = clamp((r.top + r.height / 2 - vh / 2) / (vh / 2 + r.height / 2), -1, 1);
-      fig.style.setProperty('--py', (-p * 12).toFixed(1) + 'px');
+      fig.style.setProperty('--py', (-p * amp).toFixed(1) + 'px');
     });
+  }
+
+  // Turn the key: progress for browsers without CSS scroll timelines
+  function updateDoor() {
+    var track = $('#door-track');
+    if (!track) return;
+    var r = track.getBoundingClientRect();
+    var p = clamp(-r.top / Math.max(1, r.height - window.innerHeight), 0, 1);
+    track.style.setProperty('--dp', p.toFixed(4));
   }
 
   var ticking = false;
@@ -320,11 +345,12 @@
     }
     if (vis.stmt) updateStatement();
     if (vis.how) updateHow();
-    if (vis.who) updateParallax();
+    updateParallax();
+    if (vis.door) { if (!cssTimeline && !doorStatic) updateDoor(); doorSoundTick(); }
     if (vis.story && !cssTimeline) updateStory();
 
     var current = '', chapter = 1;
-    ['top', 'statement'].concat(sectionIds).forEach(function (id) {
+    ['top', 'statement', 'door'].concat(sectionIds).forEach(function (id) {
       var s = document.getElementById(id);
       if (s && s.getBoundingClientRect().top < vh * 0.4) {
         if (navOf[id]) current = navOf[id];
@@ -371,8 +397,9 @@
     watch('#how', 'how');
     watch('#who', 'who');
     watch('#story', 'story');
+    watch('#door', 'door');
   } else {
-    vis.stmt = vis.how = vis.who = true;
+    vis.stmt = vis.how = vis.who = vis.door = true;
   }
 
   // Reveal on scroll. Reduced motion and old browsers see everything at once.
@@ -386,6 +413,22 @@
   } else {
     $$('[data-reveal]').forEach(function (n) { n.classList.add('in'); });
   }
+
+  // Mint highlighter marks sweep in once they are on screen
+  (function () {
+    var marks = $$('.hl:not(.on)');
+    if (!marks.length) return;
+    if ('IntersectionObserver' in window && !reduced) {
+      var hio = new IntersectionObserver(function (entries) {
+        entries.forEach(function (en) {
+          if (en.isIntersecting) { en.target.classList.add('on'); hio.unobserve(en.target); }
+        });
+      }, { threshold: 0.6 });
+      marks.forEach(function (m) { hio.observe(m); });
+    } else {
+      marks.forEach(function (m) { m.classList.add('on'); });
+    }
+  })();
 
   /* ------------------------------------------------------------------ menu (full-screen overlay, focus trap) */
 
@@ -898,6 +941,84 @@
     }, { rootMargin: '300px 0px' }).observe(box);
   }
 
+  /* ------------------------------------------------------------------ Turn the key: nameplate and optional sound */
+
+  var soundOn = false;
+  var audioCtx = null;
+  var soundFired = { turn: false, open: false };
+  var soundBtn = $('#door-sound');
+
+  function setNameplate() {
+    var plate = $('#nameplate');
+    var name = '';
+    try { name = sessionStorage.getItem('pd-name') || ''; } catch (e) { /* storage unavailable */ }
+    name = name.trim();
+    if (!plate || !name) return;
+    plate.removeAttribute('data-i18n');
+    plate.textContent = name.length > 18 ? name.slice(0, 17) + '…' : name;
+  }
+
+  function soundLabel() {
+    if (!soundBtn) return;
+    var t = soundBtn.querySelector('span');
+    if (t) t.textContent = PD.t(soundOn ? 'doorSoundOn' : 'doorSoundOff');
+  }
+
+  // A soft click for the key and a low whoosh for the door, made with Web Audio (no audio files)
+  function burst(kind) {
+    if (!audioCtx) return;
+    var t0 = audioCtx.currentTime;
+    var len = kind === 'click' ? 0.05 : 0.7;
+    var buf = audioCtx.createBuffer(1, Math.floor(audioCtx.sampleRate * len), audioCtx.sampleRate);
+    var d = buf.getChannelData(0);
+    for (var i = 0; i < d.length; i++) d[i] = (Math.random() * 2 - 1) * Math.pow(1 - i / d.length, kind === 'click' ? 6 : 2);
+    var src = audioCtx.createBufferSource();
+    src.buffer = buf;
+    var filter = audioCtx.createBiquadFilter();
+    filter.type = kind === 'click' ? 'bandpass' : 'lowpass';
+    filter.frequency.value = kind === 'click' ? 2600 : 420;
+    var gain = audioCtx.createGain();
+    gain.gain.value = kind === 'click' ? 0.25 : 0.12;
+    src.connect(filter); filter.connect(gain); gain.connect(audioCtx.destination);
+    src.start(t0);
+    if (kind === 'click') {
+      var o = audioCtx.createOscillator(), og = audioCtx.createGain();
+      o.frequency.value = 140; og.gain.setValueAtTime(0.12, t0); og.gain.exponentialRampToValueAtTime(0.001, t0 + 0.09);
+      o.connect(og); og.connect(audioCtx.destination); o.start(t0); o.stop(t0 + 0.1);
+    }
+  }
+
+  function doorSoundTick() {
+    if (!soundOn || !audioCtx) return;
+    var track = $('#door-track');
+    if (!track) return;
+    var p = parseFloat(getComputedStyle(track).getPropertyValue('--dp')) || 0;
+    if (p > 0.42 && !soundFired.turn) { soundFired.turn = true; burst('click'); }
+    if (p <= 0.4) soundFired.turn = false;
+    if (p > 0.56 && !soundFired.open) { soundFired.open = true; burst('whoosh'); }
+    if (p <= 0.5) soundFired.open = false;
+  }
+
+  function initDoor() {
+    setNameplate();
+    if (!soundBtn) return;
+    var label = soundBtn.querySelector('span');
+    if (label) label.removeAttribute('data-i18n');
+    soundLabel();
+    soundBtn.addEventListener('click', function () {
+      soundOn = !soundOn;
+      soundBtn.setAttribute('aria-pressed', soundOn ? 'true' : 'false');
+      if (soundOn && !audioCtx) {
+        var AC = window.AudioContext || window.webkitAudioContext;
+        if (AC) audioCtx = new AC();
+      }
+      if (soundOn && audioCtx && audioCtx.state === 'suspended') audioCtx.resume();
+      if (soundOn) burst('click');
+      soundLabel();
+    });
+    document.addEventListener('pd:lang', soundLabel);
+  }
+
   /* ------------------------------------------------------------------ Finale: the signature draws itself */
 
   function initSign() {
@@ -916,6 +1037,7 @@
     form.addEventListener('submit', function (e) {
       e.preventDefault();
       var name = input.value.trim();
+      if (name) { try { sessionStorage.setItem('pd-name', name); } catch (err) { /* storage unavailable */ } setNameplate(); }
       if (!name) {
         msg.textContent = PD.t('signErr');
         form.classList.remove('shake'); void form.offsetWidth; form.classList.add('shake');
@@ -1118,6 +1240,7 @@
   initShield();
   initMap();
   initKey3d();
+  initDoor();
   initSign();
   initReel();
   initChecklist();

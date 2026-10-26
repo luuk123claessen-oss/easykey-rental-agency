@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>Property Direct – Tenant representation in the Netherlands</title>
   <meta name="description" content="Personal tenant representation in the Netherlands. We search for your rental home, on your side only. You pay only when your lease is signed.">
-  <meta name="theme-color" content="#0B1512">
+  <meta name="theme-color" content="#F6F5F0">
   <meta name="color-scheme" content="light">
   <link rel="canonical" href="https://propertydirect.nl/">
   <link rel="alternate" hreflang="en" href="https://propertydirect.nl/">
@@ -32,6 +32,7 @@
   <meta name="twitter:description" content="Personal tenant representation in the Netherlands. We search for your rental home, on your side only. You pay only when your lease is signed.">
   <meta name="twitter:image" content="https://propertydirect.nl/og-image.png">
 
+  <link rel="preload" href="assets/media/hero-poster.avif" as="image" type="image/avif" imagesrcset="assets/media/hero-poster-800.avif 800w, assets/media/hero-poster.avif 1600w" imagesizes="100vw" fetchpriority="high">
   <link rel="preload" href="fonts/inter-tight-latin.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="fonts/jetbrains-mono-latin.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="css/style.css">
@@ -41,6 +42,11 @@
   (function () {
     var d = document, r = d.documentElement, done = 0;
     r.classList.add('js');
+    try {
+      /* The Turn-the-key sequence falls back to a still, open door for reduced motion, Save-Data and low-end devices. */
+      var cn = navigator.connection || {};
+      if (matchMedia('(prefers-reduced-motion: reduce)').matches || matchMedia('(prefers-reduced-data: reduce)').matches || cn.saveData || /(^|-)2g$/.test(cn.effectiveType || '') || navigator.deviceMemory <= 2 || navigator.hardwareConcurrency <= 2) r.classList.add('door-static');
+    } catch (e) { /* ignore */ }
     try {
       if (!sessionStorage.getItem('pd-intro') && !matchMedia('(prefers-reduced-motion: reduce)').matches && !location.hash) {
         r.classList.add('intro-on');
@@ -150,7 +156,7 @@
     </div>
   </header>
 
-  <div class="mobile-menu grain" id="mobile-menu" data-lenis-prevent role="dialog" aria-modal="true" aria-label="Menu" hidden>
+  <div class="mobile-menu" id="mobile-menu" data-lenis-prevent role="dialog" aria-modal="true" aria-label="Menu" hidden>
     <nav aria-label="Mobile" data-i18n-aria="mobileNav">
       <a href="#how" style="--n:0"><span data-i18n="navHow">How it works</span></a>
       <a href="#who" style="--n:1"><span data-i18n="navWho">Who we help</span></a>
@@ -175,16 +181,18 @@
   </nav>
 
   <main id="main">
-    <section class="hero grain" id="top">
-      <div class="hero-media" aria-hidden="true">
-        <img class="hero-poster" src="assets/media/hero-poster-800.webp" srcset="assets/media/hero-poster-800.webp 800w, assets/media/hero-poster.webp 1600w" sizes="100vw" width="1600" height="900" alt="" decoding="async">
+    <section class="hero" id="top">
+      <div class="hero-media gr" aria-hidden="true">
+        <picture class="hero-poster">
+          <source type="image/avif" srcset="assets/media/hero-poster-800.avif 800w, assets/media/hero-poster.avif 1600w" sizes="100vw">
+          <img src="assets/media/hero-poster-800.webp" srcset="assets/media/hero-poster-800.webp 800w, assets/media/hero-poster.webp 1600w" sizes="100vw" width="1600" height="900" alt="" decoding="async" fetchpriority="high">
+        </picture>
         <video class="hero-video" id="hero-video" muted loop playsinline preload="metadata" tabindex="-1" disablepictureinpicture></video>
-        <i class="hero-glow"></i>
         <i class="hero-tint"></i>
       </div>
 
       <div class="wrap hero-inner" id="hero-inner">
-        <p class="label on-dark hero-label" data-i18n="heroLabel">Tenant representation · The Netherlands</p>
+        <p class="label hero-label" data-i18n="heroLabel">Tenant representation · The Netherlands</p>
         <h1>
           <span class="line"><span class="line-in" data-i18n="h1a">We search.</span></span>
           <span class="line"><span class="line-in"><em data-i18n="h1b">You sign.</em>
@@ -213,7 +221,68 @@
 
     <section class="statement" id="statement" aria-label="Summary">
       <div class="wrap">
-        <p class="stmt" id="stmt" data-i18n="stmt">You describe what you need. We search for it, check the landlord and the lease, and you sign only what you’re happy with.</p>
+        <p class="stmt" id="stmt" data-i18n="stmt">You describe what you need. We search for it, <mark class="hl">check the landlord</mark> and the lease, and you sign only what you’re happy with.</p>
+      </div>
+    </section>
+
+    <section class="door" id="door" aria-labelledby="door-title">
+      <div class="door-track" id="door-track">
+        <div class="door-stage" id="door-stage">
+          <div class="door-room gr" aria-hidden="true">
+            <picture>
+              <source type="image/avif" srcset="assets/media/door-interior-800.avif 800w, assets/media/door-interior-1600.avif 1600w" sizes="100vw">
+              <img src="assets/media/door-interior-800.webp" srcset="assets/media/door-interior-800.webp 800w, assets/media/door-interior-1600.webp 1600w" sizes="100vw" width="1600" height="1200" loading="lazy" decoding="async" alt="">
+            </picture>
+          </div>
+          <div class="door-scene" aria-hidden="true">
+            <div class="door-frame">
+              <div class="door-opening gr">
+                <picture>
+                  <source type="image/avif" srcset="assets/media/door-interior-800.avif 800w" sizes="340px">
+                  <img src="assets/media/door-interior-800.webp" width="800" height="600" loading="lazy" decoding="async" alt="">
+                </picture>
+                <i class="door-glow"></i>
+              </div>
+              <div class="door-leaf">
+                <svg viewBox="0 0 250 400" focusable="false">
+                  <rect width="250" height="400" fill="#0E4634"/>
+                  <rect x="24" y="24" width="202" height="152" fill="none" stroke="#F6F5F0" stroke-opacity=".34" stroke-width="1"/>
+                  <rect x="34" y="34" width="182" height="132" fill="none" stroke="#F6F5F0" stroke-opacity=".18" stroke-width="1"/>
+                  <rect x="24" y="226" width="202" height="150" fill="none" stroke="#F6F5F0" stroke-opacity=".34" stroke-width="1"/>
+                  <rect x="34" y="236" width="182" height="130" fill="none" stroke="#F6F5F0" stroke-opacity=".18" stroke-width="1"/>
+                  <rect x="75" y="193" width="100" height="14" rx="2" fill="#0A3527" stroke="#B9D1C3" stroke-width="1.4"/>
+                  <rect x="82" y="198" width="86" height="4" fill="#B9D1C3" opacity=".55"/>
+                  <rect x="58" y="62" width="134" height="30" fill="#F6F5F0"/>
+                  <rect x="61" y="65" width="128" height="24" fill="none" stroke="#0E4634" stroke-width=".8"/>
+                  <text class="np-t" id="nameplate" x="125" y="80.5" text-anchor="middle" data-i18n="doorPlate">Property Direct</text>
+                  <rect x="186" y="214" width="9" height="62" rx="4" fill="#B9D1C3"/>
+                  <circle cx="200" cy="210" r="16" fill="#0A3527" stroke="#B9D1C3" stroke-width="2"/>
+                  <circle cx="200" cy="208" r="3.2" fill="#0B1512"/>
+                  <path d="M198.2 210h3.6l1 8h-5.6z" fill="#0B1512"/>
+                </svg>
+                <div class="door-key">
+                  <svg viewBox="0 0 120 120" focusable="false">
+                    <g fill="none" stroke="#FFC857" stroke-width="7" stroke-linecap="round" stroke-linejoin="round">
+                      <circle cx="60" cy="38" r="22"/>
+                      <circle cx="60" cy="38" r="8" stroke-width="5"/>
+                      <path d="M60 60v46M60 90h14M60 102h10"/>
+                    </g>
+                    <path d="M42 28a22 22 0 0 1 22-14" fill="none" stroke="#fff" stroke-opacity=".75" stroke-width="3" stroke-linecap="round"/>
+                  </svg>
+                  <i class="spark"></i>
+                </div>
+              </div>
+              <i class="door-ping"></i>
+            </div>
+          </div>
+          <i class="door-flood" aria-hidden="true"></i>
+          <div class="door-caps">
+            <h2 class="dcap d1" id="door-title" data-i18n="doorCap1">Your next home starts with one key.</h2>
+            <p class="dcap d2" data-i18n="doorCap2">You sign. We hand over the rest.</p>
+          </div>
+          <i class="door-fade" aria-hidden="true"></i>
+          <button type="button" class="snd" id="door-sound" aria-pressed="false"><i aria-hidden="true"></i><span data-i18n="doorSoundOff">Sound off</span></button>
+        </div>
       </div>
     </section>
 
@@ -221,7 +290,7 @@
       <div class="wrap how-grid">
         <div class="how-head">
           <span class="label" data-i18n="howLabel">How it works</span>
-          <h2 id="how-title" data-i18n="howTitle">From registration to keys</h2>
+          <h2 id="how-title" data-i18n="howTitle">From registration to <mark class="hl">keys</mark></h2>
           <a class="link-cta" href="#register"><span data-i18n="cta1">Register</span> →</a>
           <div class="key3d" id="key3d" aria-hidden="true">
             <svg class="key-fallback" viewBox="0 0 220 120" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="square" stroke-linejoin="miter" focusable="false"><circle cx="48" cy="56" r="30"/><circle cx="48" cy="56" r="12"/><path d="M78 56H196M150 56v26M170 56v36M190 56v22"/></svg>
@@ -249,57 +318,66 @@
       </div>
     </section>
 
-    <section class="s who grain" id="who" aria-labelledby="who-title">
+    <div class="pband gr" aria-hidden="true">
+      <picture data-par="30">
+        <source type="image/avif" srcset="assets/media/band-trees-800.avif 800w, assets/media/band-trees-1600.avif 1600w" sizes="100vw">
+        <source type="image/webp" srcset="assets/media/band-trees-800.webp 800w, assets/media/band-trees-1600.webp 1600w" sizes="100vw">
+        <img src="assets/media/band-trees-800.webp" width="1600" height="986" loading="lazy" decoding="async" alt="">
+      </picture>
+      <p class="pb-cap label" data-i18n="bandTrees">Amsterdam · early morning</p>
+    </div>
+
+    <section class="s who" id="who" aria-labelledby="who-title">
       <div class="wrap">
         <div class="head" data-reveal>
-          <span class="label on-dark" data-i18n="whoLabel">Who we help</span>
-          <h2 id="who-title" data-i18n="whoTitle">Short on time, new to the market</h2>
+          <span class="label" data-i18n="whoLabel">Who we help</span>
+          <h2 id="who-title" data-i18n="whoTitle"><mark class="hl">Short on time</mark>, new to the market</h2>
         </div>
         <div class="who-grid">
           <div class="who-cell" data-reveal style="--i:0">
           <article class="who-card spot">
-            <figure class="duo" data-par>
+            <figure class="duo gr" data-par="12">
               <picture>
                 <source type="image/avif" srcset="assets/media/persona-expat-800.avif 800w, assets/media/persona-expat-1600.avif 1600w" sizes="(min-width: 961px) 380px, 92vw">
                 <source type="image/webp" srcset="assets/media/persona-expat-800.webp 800w, assets/media/persona-expat-1600.webp 1600w" sizes="(min-width: 961px) 380px, 92vw">
-                <img src="assets/media/persona-expat-800.webp" width="800" height="533" loading="lazy" decoding="async" alt="A brass key in an old door lock" data-i18n-alt="w1alt">
+                <img src="assets/media/persona-expat-800.webp" width="800" height="533" loading="lazy" decoding="async" alt="Canal houses in Amsterdam under a blue sky" data-i18n-alt="w1alt">
               </picture>
             </figure>
             <div class="who-text">
-              <span class="label on-dark">01</span>
-              <h3 data-i18n="w1h">Expats</h3>
+              <span class="label">01</span>
+              <h3 class="hl" data-i18n="w1h">Expats</h3>
               <p data-i18n="w1p">New in the Netherlands, or still abroad? We explain how renting works here and help you recognise rental scams.</p>
             </div>
           </article>
           </div>
           <div class="who-cell" data-reveal style="--i:1">
           <article class="who-card spot">
-            <figure class="duo" data-par>
+            <figure class="duo gr" data-par="12">
               <picture>
                 <source type="image/avif" srcset="assets/media/persona-student-800.avif 800w, assets/media/persona-student-1600.avif 1600w" sizes="(min-width: 961px) 380px, 92vw">
                 <source type="image/webp" srcset="assets/media/persona-student-800.webp 800w, assets/media/persona-student-1600.webp 1600w" sizes="(min-width: 961px) 380px, 92vw">
-                <img src="assets/media/persona-student-800.webp" width="800" height="533" loading="lazy" decoding="async" alt="A bicycle by a canal railing at night" data-i18n-alt="w2alt">
+                <img src="assets/media/persona-student-800.webp" width="800" height="533" loading="lazy" decoding="async" alt="A bicycle by a canal railing in the sun" data-i18n-alt="w2alt">
               </picture>
             </figure>
             <div class="who-text">
-              <span class="label on-dark">02</span>
-              <h3 data-i18n="w2h">International students</h3>
+              <span class="label">02</span>
+              <h3 class="hl" data-i18n="w2h">International students</h3>
               <p data-i18n="w2p">Coming to study in the Netherlands? We do the searching, so you can focus on your arrival.</p>
             </div>
           </article>
           </div>
           <div class="who-cell" data-reveal style="--i:2">
           <article class="who-card spot">
-            <figure class="duo" data-par>
+            <figure class="duo gr" data-par="12">
               <picture>
                 <source type="image/avif" srcset="assets/media/persona-professional-800.avif 800w, assets/media/persona-professional-1600.avif 1600w" sizes="(min-width: 961px) 380px, 92vw">
                 <source type="image/webp" srcset="assets/media/persona-professional-800.webp 800w, assets/media/persona-professional-1600.webp 1600w" sizes="(min-width: 961px) 380px, 92vw">
-                <img src="assets/media/persona-professional-800.webp" width="800" height="533" loading="lazy" decoding="async" alt="A lit window in a building at dusk" data-i18n-alt="w3alt">
+                <img src="assets/media/persona-professional-800.webp" width="800" height="533" loading="lazy" decoding="async" alt="A bright apartment with large windows" data-i18n-alt="w3alt">
               </picture>
             </figure>
             <div class="who-text">
-              <span class="label on-dark">03</span>
-              <h3 data-i18n="w3h">Young professionals</h3>
+              <span class="label">03</span>
+              <h3 class="hl" data-i18n="w3h">Young professionals</h3>
               <p data-i18n="w3p">Starting a job and short on time? One fixed contact takes the search off your hands.</p>
             </div>
           </article>
@@ -315,11 +393,11 @@
       </div>
     </div>
 
-    <section class="s shield grain" id="shield" data-chapter="04" aria-labelledby="shield-title">
+    <section class="s shield" id="shield" data-chapter="04" aria-labelledby="shield-title">
       <div class="wrap">
         <div class="head" data-reveal>
           <span class="label on-dark" data-i18n="shLabel">The Shield</span>
-          <h2 id="shield-title" data-i18n="shTitle">We check the landlord and the lease</h2>
+          <h2 id="shield-title" data-i18n="shTitle">We check the landlord and <mark class="hl">the lease</mark></h2>
           <p class="sub" data-i18n="shLead">Rental scams are real. Before you sign or pay anything, we look at who is renting out the home and what the lease says. Point at a line to see what we check.</p>
         </div>
         <div class="shield-grid">
@@ -362,16 +440,15 @@
 
     <section class="story" id="story" data-chapter="04" aria-labelledby="story-title">
       <div class="story-track" id="story-track">
-        <div class="story-stage grain">
-          <figure class="layer"><picture><source type="image/avif" srcset="assets/media/story-day-800.avif 800w, assets/media/story-day-1600.avif 1600w" sizes="100vw"><source type="image/webp" srcset="assets/media/story-day-800.webp 800w, assets/media/story-day-1600.webp 1600w" sizes="100vw"><img src="assets/media/story-day-800.webp" width="1600" height="900" loading="lazy" decoding="async" alt=""></picture></figure>
-          <figure class="layer"><picture><source type="image/avif" srcset="assets/media/story-dusk-800.avif 800w, assets/media/story-dusk-1600.avif 1600w" sizes="100vw"><source type="image/webp" srcset="assets/media/story-dusk-800.webp 800w, assets/media/story-dusk-1600.webp 1600w" sizes="100vw"><img src="assets/media/story-dusk-800.webp" width="1600" height="900" loading="lazy" decoding="async" alt=""></picture></figure>
-          <figure class="layer"><picture><source type="image/avif" srcset="assets/media/story-night-800.avif 800w, assets/media/story-night-1600.avif 1600w" sizes="100vw"><source type="image/webp" srcset="assets/media/story-night-800.webp 800w, assets/media/story-night-1600.webp 1600w" sizes="100vw"><img src="assets/media/story-night-800.webp" width="1600" height="900" loading="lazy" decoding="async" alt=""></picture></figure>
-          <div class="story-shade" aria-hidden="true"></div>
+        <div class="story-stage">
+          <figure class="layer gr"><picture><source type="image/avif" srcset="assets/media/story-morning-800.avif 800w, assets/media/story-morning-1600.avif 1600w" sizes="100vw"><source type="image/webp" srcset="assets/media/story-morning-800.webp 800w, assets/media/story-morning-1600.webp 1600w" sizes="100vw"><img src="assets/media/story-morning-800.webp" width="1600" height="1200" loading="lazy" decoding="async" alt=""></picture></figure>
+          <figure class="layer gr"><picture><source type="image/avif" srcset="assets/media/story-day-800.avif 800w, assets/media/story-day-1600.avif 1600w" sizes="100vw"><source type="image/webp" srcset="assets/media/story-day-800.webp 800w, assets/media/story-day-1600.webp 1600w" sizes="100vw"><img src="assets/media/story-day-800.webp" width="1600" height="1200" loading="lazy" decoding="async" alt=""></picture></figure>
+          <figure class="layer gr"><picture><source type="image/avif" srcset="assets/media/story-golden-800.avif 800w, assets/media/story-golden-1600.avif 1600w" sizes="100vw"><source type="image/webp" srcset="assets/media/story-golden-800.webp 800w, assets/media/story-golden-1600.webp 1600w" sizes="100vw"><img src="assets/media/story-golden-800.webp" width="1600" height="1200" loading="lazy" decoding="async" alt=""></picture></figure>
           <div class="wrap story-copy">
             <h2 class="sr-only" id="story-title" data-i18n="storyTitle">From first message to signature</h2>
-            <div class="cap c1"><span class="label on-dark">01 / 03</span><p class="cap-t" data-i18n="story1">You tell us what you need</p><p class="cap-s" data-i18n="story1s">Type of home, region and budget. It takes a minute.</p></div>
-            <div class="cap c2"><span class="label on-dark">02 / 03</span><p class="cap-t" data-i18n="story2">We search and check</p><p class="cap-s" data-i18n="story2s">We look for homes that fit, and we check the landlord and the lease.</p></div>
-            <div class="cap c3"><span class="label on-dark">03 / 03</span><p class="cap-t" data-i18n="story3">You sign. We’re done.</p><p class="cap-s" data-i18n="story3s">Only then is the fee due.</p></div>
+            <div class="cap c1"><span class="label">01 / 03</span><p class="cap-t" data-i18n="story1">You tell us what you need</p><p class="cap-s" data-i18n="story1s">Type of home, region and budget. It takes a minute.</p></div>
+            <div class="cap c2"><span class="label">02 / 03</span><p class="cap-t" data-i18n="story2">We search and check</p><p class="cap-s" data-i18n="story2s">We look for homes that fit, and we check the landlord and the lease.</p></div>
+            <div class="cap c3"><span class="label">03 / 03</span><p class="cap-t" data-i18n="story3">You sign. We’re done.</p><p class="cap-s" data-i18n="story3s">Only then is the fee due.</p></div>
           </div>
           <div class="story-meter" aria-hidden="true"><i></i></div>
         </div>
@@ -394,7 +471,7 @@
         <div class="where-copy">
           <div class="head" data-reveal>
             <span class="label" data-i18n="mapLabel">Where we search</span>
-            <h2 id="where-title" data-i18n="mapTitle">Across the Netherlands</h2>
+            <h2 id="where-title" data-i18n="mapTitle">Across the <mark class="hl">Netherlands</mark></h2>
             <p class="sub" data-i18n="mapLead">We search nationwide. Pick a city to start your search there. These are search areas, never listings.</p>
           </div>
           <div class="city-card" id="city-card" aria-live="polite" data-reveal style="--i:1">
@@ -411,13 +488,22 @@
       </div>
     </section>
 
-    <section class="reel grain" id="reel" aria-label="Short film in four beats: search, check, sign, move in." data-i18n-aria="reelAlt">
-      <div class="reel-stage" id="reel-stage">
+    <div class="pband gr" aria-hidden="true">
+      <picture data-par="30">
+        <source type="image/avif" srcset="assets/media/band-bikes-800.avif 800w, assets/media/band-bikes-1600.avif 1600w" sizes="100vw">
+        <source type="image/webp" srcset="assets/media/band-bikes-800.webp 800w, assets/media/band-bikes-1600.webp 1600w" sizes="100vw">
+        <img src="assets/media/band-bikes-800.webp" width="1600" height="900" loading="lazy" decoding="async" alt="">
+      </picture>
+      <p class="pb-cap label" data-i18n="bandBikes">Amsterdam · sunrise</p>
+    </div>
+
+    <section class="reel" id="reel" aria-label="Short film in four beats: search, check, sign, move in." data-i18n-aria="reelAlt">
+      <div class="reel-stage gr" id="reel-stage">
         <img class="reel-poster" src="assets/media/reel-poster.webp" width="1280" height="720" loading="lazy" decoding="async" alt="">
         <video class="reel-video" id="reel-video" muted loop playsinline preload="none" tabindex="-1" disablepictureinpicture aria-hidden="true"></video>
         <div class="reel-shade" aria-hidden="true"></div>
         <p class="reel-words" id="reel-words" aria-hidden="true"><span class="on" data-i18n="rw1">Search</span><span data-i18n="rw2">Check</span><span data-i18n="rw3">Sign</span><span data-i18n="rw4">Move in</span></p>
-        <p class="reel-cap label on-dark" aria-hidden="true">Property Direct · <span data-i18n="t1">Tenant side only</span></p>
+        <p class="reel-cap label" aria-hidden="true">Property Direct · <span data-i18n="t1">Tenant side only</span></p>
       </div>
     </section>
 
@@ -425,7 +511,7 @@
       <div class="wrap fee-grid">
         <div class="fee-copy" data-reveal>
           <span class="label" data-i18n="feeLabel">Fee</span>
-          <h2 id="fee-title" data-i18n="feeTitle">One fee. Only when you sign.</h2>
+          <h2 id="fee-title" data-i18n="feeTitle">One fee. <mark class="hl">Only when you sign.</mark></h2>
           <p class="lead" data-i18n="feeLead">1.5× your total monthly rent, including gas, water and electricity, plus 21% VAT. Due only when a lease is signed through us.</p>
           <ul class="points">
             <li data-i18n="p1">No costs upfront and no registration fee. If you don’t sign a lease through us, you pay nothing.</li>
@@ -436,7 +522,7 @@
         </div>
 
         <div class="fee-tool" data-reveal style="--i:1">
-          <div class="calc spot grain" id="calc">
+          <div class="calc spot" id="calc">
             <div class="calc-head">
               <label class="label on-dark" for="rent-num" data-i18n="calcRent">Total monthly rent</label>
               <div class="calc-input">
@@ -492,7 +578,7 @@
         <div class="reg-main">
           <div class="head" data-reveal>
             <span class="label" data-i18n="regLabel">Register</span>
-            <h2 id="register-title" data-i18n="regTitle">Describe what you’re looking for</h2>
+            <h2 id="register-title" data-i18n="regTitle">Describe what you’re <mark class="hl">looking for</mark></h2>
             <p class="sub" data-i18n="regSub">Three short steps. Registering is free and without obligation. It is not yet a mandate. Afterwards we contact you about the written mandate.</p>
           </div>
 
@@ -603,7 +689,7 @@
           </form>
         </div>
 
-        <aside class="profile spot grain" id="profile" data-reveal style="--i:2" aria-labelledby="profile-title">
+        <aside class="profile spot" id="profile" data-reveal style="--i:2" aria-labelledby="profile-title">
           <div class="p-head">
             <span class="p-brand"><svg class="mark" viewBox="0 0 158 120" width="38" height="29" aria-hidden="true" focusable="false"><use href="#pd"/></svg><span class="label on-dark" id="profile-title" data-i18n="cardTitle">Search profile</span></span>
             <span class="status" id="p-status" data-state="draft"><i></i><span id="p-status-text" data-i18n="cardDraft">Draft</span></span>
@@ -630,7 +716,7 @@
         </div>
         <!-- FOUNDER-EDIT: placeholder quote, edit it in js/i18n.js (aboutQuote, aboutCite) -->
         <figure class="fquote" data-reveal style="--i:1">
-          <blockquote><p data-i18n="aboutQuote">The Dutch rental market is hard on people who simply need a place to live. We stand on the tenant’s side only — and we want to make finding a home feel a lot less hard.</p></blockquote>
+          <blockquote><p data-i18n="aboutQuote">The Dutch rental market is hard on people who simply need a place to live. We stand on the <mark class="hl">tenant’s side only</mark> — and we want to make finding a home feel a lot less hard.</p></blockquote>
           <figcaption>
             <span class="initials" aria-hidden="true">L · J</span>
             <span class="cite"><strong>Luuk Claessen</strong> &amp; <strong>Jalal Selmani</strong> — <span data-i18n="aboutCite">Founders</span></span>
@@ -655,13 +741,13 @@
           </figure>
         </div>
       </div>
-      <div class="band" aria-hidden="true">
-        <picture>
+      <div class="pband gr" aria-hidden="true">
+        <picture data-par="30">
           <source type="image/avif" srcset="assets/media/band-canal-800.avif 800w, assets/media/band-canal-1600.avif 1600w" sizes="100vw">
           <source type="image/webp" srcset="assets/media/band-canal-800.webp 800w, assets/media/band-canal-1600.webp 1600w" sizes="100vw">
           <img src="assets/media/band-canal-800.webp" width="1600" height="900" loading="lazy" decoding="async" alt="">
         </picture>
-        <i class="fade"></i>
+        <p class="pb-cap label" data-i18n="bandCanal">Amsterdam · a calm morning</p>
       </div>
     </section>
 
@@ -669,7 +755,7 @@
       <div class="wrap after-grid">
         <div class="after-head" data-reveal>
           <span class="label" data-i18n="afLabel">After you sign</span>
-          <h2 id="after-title" data-i18n="afTitle">Your first week</h2>
+          <h2 id="after-title" data-i18n="afTitle">Your <mark class="hl">first week</mark></h2>
           <p class="sub" data-i18n="afLead">Tick things off as you go. Your progress stays in this browser, and you can share it with a link.</p>
           <div class="bar-track" id="af-track" role="progressbar" aria-valuemin="0" aria-valuemax="8" aria-valuenow="0" aria-label="Progress"><i id="af-bar"></i></div>
           <p class="after-count" id="af-count" aria-live="polite">0 of 8 done</p>
@@ -687,7 +773,7 @@
       <div class="wrap faq-grid">
         <div class="head" data-reveal>
           <span class="label" data-i18n="faqLabel">FAQ</span>
-          <h2 id="faq-title" data-i18n="faqTitle">What to know before you start</h2>
+          <h2 id="faq-title" data-i18n="faqTitle">What to know <mark class="hl">before you start</mark></h2>
           <a class="link-cta" href="mandate.html" data-i18n="moreInfo">More on the mandate and cancellation</a>
         </div>
         <div class="faq" id="faq-list" data-reveal style="--i:1">
@@ -704,14 +790,7 @@
         </div>
       </div>
     </section>
-  <section class="s sign grain" id="sign" data-chapter="08" aria-labelledby="sign-title">
-      <div class="sign-bg" aria-hidden="true">
-        <picture>
-          <source type="image/avif" srcset="assets/media/finale-stair-800.avif 800w, assets/media/finale-stair-1600.avif 1600w" sizes="100vw">
-          <source type="image/webp" srcset="assets/media/finale-stair-800.webp 800w, assets/media/finale-stair-1600.webp 1600w" sizes="100vw">
-          <img src="assets/media/finale-stair-800.webp" width="1600" height="900" loading="lazy" decoding="async" alt="">
-        </picture>
-      </div>
+  <section class="s sign sign-dark" id="sign" data-chapter="08" aria-labelledby="sign-title">
       <div class="wrap sign-inner">
         <div class="head" data-reveal>
           <span class="label on-dark" data-i18n="signLabel">The last step</span>
@@ -744,7 +823,7 @@
 
     </main>
 
-  <footer class="site-footer grain">
+  <footer class="site-footer">
     <div class="wrap">
       <p class="wordmark" id="wordmark" aria-hidden="true">Property Direct</p>
       <div class="cols">
@@ -775,87 +854,6 @@
         <p class="fine" data-i18n="fine">Fee: 1.5× the total monthly rent (including gas, water and electricity) plus 21% VAT, only due when a lease is signed through Property Direct. No costs upfront. No fee for homes you find yourself.</p>
       </div>
       <p class="f-vof" data-i18n="fVof">Property Direct is a trade name of a general partnership (vof).</p>
-      <div class="f-bottom" data-reveal>
-        <p class="copy">© <span id="year">2026</span> Property Direct</p>
-        <a class="to-top" href="#top"><span data-i18n="toTop">Back to top</span>
-          <svg viewBox="0 0 24 40" width="16" height="26" fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="square" stroke-linejoin="miter" aria-hidden="true"><path pathLength="1" d="M12 38V3"/><path pathLength="1" d="M4 11l8-8 8 8"/></svg>
-        </a>
-      </div>
-    </div>
-  </footer>
-        </blockquote>
-        <div class="founders">
-          <figure class="founder" data-reveal style="--i:1" id="founder-luuk" data-name="Luuk Claessen" data-key="luuk">
-            <div class="avatar"><span aria-hidden="true">L</span></div>
-            <figcaption><strong>Luuk Claessen</strong><span data-i18n="founderLuuk">Closing, platform &amp; technology</span></figcaption>
-          </figure>
-          <figure class="founder" data-reveal style="--i:2" id="founder-jalal" data-name="Jalal Selmani" data-key="jalal">
-            <div class="avatar"><span aria-hidden="true">J</span></div>
-            <figcaption><strong>Jalal Selmani</strong><span data-i18n="founderJalal">First contact &amp; client qualification</span></figcaption>
-          </figure>
-        </div>
-      </div>
-      <div class="band" aria-hidden="true">
-        <picture>
-          <source type="image/avif" srcset="assets/media/band-canal-800.avif 800w, assets/media/band-canal-1600.avif 1600w" sizes="100vw">
-          <source type="image/webp" srcset="assets/media/band-canal-800.webp 800w, assets/media/band-canal-1600.webp 1600w" sizes="100vw">
-          <img src="assets/media/band-canal-800.webp" width="1600" height="900" loading="lazy" decoding="async" alt="">
-        </picture>
-        <i class="fade"></i>
-      </div>
-    </section>
-
-    <section class="s faq-sec" id="faq" aria-labelledby="faq-title">
-      <div class="wrap faq-grid">
-        <div class="head" data-reveal>
-          <span class="label" data-i18n="faqLabel">FAQ</span>
-          <h2 id="faq-title" data-i18n="faqTitle">What to know before you start</h2>
-          <a class="link-cta" href="mandate.html" data-i18n="moreInfo">More on the mandate and cancellation</a>
-        </div>
-        <div class="faq" id="faq-list" data-reveal style="--i:1">
-          <div class="faq-item"><h3><button type="button" class="faq-q" id="fq1" aria-expanded="false" aria-controls="fa1"><span data-i18n="q1">What does it cost?</span></button></h3><div class="faq-a" id="fa1" role="region" aria-labelledby="fq1"><div><p data-i18n="a1">1.5× your total monthly rent, including gas, water and electricity, plus 21% VAT. For a total rent of € 1,500 that is € 2,250 plus € 472.50 VAT, € 2,722.50 in total. Nothing is due upfront.</p></div></div></div>
-          <div class="faq-item"><h3><button type="button" class="faq-q" id="fq2" aria-expanded="false" aria-controls="fa2"><span data-i18n="q2">When do I pay?</span></button></h3><div class="faq-a" id="fa2" role="region" aria-labelledby="fq2"><div><p data-i18n="a2">Only after you have signed a lease for a home we found for you. Not when you register, not when you sign the mandate and not while we search.</p></div></div></div>
-          <div class="faq-item"><h3><button type="button" class="faq-q" id="fq3" aria-expanded="false" aria-controls="fa3"><span data-i18n="q3">What if you don’t find a home?</span></button></h3><div class="faq-a" id="fa3" role="region" aria-labelledby="fq3"><div><p data-i18n="a3">Then you pay nothing. No cure, no pay.</p></div></div></div>
-          <div class="faq-item"><h3><button type="button" class="faq-q" id="fq4" aria-expanded="false" aria-controls="fa4"><span data-i18n="q4">Do you list homes?</span></button></h3><div class="faq-a" id="fa4" role="region" aria-labelledby="fq4"><div><p data-i18n="a4">No. We do not publish or sell listings and we never show “available homes”. We search per tenant, based on your search profile.</p></div></div></div>
-          <div class="faq-item"><h3><button type="button" class="faq-q" id="fq5" aria-expanded="false" aria-controls="fa5"><span data-i18n="q5">Do you work for landlords?</span></button></h3><div class="faq-a" id="fa5" role="region" aria-labelledby="fq5"><div><p data-i18n="a5">No. We work for tenants only and never take money from landlords. Landlords do not pay us anything.</p></div></div></div>
-          <div class="faq-item"><h3><button type="button" class="faq-q" id="fq6" aria-expanded="false" aria-controls="fa6"><span data-i18n="q6">What is the mandate?</span></button></h3><div class="faq-a" id="fa6" role="region" aria-labelledby="fq6"><div><p data-i18n="a6">The mandate is the written agreement in which you instruct us to search for you. We only start searching once you have signed it. Registering on this site is not a mandate.</p></div></div></div>
-          <div class="faq-item"><h3><button type="button" class="faq-q" id="fq7" aria-expanded="false" aria-controls="fa7"><span data-i18n="q7">Can I cancel?</span></button></h3><div class="faq-a" id="fa7" role="region" aria-labelledby="fq7"><div><p data-i18n="a7">Yes, at any time before you sign a lease, and no fee is due then. As a consumer you also have a 14-day right of withdrawal. We only start within that period if you explicitly ask us to.</p></div></div></div>
-          <div class="faq-item"><h3><button type="button" class="faq-q" id="fq8" aria-expanded="false" aria-controls="fa8"><span data-i18n="q8">How do you handle my data?</span></button></h3><div class="faq-a" id="fa8" role="region" aria-labelledby="fq8"><div><p data-i18n="a8">We only use your details to contact you and to search for a home for you. We share them with a landlord only when you ask us to. We use no tracking or advertising cookies.</p></div></div></div>
-          <div class="faq-item"><h3><button type="button" class="faq-q" id="fq9" aria-expanded="false" aria-controls="fa9"><span data-i18n="q9">Which areas and home types?</span></button></h3><div class="faq-a" id="fa9" role="region" aria-labelledby="fq9"><div><p data-i18n="a9">We search throughout the Netherlands. In the registration you tell us the city or region and whether you want a room, studio, apartment or house.</p></div></div></div>
-          <div class="faq-item"><h3><button type="button" class="faq-q" id="fq10" aria-expanded="false" aria-controls="fa10"><span data-i18n="q10">How long does it take?</span></button></h3><div class="faq-a" id="fa10" role="region" aria-labelledby="fq10"><div><p data-i18n="a10">That depends on the market, your budget and how flexible you are, so we do not promise a timeline. Registering takes about a minute.</p></div></div></div>
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <footer class="site-footer grain">
-    <div class="wrap">
-      <p class="wordmark" aria-hidden="true">Property Direct</p>
-      <div class="cols">
-        <div>
-          <svg class="mark" viewBox="0 0 158 120" width="52" height="40" aria-hidden="true" focusable="false"><use href="#pd"/></svg>
-          <p class="f-about" data-i18n="fAbout">Personal tenant representation in the Netherlands.</p>
-          <p class="f-vof" data-i18n="fVof">Property Direct is a trade name of a general partnership (vof).</p>
-        </div>
-        <div>
-          <h3 data-i18n="fCompany">Company</h3>
-          <p>Property Direct<br><span data-i18n="fKvk">KvK</span>: <span data-cfg="kvk">[KvK]</span><br><span data-i18n="fVat">VAT</span>: <span data-cfg="btw">[BTW]</span></p>
-        </div>
-        <div>
-          <h3 data-i18n="fLegal">Legal</h3>
-          <ul class="flinks"><li><a href="privacy.html" data-i18n="privacyLink">Privacy Policy</a></li><li><a href="terms.html" data-i18n="termsLink">Terms and Conditions</a></li><li><a href="mandate.html" data-i18n="mandateLink">Mandate and cancellation</a></li><li><a href="assets/media/CREDITS.md" data-i18n="creditsLink">Photography credits</a></li></ul>
-        </div>
-        <div>
-          <h3 data-i18n="fContact">Contact</h3>
-          <ul class="flinks"><li><span data-i18n="fEmail2">Email</span>: <a data-cfg-href="email" data-cfg="email">[email]</a></li><li><span data-i18n="fPhone2">Phone</span>: <a data-cfg-href="phone" data-cfg="phone">[phone]</a></li></ul>
-          <h3 class="f-lang-h" data-i18n="fLang">Language</h3>
-          <div class="lang" role="group" aria-label="Language / Taal">
-            <button type="button" data-lang="en" aria-pressed="true">EN</button>
-            <button type="button" data-lang="nl" aria-pressed="false">NL</button>
-          </div>
-        </div>
-      </div>
-      <p class="fine" data-i18n="fine">Fee: 1.5× the total monthly rent (including gas, water and electricity) plus 21% VAT, only due when a lease is signed through Property Direct. No costs upfront. No fee for homes you find yourself.</p>
       <div class="f-bottom" data-reveal>
         <p class="copy">© <span id="year">2026</span> Property Direct</p>
         <a class="to-top" href="#top"><span data-i18n="toTop">Back to top</span>

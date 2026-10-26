@@ -76,10 +76,6 @@
         "logo": "https://propertydirect.nl/icon-512.png",
         "description": "Personal tenant representation in the Netherlands. We search on the tenant's side only. You pay only when your lease is signed.",
         "areaServed": { "@type": "Country", "name": "Netherlands" },
-        "founder": [
-          { "@type": "Person", "name": "Luuk Claessen" },
-          { "@type": "Person", "name": "Jalal Selmani" }
-        ],
         "identifier": { "@type": "PropertyValue", "propertyID": "KvK", "value": "[KvK]" }
       },
       {
@@ -94,7 +90,8 @@
           { "@type": "Question", "name": "Can I cancel?", "acceptedAnswer": { "@type": "Answer", "text": "Yes, at any time before you sign a lease, and no fee is due then. As a consumer you also have a 14-day right of withdrawal. We only start within that period if you explicitly ask us to." } },
           { "@type": "Question", "name": "How do you handle my data?", "acceptedAnswer": { "@type": "Answer", "text": "We only use your details to contact you and to search for a home for you. We share them with a landlord only when you ask us to. We use no tracking or advertising cookies." } },
           { "@type": "Question", "name": "Which areas and home types?", "acceptedAnswer": { "@type": "Answer", "text": "We search throughout the Netherlands. In the registration you tell us the city or region and whether you want a room, studio, apartment or house." } },
-          { "@type": "Question", "name": "How long does it take?", "acceptedAnswer": { "@type": "Answer", "text": "That depends on the market, your budget and how flexible you are, so we do not promise a timeline. Registering takes about a minute." } }
+          { "@type": "Question", "name": "How long does it take?", "acceptedAnswer": { "@type": "Answer", "text": "That depends on the market, your budget and how flexible you are, so we do not promise a timeline. Registering takes about a minute." } },
+          { "@type": "Question", "name": "Can you help me buy a home later?", "acceptedAnswer": { "@type": "Answer", "text": "We can point you to licensed advisers; we do not give regulated financial advice." } }
         ]
       }
     ]
@@ -132,7 +129,6 @@
         <a href="#how" data-i18n="navHow">How it works</a>
         <a href="#who" class="nav-opt" data-i18n="navWho">Who we help</a>
         <a href="#shield" data-i18n="navShield">Shield</a>
-        <a href="#where" data-i18n="navWhere">Where</a>
         <a href="#fee" data-i18n="navFee">Fee</a>
         <a href="#about" class="nav-opt" data-i18n="navAbout">About</a>
         <a href="#faq" data-i18n="navFaq">FAQ</a>
@@ -155,11 +151,10 @@
       <a href="#how" style="--n:0"><span data-i18n="navHow">How it works</span></a>
       <a href="#who" style="--n:1"><span data-i18n="navWho">Who we help</span></a>
       <a href="#shield" style="--n:2"><span data-i18n="navShield">Shield</span></a>
-      <a href="#where" style="--n:3"><span data-i18n="navWhere">Where</span></a>
-      <a href="#fee" style="--n:4"><span data-i18n="navFee">Fee</span></a>
-      <a href="#about" style="--n:5"><span data-i18n="navAbout">About</span></a>
-      <a href="#faq" style="--n:6"><span data-i18n="navFaq">FAQ</span></a>
-      <a href="#register" class="m-cta" style="--n:7"><span data-i18n="navCta">Register</span></a>
+      <a href="#fee" style="--n:3"><span data-i18n="navFee">Fee</span></a>
+      <a href="#about" style="--n:4"><span data-i18n="navAbout">About</span></a>
+      <a href="#faq" style="--n:5"><span data-i18n="navFaq">FAQ</span></a>
+      <a href="#register" class="m-cta" style="--n:6"><span data-i18n="navCta">Register</span></a>
     </nav>
   </div>
 
@@ -168,13 +163,13 @@
     <a href="#how" data-ch="2"><span class="n">02</span><span class="t" data-i18n="chHow">How</span></a>
     <a href="#who" data-ch="3"><span class="n">03</span><span class="t" data-i18n="chWho">Who</span></a>
     <a href="#shield" data-ch="4"><span class="n">04</span><span class="t" data-i18n="chShield">Shield</span></a>
-    <a href="#where" data-ch="5"><span class="n">05</span><span class="t" data-i18n="chWhere">Where</span></a>
-    <a href="#fee" data-ch="6"><span class="n">06</span><span class="t" data-i18n="chFee">Fee</span></a>
-    <a href="#about" data-ch="7"><span class="n">07</span><span class="t" data-i18n="chAbout">About</span></a>
-    <a href="#faq" data-ch="8"><span class="n">08</span><span class="t" data-i18n="chFaq">FAQ</span></a>
+    <a href="#fee" data-ch="5"><span class="n">05</span><span class="t" data-i18n="chFee">Fee</span></a>
+    <a href="#about" data-ch="6"><span class="n">06</span><span class="t" data-i18n="chAbout">About</span></a>
+    <a href="#faq" data-ch="7"><span class="n">07</span><span class="t" data-i18n="chFaq">FAQ</span></a>
   </nav>
 
   <main id="main">
+    <div class="hero-track" id="hero-track">
     <section class="hero grain" id="top">
       <div class="hero-media" aria-hidden="true">
         <img class="hero-poster" src="assets/media/hero-poster-800.webp" srcset="assets/media/hero-poster-800.webp 800w, assets/media/hero-poster.webp 1600w" sizes="100vw" width="1600" height="900" alt="" decoding="async">
@@ -185,9 +180,9 @@
 
       <div class="wrap hero-inner" id="hero-inner">
         <p class="label on-dark hero-label" data-i18n="heroLabel">Tenant representation · The Netherlands</p>
-        <h1>
-          <span class="line"><span class="line-in" data-i18n="h1a">We search.</span></span>
-          <span class="line"><span class="line-in"><em data-i18n="h1b">You sign.</em>
+        <h1 id="hero-h1" aria-label="We search. You sign." data-i18n-aria="heroAria">
+          <span class="line" aria-hidden="true"><span class="line-in" data-split="h1a"><span class="w"><span class="ch" style="--i:0">W</span><span class="ch" style="--i:1">e</span></span> <span class="w"><span class="ch" style="--i:2">s</span><span class="ch" style="--i:3">e</span><span class="ch" style="--i:4">a</span><span class="ch" style="--i:5">r</span><span class="ch" style="--i:6">c</span><span class="ch" style="--i:7">h</span><span class="ch" style="--i:8">.</span></span></span></span>
+          <span class="line l2" aria-hidden="true"><span class="line-in"><em data-split="h1b"><span class="w"><span class="ch" style="--i:9">Y</span><span class="ch" style="--i:10">o</span><span class="ch" style="--i:11">u</span></span> <span class="w"><span class="ch" style="--i:12">s</span><span class="ch" style="--i:13">i</span><span class="ch" style="--i:14">g</span><span class="ch" style="--i:15">n</span><span class="ch" style="--i:16">.</span></span></em>
             <svg class="sig" viewBox="-20 -792 1765 1196" aria-hidden="true" focusable="false"><path pathLength="1" class="sig-ink" d="M0 53Q0 4 89 -76Q178 -156 272 -172Q291 -196 334 -253Q377 -310 404 -344Q489 -456 540 -513Q336 -459 123 -459Q79 -459 79 -472Q79 -479 91 -487Q103 -495 114 -495Q168 -488 217 -488Q378 -488 567 -544Q748 -742 873 -742Q925 -742 925 -718Q925 -685 832 -629Q739 -573 596 -529Q544 -467 446 -335Q348 -203 325 -174Q417 -170 484 -112Q512 -89 538 -66Q602 -11 674 -11Q708 -11 748 -32Q789 -54 794 -54Q800 -54 800 -49Q800 -31 749 -10Q698 12 648 12Q598 12 558 -4Q518 -21 492 -45Q465 -69 440 -93Q381 -152 312 -157Q223 -44 155 18Q87 80 34 80Q0 80 0 53ZM41 53Q76 53 129 0Q182 -53 258 -153Q180 -135 102 -66Q23 4 23 39Q23 53 41 53ZM855 -724Q766 -724 624 -563Q736 -601 812 -644Q889 -687 889 -710Q889 -724 855 -724Z M1090 -158Q1136 -123 1226 -123H1230Q1286 -227 1337 -315Q1184 -225 1090 -158ZM1680 -631Q1680 -665 1634 -671Q1547 -570 1442 -405Q1559 -475 1620 -528Q1680 -581 1680 -631ZM1070 -177Q1164 -243 1361 -357Q1481 -563 1578 -671Q1473 -664 1372 -619Q1271 -574 1202 -512Q1132 -449 1090 -378Q1047 -308 1047 -257Q1047 -206 1070 -177ZM1219 -103H1198Q1110 -103 1056 -134Q800 55 800 237Q800 349 878 349Q915 349 953 311Q975 290 992 271Q1010 252 1036 213Q1061 174 1078 148Q1094 121 1124 68Q1154 16 1170 -13Q1185 -42 1219 -103ZM1704 -633Q1703 -574 1630 -511Q1557 -448 1415 -362Q1337 -236 1274 -126Q1371 -141 1438 -197Q1442 -200 1447 -200Q1452 -200 1452 -194Q1452 -189 1430 -172Q1408 -156 1362 -136Q1315 -116 1264 -108Q1105 162 1045 238Q964 341 915 368Q885 384 857 384Q814 384 790 346Q765 308 765 260Q765 50 1034 -151Q995 -186 995 -246Q995 -307 1042 -382Q1088 -456 1166 -522Q1243 -588 1358 -635Q1472 -682 1594 -689Q1641 -738 1676 -764Q1688 -772 1706 -772Q1725 -772 1725 -762Q1725 -757 1711 -747Q1697 -737 1690 -731L1649 -688Q1672 -683 1688 -667Q1704 -651 1704 -633Z"/></svg>
           </span></span>
         </h1>
@@ -210,6 +205,7 @@
         </div>
       </div>
     </section>
+    </div>
 
     <section class="statement" id="statement" aria-label="Summary">
       <div class="wrap">
@@ -217,33 +213,48 @@
       </div>
     </section>
 
+    <section class="facts" id="facts" aria-labelledby="facts-title">
+      <div class="wrap">
+        <p class="label on-dark" id="facts-title" data-i18n="factsLabel">Facts &amp; figures</p>
+        <ul class="facts-grid" id="facts-grid">
+          <li class="fact spot" data-fact="0" data-reveal><p class="fact-num"><span class="pre">€</span><span class="n" data-to="5">5</span><span class="suf">M<span class="plus">+</span></span></p><i class="fact-line" aria-hidden="true"></i><p class="fact-label">Rental contract value, indicative</p></li>
+          <li class="fact spot" data-fact="1" data-reveal style="--i:1"><p class="fact-num"><span class="n" data-to="8">8</span><span class="suf"><span class="plus">+</span></span><span class="unit">years</span></p><i class="fact-line" aria-hidden="true"></i><p class="fact-label">Experience in residential renting</p></li>
+          <li class="fact spot" data-fact="2" data-reveal style="--i:2"><p class="fact-num"><span class="n" data-to="5">5</span><span class="unit">regions</span></p><i class="fact-line" aria-hidden="true"></i><p class="fact-label">Amsterdam · Rotterdam · The Hague · Utrecht · Groningen — and active nationwide</p></li>
+          <li class="fact spot" data-fact="3" data-reveal style="--i:3"><p class="fact-num"><span class="n" data-to="30">30</span><span class="suf"><span class="plus">+</span></span><span class="unit">partners</span></p><i class="fact-line" aria-hidden="true"></i><p class="fact-label">Landlords, property professionals and business contacts in our network</p></li>
+        </ul>
+        <p class="facts-note" data-i18n="factsNote">Indicative figures based on the combined experience of the team and network behind Property Direct, not on the company’s own trading history.</p>
+      </div>
+    </section>
+
     <section class="s how" id="how" aria-labelledby="how-title">
-      <div class="wrap how-grid">
+      <div class="wrap">
         <div class="how-head">
-          <span class="label" data-i18n="howLabel">How it works</span>
-          <h2 id="how-title" data-i18n="howTitle">From registration to keys</h2>
-          <a class="link-cta" href="#register"><span data-i18n="cta1">Register</span> →</a>
+          <div class="how-copy">
+            <span class="label on-dark" data-i18n="howLabel">How it works</span>
+            <h2 id="how-title" data-i18n="howTitle">From registration to keys</h2>
+            <a class="link-cta" href="#register"><span data-i18n="cta1">Register</span> →</a>
+          </div>
           <div class="key3d" id="key3d" aria-hidden="true">
             <svg class="key-fallback" viewBox="0 0 220 120" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="square" stroke-linejoin="miter" focusable="false"><circle cx="48" cy="56" r="30"/><circle cx="48" cy="56" r="12"/><path d="M78 56H196M150 56v26M170 56v36M190 56v22"/></svg>
             <canvas></canvas>
           </div>
         </div>
         <ol class="how-steps" id="how-steps">
-          <li class="how-step">
-            <span class="marker" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="square" stroke-linejoin="miter"><path d="M6 3h9l4 4v14H6z"/><path d="M15 3v4h4M9 12h7M9 16h7"/></svg></span>
-            <span class="label">01</span><h3 data-i18n="s1h">Registration</h3><p data-i18n="s1p">Tell us what you need: type of home, region, budget and start date. It takes a minute and costs nothing.</p>
+          <li class="how-card" style="--i:0">
+            <div class="hc-copy"><span class="hc-top"><span class="hc-num" aria-hidden="true">01</span><span class="marker" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="square" stroke-linejoin="miter"><path d="M6 3h9l4 4v14H6z"/><path d="M15 3v4h4M9 12h7M9 16h7"/></svg></span></span><h3 data-i18n="s1h">Registration</h3><p data-i18n="s1p">Tell us what you need: type of home, region, budget and start date. It takes a minute and costs nothing.</p></div>
+            <div class="hc-art" aria-hidden="true"><svg viewBox="0 0 320 200" fill="none" stroke="currentColor" stroke-width="1.2"><rect x="20" y="22" width="280" height="42"/><rect class="bar b1" x="30" y="39" width="150" height="8" fill="currentColor" stroke="none"/><rect x="20" y="80" width="280" height="42"/><rect class="bar b2" x="30" y="97" width="200" height="8" fill="currentColor" stroke="none"/><rect x="20" y="138" width="130" height="42"/><rect class="bar b3" x="30" y="155" width="70" height="8" fill="currentColor" stroke="none"/><rect class="btn-ill" x="170" y="138" width="130" height="42" fill="currentColor" stroke="none"/></svg></div>
           </li>
-          <li class="how-step">
-            <span class="marker" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="square" stroke-linejoin="miter"><path d="M5 3h14v18H5z"/><path d="M8 8h8M8 12h8M8 16h3"/><path d="M13.5 17.5l2 2 3.5-4"/></svg></span>
-            <span class="label">02</span><h3 data-i18n="s2h">Mandate</h3><p data-i18n="s2p">We put the agreement in writing. Only once you have signed the mandate do we start searching.</p>
+          <li class="how-card" style="--i:1">
+            <div class="hc-copy"><span class="hc-top"><span class="hc-num" aria-hidden="true">02</span><span class="marker" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="square" stroke-linejoin="miter"><path d="M5 3h14v18H5z"/><path d="M8 8h8M8 12h8M8 16h3"/><path d="M13.5 17.5l2 2 3.5-4"/></svg></span></span><h3 data-i18n="s2h">Mandate</h3><p data-i18n="s2p">We put the agreement in writing. Only once you have signed the mandate do we start searching.</p></div>
+            <div class="hc-art" aria-hidden="true"><svg viewBox="0 0 320 200" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M30 38h260M30 62h260M30 86h180" opacity=".35"/><path d="M30 164h260" stroke-width="1.4"/><path d="M42 150l10 10m0-10L42 160" opacity=".7"/><path class="sigdraw" pathLength="1" stroke-width="2.2" stroke-linecap="round" d="M70 154c14-30 22-34 26-18s-6 30 8 22 16-26 26-22 2 22 14 14 22-18 34-10 10 16 22 10 20-12 34-6"/></svg></div>
           </li>
-          <li class="how-step">
-            <span class="marker" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="square" stroke-linejoin="miter"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M15.5 15.5 21 21"/></svg></span>
-            <span class="label">03</span><h3 data-i18n="s3h">Search</h3><p data-i18n="s3p">We search for homes that match your profile and put forward only options that fit. Viewings are between you and the landlord.</p>
+          <li class="how-card" style="--i:2">
+            <div class="hc-copy"><span class="hc-top"><span class="hc-num" aria-hidden="true">03</span><span class="marker" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="square" stroke-linejoin="miter"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M15.5 15.5 21 21"/></svg></span></span><h3 data-i18n="s3h">Search</h3><p data-i18n="s3p">We search for homes that match your profile and put forward only options that fit. Viewings are between you and the landlord.</p></div>
+            <div class="hc-art" aria-hidden="true"><svg viewBox="0 0 320 200" fill="none" stroke="currentColor" stroke-width="1.2"><g opacity=".45"><path d="M30 34h200M30 62h240M30 90h170M30 118h220M30 146h150M30 174h210"/></g><g class="lens"><circle cx="250" cy="52" r="26" stroke-width="2"/><path d="M269 71l22 22" stroke-width="3" stroke-linecap="round"/></g></svg></div>
           </li>
-          <li class="how-step">
-            <span class="marker" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="square" stroke-linejoin="miter"><circle cx="7.5" cy="12" r="4"/><path d="M11.5 12H21M18 12v4M15 12v3"/></svg></span>
-            <span class="label">04</span><h3 data-i18n="s4h">Introduction and signing</h3><p data-i18n="s4p">We find the landlord and check the landlord and the lease with you. You sign yourself, and only then is the fee due.</p>
+          <li class="how-card" style="--i:3">
+            <div class="hc-copy"><span class="hc-top"><span class="hc-num" aria-hidden="true">04</span><span class="marker" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="square" stroke-linejoin="miter"><circle cx="7.5" cy="12" r="4"/><path d="M11.5 12H21M18 12v4M15 12v3"/></svg></span></span><h3 data-i18n="s4h">Introduction and signing</h3><p data-i18n="s4p">We find the landlord and check the landlord and the lease with you. You sign yourself, and only then is the fee due.</p></div>
+            <div class="hc-art" aria-hidden="true"><svg viewBox="0 0 320 200" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="210" cy="100" r="44"/><circle cx="210" cy="100" r="5" fill="currentColor" stroke="none"/><path class="kh" d="M210 106v18" stroke-linecap="round" stroke-width="3"/><g class="keyturn"><circle cx="64" cy="100" r="22"/><circle cx="64" cy="100" r="8"/><path d="M86 100h92M142 100v22M160 100v16" stroke-linecap="square"/></g></svg></div>
           </li>
         </ol>
       </div>
@@ -360,53 +371,69 @@
       </div>
     </section>
 
-    <section class="story" id="story" data-chapter="04" aria-labelledby="story-title">
-      <div class="story-track" id="story-track">
-        <div class="story-stage grain">
-          <figure class="layer"><picture><source type="image/avif" srcset="assets/media/story-day-800.avif 800w, assets/media/story-day-1600.avif 1600w" sizes="100vw"><source type="image/webp" srcset="assets/media/story-day-800.webp 800w, assets/media/story-day-1600.webp 1600w" sizes="100vw"><img src="assets/media/story-day-800.webp" width="1600" height="900" loading="lazy" decoding="async" alt=""></picture></figure>
-          <figure class="layer"><picture><source type="image/avif" srcset="assets/media/story-dusk-800.avif 800w, assets/media/story-dusk-1600.avif 1600w" sizes="100vw"><source type="image/webp" srcset="assets/media/story-dusk-800.webp 800w, assets/media/story-dusk-1600.webp 1600w" sizes="100vw"><img src="assets/media/story-dusk-800.webp" width="1600" height="900" loading="lazy" decoding="async" alt=""></picture></figure>
-          <figure class="layer"><picture><source type="image/avif" srcset="assets/media/story-night-800.avif 800w, assets/media/story-night-1600.avif 1600w" sizes="100vw"><source type="image/webp" srcset="assets/media/story-night-800.webp 800w, assets/media/story-night-1600.webp 1600w" sizes="100vw"><img src="assets/media/story-night-800.webp" width="1600" height="900" loading="lazy" decoding="async" alt=""></picture></figure>
-          <div class="story-shade" aria-hidden="true"></div>
-          <div class="wrap story-copy">
-            <h2 class="sr-only" id="story-title" data-i18n="storyTitle">From first message to signature</h2>
-            <div class="cap c1"><span class="label on-dark">01 / 03</span><p class="cap-t" data-i18n="story1">You tell us what you need</p><p class="cap-s" data-i18n="story1s">Type of home, region and budget. It takes a minute.</p></div>
-            <div class="cap c2"><span class="label on-dark">02 / 03</span><p class="cap-t" data-i18n="story2">We search and check</p><p class="cap-s" data-i18n="story2s">We look for homes that fit, and we check the landlord and the lease.</p></div>
-            <div class="cap c3"><span class="label on-dark">03 / 03</span><p class="cap-t" data-i18n="story3">You sign. We’re done.</p><p class="cap-s" data-i18n="story3s">Only then is the fee due.</p></div>
-          </div>
-          <div class="story-meter" aria-hidden="true"><i></i></div>
+    <section class="film" id="story" data-chapter="04" aria-labelledby="story-title">
+      <div class="film-track" id="film-track">
+        <div class="film-stage">
+          <h2 class="sr-only" id="story-title" data-i18n="storyTitle">From first message to signature</h2>
+          <ol class="film-strip" id="film-strip">
+            <li class="frame" style="--i:0">
+              <span class="fr-num" aria-hidden="true">01</span>
+              <figure class="fr-img gr"><picture><source type="image/avif" srcset="assets/media/story-day-800.avif 800w, assets/media/story-day-1600.avif 1600w" sizes="80vw"><source type="image/webp" srcset="assets/media/story-day-800.webp 800w, assets/media/story-day-1600.webp 1600w" sizes="80vw"><img src="assets/media/story-day-800.webp" width="1600" height="900" loading="lazy" decoding="async" alt=""></picture></figure>
+              <div class="fr-cap"><span class="label on-dark"><span data-i18n="frStep">Step</span> 01</span><p class="fr-t" data-i18n="story1">You tell us what you need</p></div>
+            </li>
+            <li class="frame" style="--i:1">
+              <span class="fr-num" aria-hidden="true">02</span>
+              <figure class="fr-img gr"><picture><source type="image/avif" srcset="assets/media/bridge-bike-800.avif 800w, assets/media/bridge-bike-1600.avif 1600w" sizes="80vw"><source type="image/webp" srcset="assets/media/bridge-bike-800.webp 800w, assets/media/bridge-bike-1600.webp 1600w" sizes="80vw"><img src="assets/media/bridge-bike-800.webp" width="1600" height="900" loading="lazy" decoding="async" alt=""></picture></figure>
+              <div class="fr-cap"><span class="label on-dark"><span data-i18n="frStep">Step</span> 02</span><p class="fr-t" data-i18n="storyMandate">You sign the mandate</p></div>
+            </li>
+            <li class="frame" style="--i:2">
+              <span class="fr-num" aria-hidden="true">03</span>
+              <figure class="fr-img gr"><picture><source type="image/avif" srcset="assets/media/story-dusk-800.avif 800w, assets/media/story-dusk-1600.avif 1600w" sizes="80vw"><source type="image/webp" srcset="assets/media/story-dusk-800.webp 800w, assets/media/story-dusk-1600.webp 1600w" sizes="80vw"><img src="assets/media/story-dusk-800.webp" width="1600" height="900" loading="lazy" decoding="async" alt=""></picture></figure>
+              <div class="fr-cap"><span class="label on-dark"><span data-i18n="frStep">Step</span> 03</span><p class="fr-t" data-i18n="story2">We search and check</p></div>
+            </li>
+            <li class="frame" style="--i:3">
+              <span class="fr-num" aria-hidden="true">04</span>
+              <figure class="fr-img gr"><picture><source type="image/avif" srcset="assets/media/story-night-800.avif 800w, assets/media/story-night-1600.avif 1600w" sizes="80vw"><source type="image/webp" srcset="assets/media/story-night-800.webp 800w, assets/media/story-night-1600.webp 1600w" sizes="80vw"><img src="assets/media/story-night-800.webp" width="1600" height="900" loading="lazy" decoding="async" alt=""></picture></figure>
+              <div class="fr-cap"><span class="label on-dark"><span data-i18n="frStep">Step</span> 04</span><p class="fr-t" data-i18n="story3">You sign. We’re done.</p></div>
+            </li>
+          </ol>
+          <div class="film-meter" aria-hidden="true"><i></i><span class="film-count" id="film-count">01 / 04</span></div>
         </div>
       </div>
     </section>
 
-    <section class="principles" aria-label="Principles">
+    <section class="bento" id="principles" aria-labelledby="bento-title">
       <div class="wrap">
-        <ul>
-          <li data-i18n="prin1">Tenant side only — never paid by landlords.</li>
-          <li data-i18n="prin2">We verify landlord and payment details before any money moves.</li>
-          <li data-i18n="prin3">Fully digital and paperless: mandate, documents and invoice.</li>
-          <li data-i18n="prin4">One fixed contact from first message to signature.</li>
-        </ul>
-      </div>
-    </section>
-
-    <section class="s where" id="where" data-chapter="05" aria-labelledby="where-title">
-      <div class="wrap where-grid">
-        <div class="where-copy">
-          <div class="head" data-reveal>
-            <span class="label" data-i18n="mapLabel">Where we search</span>
-            <h2 id="where-title" data-i18n="mapTitle">Across the Netherlands</h2>
-            <p class="sub" data-i18n="mapLead">We search nationwide. Pick a city to start your search there. These are search areas, never listings.</p>
-          </div>
-          <div class="city-card" id="city-card" aria-live="polite" data-reveal style="--i:1">
-            <p class="label" data-i18n="mapHint">Choose a city to set it as your region</p>
-            <h3 id="city-name">&nbsp;</h3>
-            <p id="city-vibe">&nbsp;</p>
-          </div>
-          <ul class="cities" data-reveal style="--i:2"><li><button type="button" class="city" data-city="amsterdam"><span class="n" data-i18n="c_amsterdam">Amsterdam</span><span class="arr" aria-hidden="true">→</span></button></li><li><button type="button" class="city" data-city="rotterdam"><span class="n" data-i18n="c_rotterdam">Rotterdam</span><span class="arr" aria-hidden="true">→</span></button></li><li><button type="button" class="city" data-city="thehague"><span class="n" data-i18n="c_thehague">The Hague</span><span class="arr" aria-hidden="true">→</span></button></li><li><button type="button" class="city" data-city="utrecht"><span class="n" data-i18n="c_utrecht">Utrecht</span><span class="arr" aria-hidden="true">→</span></button></li><li><button type="button" class="city" data-city="eindhoven"><span class="n" data-i18n="c_eindhoven">Eindhoven</span><span class="arr" aria-hidden="true">→</span></button></li><li><button type="button" class="city" data-city="groningen"><span class="n" data-i18n="c_groningen">Groningen</span><span class="arr" aria-hidden="true">→</span></button></li><li><button type="button" class="city" data-city="leiden"><span class="n" data-i18n="c_leiden">Leiden</span><span class="arr" aria-hidden="true">→</span></button></li><li><button type="button" class="city" data-city="nijmegen"><span class="n" data-i18n="c_nijmegen">Nijmegen</span><span class="arr" aria-hidden="true">→</span></button></li><li><button type="button" class="city" data-city="maastricht"><span class="n" data-i18n="c_maastricht">Maastricht</span><span class="arr" aria-hidden="true">→</span></button></li><li><button type="button" class="city" data-city="enschede"><span class="n" data-i18n="c_enschede">Enschede</span><span class="arr" aria-hidden="true">→</span></button></li></ul>
-        </div>
-        <div class="map-wrap" id="nl-map" data-reveal style="--i:1">
-          <svg viewBox="0 0 468 554" role="img" aria-label="Map of the Netherlands with the cities we search in" data-i18n-aria="mapAlt" focusable="false"><g class="provs"><path pathLength="1" d="M458 69L458 81L455 90L458 110L457 122L444 146L441 142L437 141L440 133L428 118L404 94L400 93L392 96L380 80L373 77L367 82L364 86L357 99L340 92L338 87L339 83L345 75L344 70L348 62L352 57L351 56L351 51L346 51L340 47L338 43L340 38L351 38L355 40L359 38L376 33L404 29L415 30L420 34L424 49L429 54L437 58L440 57L442 59L445 57L444 60L445 65L458 69Z"><title>Groningen</title></path><path pathLength="1" d="M444 146L441 156L439 183L437 187L431 185L426 186L419 184L408 184L402 187L400 182L390 178L386 179L379 183L379 190L374 187L371 189L369 187L364 189L357 179L350 179L344 176L342 177L340 176L334 164L343 155L334 144L350 130L355 131L359 133L365 130L369 124L368 119L361 111L360 104L354 101L355 99L358 99L364 86L373 77L380 80L392 96L400 93L405 95L428 118L440 133L437 141L441 142L444 146Z"><title>Drenthe</title></path><path pathLength="1" d="M402 187L400 188L401 190L401 195L405 200L397 203L400 216L405 220L424 224L429 223L432 220L441 237L437 252L438 262L433 265L427 273L422 276L415 285L409 285L396 282L397 276L395 274L389 275L388 272L376 272L367 260L363 259L356 262L340 261L337 263L336 262L335 259L333 257L331 249L327 245L329 238L328 236L333 234L334 229L334 226L330 217L322 209L315 214L311 215L306 207L303 207L301 196L299 195L301 191L306 188L312 189L321 185L318 182L310 178L312 175L310 165L308 162L294 153L298 151L305 153L314 146L318 150L322 150L325 147L334 144L343 155L334 164L340 177L344 176L350 179L357 179L364 189L369 187L371 189L374 187L379 190L379 183L386 179L390 178L400 182L402 187Z"><title>Overijssel</title></path><path pathLength="1" d="M409 285L406 286L402 293L398 295L397 297L397 299L409 306L413 310L413 314L405 323L402 325L392 326L380 330L373 335L363 333L363 339L359 340L358 337L352 335L349 331L345 332L333 326L329 328L337 336L328 334L311 341L310 343L313 345L314 348L314 352L312 354L306 348L303 349L303 352L291 351L279 344L277 340L272 338L264 339L261 337L254 341L249 341L247 342L245 349L239 354L218 356L217 356L218 350L214 347L210 347L204 342L203 334L206 334L216 330L216 327L223 312L228 312L232 310L238 314L244 310L251 311L256 308L261 309L274 316L274 310L269 302L267 286L265 287L265 290L262 292L257 290L260 284L261 284L262 280L257 275L252 273L253 269L248 264L250 255L252 256L264 253L270 241L272 238L278 234L292 227L297 222L302 215L303 207L306 207L312 215L322 209L330 217L334 226L334 229L333 234L328 236L329 238L327 245L331 249L333 257L335 259L335 261L337 263L340 261L356 262L363 259L367 260L376 272L388 272L389 275L395 274L397 276L396 282L409 285Z"><title>Gelderland</title></path><path pathLength="1" d="M312 354L312 357L316 357L321 361L320 367L322 370L330 374L329 383L341 399L343 409L341 420L343 422L341 431L336 436L325 456L326 464L328 465L334 461L337 462L333 465L336 467L317 482L311 490L309 490L305 486L301 488L304 503L310 500L319 501L319 509L326 514L325 524L324 526L320 526L318 534L317 536L315 535L318 541L318 544L295 543L290 539L286 543L282 541L284 535L277 531L275 528L275 524L283 514L286 513L291 504L286 504L293 492L291 489L292 485L294 486L295 484L297 480L296 478L301 476L298 473L300 470L299 466L293 467L287 461L279 462L275 459L266 455L274 452L276 444L281 436L304 429L311 423L304 411L300 388L310 390L319 388L323 390L324 388L322 378L317 371L317 370L316 368L314 361L306 358L305 353L303 352L303 349L306 348L309 352L312 354Z"><title>Limburg</title></path><path pathLength="1" d="M22 451L15 449L12 446L10 441L10 425L31 417L32 417L40 422L51 425L57 430L66 431L81 425L84 418L89 419L94 426L100 428L104 428L107 424L112 426L110 433L105 440L100 444L77 457L63 457L60 454L60 448L40 441L29 443L28 444L28 450L22 451ZM118 426L116 425L113 416L109 419L99 419L94 416L88 411L81 409L74 419L66 422L50 410L40 411L32 409L27 401L23 397L21 392L35 383L68 380L72 383L75 388L71 392L82 393L88 395L92 399L98 411L107 411L109 413L116 412L117 422L118 426ZM113 397L104 394L96 394L84 384L94 380L107 381L113 388L114 393L113 397ZM107 379L102 378L99 373L101 371L109 375L107 379ZM90 366L97 369L96 374L92 376L81 378L74 374L72 369L64 363L62 363L58 367L51 367L49 364L50 358L54 355L64 354L79 355L83 357L90 366Z"><title>Zeeland</title></path><path pathLength="1" d="M182 417L182 406L176 402L171 404L162 415L159 417L149 416L146 415L148 407L145 405L136 408L130 412L131 413L130 418L134 425L134 428L131 429L126 429L118 426L117 422L116 412L119 411L120 407L117 399L113 397L114 391L110 384L109 380L107 379L109 375L125 371L129 368L133 361L149 364L161 359L164 359L172 349L178 344L187 343L192 338L203 339L204 342L210 347L214 347L218 350L217 356L218 356L239 354L245 349L247 342L249 341L254 341L261 337L264 339L272 338L277 340L279 344L291 351L305 353L306 358L314 361L316 368L317 370L317 371L322 378L324 387L323 390L319 388L310 390L300 388L304 411L311 423L304 429L281 436L276 444L274 452L266 455L265 446L260 442L257 441L248 447L227 447L227 440L225 437L219 438L217 436L214 429L210 425L210 419L212 413L209 408L205 405L204 406L200 414L194 421L192 422L185 419L175 417L175 415L176 415L182 417Z"><title>Noord-Brabant</title></path><path pathLength="1" d="M99 373L99 369L100 367L106 366L102 362L94 360L90 347L84 342L81 344L71 346L70 341L81 335L91 338L95 336L89 328L91 323L87 310L88 307L94 308L98 308L102 305L119 285L133 264L145 242L144 244L150 247L157 246L152 255L150 264L156 266L168 261L170 266L171 266L175 264L178 268L186 274L185 275L186 281L182 279L178 283L181 285L183 292L188 292L183 296L179 302L179 303L185 302L185 305L182 307L189 317L194 316L201 310L206 311L210 307L216 306L220 311L223 312L216 327L216 330L206 334L203 334L203 339L192 338L187 343L178 344L172 349L164 359L161 359L149 364L133 361L129 368L125 371L109 375L101 371L99 373Z"><title>Zuid-Holland</title></path><path pathLength="1" d="M145 242L155 210L160 173L164 155L169 142L171 124L173 122L180 123L181 122L182 124L180 129L183 133L192 134L200 128L211 125L223 114L233 142L245 156L244 175L238 173L235 176L233 183L213 195L216 208L222 216L225 225L221 225L214 231L214 237L221 244L235 246L245 252L233 254L226 270L223 272L217 272L207 274L206 267L209 261L206 255L210 253L203 253L201 252L194 254L192 257L187 258L171 266L168 261L153 266L150 264L149 263L152 255L157 246L150 247L144 244L145 242ZM190 95L190 96L192 96L190 102L187 107L181 111L178 116L174 117L170 115L168 111L171 100L174 95L180 91L185 80L189 81L189 82L189 84L192 90L192 93L190 95Z"><title>Noord-Holland</title></path><path pathLength="1" d="M223 114L239 100L246 98L254 74L261 67L265 65L271 59L279 57L283 53L316 39L340 38L338 43L340 47L346 51L351 51L351 56L352 57L348 61L344 70L345 74L339 83L339 91L342 94L350 95L355 99L354 101L360 104L361 111L369 122L365 129L359 133L355 131L350 130L334 144L325 147L322 150L318 150L314 146L305 153L298 151L294 153L288 147L282 147L276 149L267 155L246 156L233 142L223 114ZM188 74L201 61L209 56L214 57L214 59L206 61L192 76L188 74ZM252 34L270 30L268 34L258 35L258 38L257 38L252 39L226 49L223 49L222 46L223 43L231 39L250 36L252 34ZM281 27L309 26L313 28L302 31L290 31L281 34L278 34L276 31L277 28L279 26L281 27ZM343 19L355 18L358 19L358 21L337 27L334 30L333 25L336 22L343 19Z"><title>Friesland</title></path><path pathLength="1" d="M288 147L294 153L308 162L310 165L312 175L310 178L318 182L321 185L312 189L306 188L299 193L303 210L302 215L297 222L292 227L278 234L272 238L270 241L264 253L260 255L252 256L235 246L221 244L214 237L214 231L221 225L225 225L222 216L216 208L213 195L233 183L235 176L238 173L244 175L245 156L267 155L279 147L288 147Z"><title>Flevoland</title></path><path pathLength="1" d="M250 255L248 264L253 269L252 273L257 275L262 280L261 284L260 284L257 290L262 292L265 290L265 287L267 286L269 302L274 310L274 316L261 309L256 308L251 311L244 310L238 314L232 310L228 312L222 312L214 305L206 311L201 310L194 316L189 317L182 307L185 305L185 302L179 303L179 302L183 296L188 292L183 292L181 285L178 283L182 279L186 281L185 275L186 274L178 268L175 264L181 262L187 258L192 257L194 254L201 252L203 253L210 253L206 255L209 261L206 267L207 274L217 272L223 272L226 270L233 253L245 252L250 255Z"><title>Utrecht</title></path></g></svg>
-          <button type="button" class="pin" data-city="amsterdam" style="left:40.73%;top:42.55%" tabindex="-1" aria-hidden="true"><i></i></button><button type="button" class="pin" data-city="rotterdam" style="left:30.28%;top:57.98%" tabindex="-1" aria-hidden="true"><i></i></button><button type="button" class="pin" data-city="thehague" style="left:25.8%;top:52.5%" tabindex="-1" aria-hidden="true"><i></i></button><button type="button" class="pin" data-city="utrecht" style="left:46.21%;top:52.15%" tabindex="-1" aria-hidden="true"><i></i></button><button type="button" class="pin" data-city="eindhoven" style="left:54.92%;top:74.45%" tabindex="-1" aria-hidden="true"><i></i></button><button type="button" class="pin" data-city="groningen" style="left:82.3%;top:13.4%" tabindex="-1" aria-hidden="true"><i></i></button><button type="button" class="pin" data-city="leiden" style="left:30.53%;top:49.75%" tabindex="-1" aria-hidden="true"><i></i></button><button type="button" class="pin" data-city="nijmegen" style="left:64.38%;top:60.73%" tabindex="-1" aria-hidden="true"><i></i></button><button type="button" class="pin" data-city="maastricht" style="left:60.39%;top:94.68%" tabindex="-1" aria-hidden="true"><i></i></button><button type="button" class="pin" data-city="enschede" style="left:90.26%;top:47.7%" tabindex="-1" aria-hidden="true"><i></i></button>
+        <h2 class="sr-only" id="bento-title" data-i18n="bentoTitle">How we work</h2>
+        <div class="bento-grid">
+          <article class="bt bt-nl spot" data-reveal style="--i:0">
+            <svg class="bt-art nl-art" viewBox="0 0 468 554" aria-hidden="true" focusable="false"><g class="provs"><path pathLength="1" d="M458 69L458 81L455 90L458 110L457 122L444 146L441 142L437 141L440 133L428 118L404 94L400 93L392 96L380 80L373 77L367 82L364 86L357 99L340 92L338 87L339 83L345 75L344 70L348 62L352 57L351 56L351 51L346 51L340 47L338 43L340 38L351 38L355 40L359 38L376 33L404 29L415 30L420 34L424 49L429 54L437 58L440 57L442 59L445 57L444 60L445 65L458 69Z"><title>Groningen</title></path><path pathLength="1" d="M444 146L441 156L439 183L437 187L431 185L426 186L419 184L408 184L402 187L400 182L390 178L386 179L379 183L379 190L374 187L371 189L369 187L364 189L357 179L350 179L344 176L342 177L340 176L334 164L343 155L334 144L350 130L355 131L359 133L365 130L369 124L368 119L361 111L360 104L354 101L355 99L358 99L364 86L373 77L380 80L392 96L400 93L405 95L428 118L440 133L437 141L441 142L444 146Z"><title>Drenthe</title></path><path pathLength="1" d="M402 187L400 188L401 190L401 195L405 200L397 203L400 216L405 220L424 224L429 223L432 220L441 237L437 252L438 262L433 265L427 273L422 276L415 285L409 285L396 282L397 276L395 274L389 275L388 272L376 272L367 260L363 259L356 262L340 261L337 263L336 262L335 259L333 257L331 249L327 245L329 238L328 236L333 234L334 229L334 226L330 217L322 209L315 214L311 215L306 207L303 207L301 196L299 195L301 191L306 188L312 189L321 185L318 182L310 178L312 175L310 165L308 162L294 153L298 151L305 153L314 146L318 150L322 150L325 147L334 144L343 155L334 164L340 177L344 176L350 179L357 179L364 189L369 187L371 189L374 187L379 190L379 183L386 179L390 178L400 182L402 187Z"><title>Overijssel</title></path><path pathLength="1" d="M409 285L406 286L402 293L398 295L397 297L397 299L409 306L413 310L413 314L405 323L402 325L392 326L380 330L373 335L363 333L363 339L359 340L358 337L352 335L349 331L345 332L333 326L329 328L337 336L328 334L311 341L310 343L313 345L314 348L314 352L312 354L306 348L303 349L303 352L291 351L279 344L277 340L272 338L264 339L261 337L254 341L249 341L247 342L245 349L239 354L218 356L217 356L218 350L214 347L210 347L204 342L203 334L206 334L216 330L216 327L223 312L228 312L232 310L238 314L244 310L251 311L256 308L261 309L274 316L274 310L269 302L267 286L265 287L265 290L262 292L257 290L260 284L261 284L262 280L257 275L252 273L253 269L248 264L250 255L252 256L264 253L270 241L272 238L278 234L292 227L297 222L302 215L303 207L306 207L312 215L322 209L330 217L334 226L334 229L333 234L328 236L329 238L327 245L331 249L333 257L335 259L335 261L337 263L340 261L356 262L363 259L367 260L376 272L388 272L389 275L395 274L397 276L396 282L409 285Z"><title>Gelderland</title></path><path pathLength="1" d="M312 354L312 357L316 357L321 361L320 367L322 370L330 374L329 383L341 399L343 409L341 420L343 422L341 431L336 436L325 456L326 464L328 465L334 461L337 462L333 465L336 467L317 482L311 490L309 490L305 486L301 488L304 503L310 500L319 501L319 509L326 514L325 524L324 526L320 526L318 534L317 536L315 535L318 541L318 544L295 543L290 539L286 543L282 541L284 535L277 531L275 528L275 524L283 514L286 513L291 504L286 504L293 492L291 489L292 485L294 486L295 484L297 480L296 478L301 476L298 473L300 470L299 466L293 467L287 461L279 462L275 459L266 455L274 452L276 444L281 436L304 429L311 423L304 411L300 388L310 390L319 388L323 390L324 388L322 378L317 371L317 370L316 368L314 361L306 358L305 353L303 352L303 349L306 348L309 352L312 354Z"><title>Limburg</title></path><path pathLength="1" d="M22 451L15 449L12 446L10 441L10 425L31 417L32 417L40 422L51 425L57 430L66 431L81 425L84 418L89 419L94 426L100 428L104 428L107 424L112 426L110 433L105 440L100 444L77 457L63 457L60 454L60 448L40 441L29 443L28 444L28 450L22 451ZM118 426L116 425L113 416L109 419L99 419L94 416L88 411L81 409L74 419L66 422L50 410L40 411L32 409L27 401L23 397L21 392L35 383L68 380L72 383L75 388L71 392L82 393L88 395L92 399L98 411L107 411L109 413L116 412L117 422L118 426ZM113 397L104 394L96 394L84 384L94 380L107 381L113 388L114 393L113 397ZM107 379L102 378L99 373L101 371L109 375L107 379ZM90 366L97 369L96 374L92 376L81 378L74 374L72 369L64 363L62 363L58 367L51 367L49 364L50 358L54 355L64 354L79 355L83 357L90 366Z"><title>Zeeland</title></path><path pathLength="1" d="M182 417L182 406L176 402L171 404L162 415L159 417L149 416L146 415L148 407L145 405L136 408L130 412L131 413L130 418L134 425L134 428L131 429L126 429L118 426L117 422L116 412L119 411L120 407L117 399L113 397L114 391L110 384L109 380L107 379L109 375L125 371L129 368L133 361L149 364L161 359L164 359L172 349L178 344L187 343L192 338L203 339L204 342L210 347L214 347L218 350L217 356L218 356L239 354L245 349L247 342L249 341L254 341L261 337L264 339L272 338L277 340L279 344L291 351L305 353L306 358L314 361L316 368L317 370L317 371L322 378L324 387L323 390L319 388L310 390L300 388L304 411L311 423L304 429L281 436L276 444L274 452L266 455L265 446L260 442L257 441L248 447L227 447L227 440L225 437L219 438L217 436L214 429L210 425L210 419L212 413L209 408L205 405L204 406L200 414L194 421L192 422L185 419L175 417L175 415L176 415L182 417Z"><title>Noord-Brabant</title></path><path pathLength="1" d="M99 373L99 369L100 367L106 366L102 362L94 360L90 347L84 342L81 344L71 346L70 341L81 335L91 338L95 336L89 328L91 323L87 310L88 307L94 308L98 308L102 305L119 285L133 264L145 242L144 244L150 247L157 246L152 255L150 264L156 266L168 261L170 266L171 266L175 264L178 268L186 274L185 275L186 281L182 279L178 283L181 285L183 292L188 292L183 296L179 302L179 303L185 302L185 305L182 307L189 317L194 316L201 310L206 311L210 307L216 306L220 311L223 312L216 327L216 330L206 334L203 334L203 339L192 338L187 343L178 344L172 349L164 359L161 359L149 364L133 361L129 368L125 371L109 375L101 371L99 373Z"><title>Zuid-Holland</title></path><path pathLength="1" d="M145 242L155 210L160 173L164 155L169 142L171 124L173 122L180 123L181 122L182 124L180 129L183 133L192 134L200 128L211 125L223 114L233 142L245 156L244 175L238 173L235 176L233 183L213 195L216 208L222 216L225 225L221 225L214 231L214 237L221 244L235 246L245 252L233 254L226 270L223 272L217 272L207 274L206 267L209 261L206 255L210 253L203 253L201 252L194 254L192 257L187 258L171 266L168 261L153 266L150 264L149 263L152 255L157 246L150 247L144 244L145 242ZM190 95L190 96L192 96L190 102L187 107L181 111L178 116L174 117L170 115L168 111L171 100L174 95L180 91L185 80L189 81L189 82L189 84L192 90L192 93L190 95Z"><title>Noord-Holland</title></path><path pathLength="1" d="M223 114L239 100L246 98L254 74L261 67L265 65L271 59L279 57L283 53L316 39L340 38L338 43L340 47L346 51L351 51L351 56L352 57L348 61L344 70L345 74L339 83L339 91L342 94L350 95L355 99L354 101L360 104L361 111L369 122L365 129L359 133L355 131L350 130L334 144L325 147L322 150L318 150L314 146L305 153L298 151L294 153L288 147L282 147L276 149L267 155L246 156L233 142L223 114ZM188 74L201 61L209 56L214 57L214 59L206 61L192 76L188 74ZM252 34L270 30L268 34L258 35L258 38L257 38L252 39L226 49L223 49L222 46L223 43L231 39L250 36L252 34ZM281 27L309 26L313 28L302 31L290 31L281 34L278 34L276 31L277 28L279 26L281 27ZM343 19L355 18L358 19L358 21L337 27L334 30L333 25L336 22L343 19Z"><title>Friesland</title></path><path pathLength="1" d="M288 147L294 153L308 162L310 165L312 175L310 178L318 182L321 185L312 189L306 188L299 193L303 210L302 215L297 222L292 227L278 234L272 238L270 241L264 253L260 255L252 256L235 246L221 244L214 237L214 231L221 225L225 225L222 216L216 208L213 195L233 183L235 176L238 173L244 175L245 156L267 155L279 147L288 147Z"><title>Flevoland</title></path><path pathLength="1" d="M250 255L248 264L253 269L252 273L257 275L262 280L261 284L260 284L257 290L262 292L265 290L265 287L267 286L269 302L274 310L274 316L261 309L256 308L251 311L244 310L238 314L232 310L228 312L222 312L214 305L206 311L201 310L194 316L189 317L182 307L185 305L185 302L179 303L179 302L183 296L188 292L183 292L181 285L178 283L182 279L186 281L185 275L186 274L178 268L175 264L181 262L187 258L192 257L194 254L201 252L203 253L210 253L206 255L209 261L206 267L207 274L217 272L223 272L226 270L233 253L245 252L250 255Z"><title>Utrecht</title></path></g></svg>
+            <div class="bt-txt"><h3 data-i18n="bnNlT">Across the Netherlands</h3><p data-i18n="bnNlp">We search nationwide.</p></div>
+          </article>
+          <article class="bt bt-shield spot" data-reveal style="--i:1">
+            <svg class="bt-art lease-art" viewBox="0 0 220 150" fill="none" stroke="currentColor" stroke-width="1.2" aria-hidden="true" focusable="false"><rect x="8" y="6" width="204" height="138"/><path d="M24 30h110M24 52h150M24 74h130M24 96h160M24 118h90" opacity=".4"/><path class="tk t1" pathLength="1" d="M182 24l6 6 12-14"/><path class="tk t2" pathLength="1" d="M182 68l6 6 12-14"/><rect class="scan" x="8" y="6" width="204" height="14" fill="currentColor" stroke="none" opacity=".16"/></svg>
+            <div class="bt-txt"><h3 data-i18n="shTitle">We check the landlord and the lease</h3><p data-i18n="bnShp">We look at who is renting out the home and what the lease says.</p><a class="link-cta" href="#shield" data-i18n="bnShLink">Open the Shield</a></div>
+          </article>
+          <article class="bt bt-side spot" data-reveal style="--i:2">
+            <svg class="bt-art side-art" viewBox="0 0 220 70" fill="none" stroke="currentColor" aria-hidden="true" focusable="false"><path d="M10 20h200" stroke-width="1" opacity=".3"/><path class="ours" d="M10 50h200" stroke-width="1.6"/><circle class="dot" cx="10" cy="50" r="4" fill="currentColor" stroke="none"/></svg>
+            <div class="bt-txt"><h3 data-i18n="t1">Tenant side only</h3><p data-i18n="p3">Only the tenant pays. Landlords never pay us anything.</p></div>
+          </article>
+          <article class="bt bt-pay spot" data-reveal style="--i:3">
+            <div class="pay-art" aria-hidden="true"><svg viewBox="0 0 80 80" fill="none" stroke="currentColor"><circle cx="40" cy="40" r="34" stroke-width="1" opacity=".25"/><circle class="arc" cx="40" cy="40" r="34" stroke-width="2.4" pathLength="1" transform="rotate(-90 40 40)"/><path class="tick" pathLength="1" stroke-width="3" stroke-linecap="square" d="M27 41l9 9 18-20"/></svg><span class="euro">€0</span><span class="signed" data-i18n="bnSigned">Signed ✓</span></div>
+            <div class="bt-txt"><h3 data-i18n="t3">No cure, no pay</h3><p data-i18n="calcDue">Due only after you have signed. € 0 if we do not find your home.</p></div>
+          </article>
+          <article class="bt bt-fee spot" data-reveal style="--i:4">
+            <svg class="bt-art fee-art" viewBox="0 0 220 70" fill="none" aria-hidden="true" focusable="false"><rect x="0" y="6" width="100" height="10" fill="currentColor" opacity=".35"/><rect class="b2" x="0" y="30" width="150" height="10" fill="currentColor"/><rect class="b3" x="150" y="30" width="32" height="10" fill="currentColor" opacity=".6"/></svg>
+            <div class="bt-txt"><h3 data-i18n="bnFee">1.5× monthly rent + 21% VAT</h3><p data-i18n="bnFeep">Due only when a lease is signed through us.</p><a class="link-cta" href="#fee" data-i18n="bnFeeLink">See the fee</a></div>
+          </article>
+          <article class="bt bt-dig spot" data-reveal style="--i:5">
+            <div class="dig-art" aria-hidden="true"><div class="pixels"><i style="--k:0"></i><i style="--k:3"></i><i style="--k:1"></i><i style="--k:5"></i><i style="--k:2"></i><i style="--k:7"></i><i style="--k:4"></i><i style="--k:1"></i><i style="--k:6"></i><i style="--k:3"></i><i style="--k:8"></i><i style="--k:2"></i></div><svg viewBox="0 0 120 40" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path class="sg" pathLength="1" d="M6 30c10-24 16-24 18-8s-4 16 6 10 12-20 20-16 2 14 12 8 14-12 24-6 8 10 18 4"/></svg></div>
+            <div class="bt-txt"><h3 data-i18n="bnDigT">Fully digital and paperless</h3><p data-i18n="bnDigp">Mandate, documents and invoice.</p></div>
+          </article>
+          <article class="bt bt-contact spot" data-reveal style="--i:6">
+            <div class="msg-art" aria-hidden="true"><span class="m m1"><i></i></span><span class="m m2"><i></i></span><span class="m m3"><b></b><b></b><b></b></span></div>
+            <div class="bt-txt"><h3 data-i18n="marq4">One fixed contact</h3><p data-i18n="bnContactp">From first message to signature.</p></div>
+          </article>
         </div>
       </div>
     </section>
@@ -626,15 +653,12 @@
     <section class="s about" id="about" aria-labelledby="about-title" data-chapter="07">
       <div class="wrap">
         <div class="head" data-reveal>
-          <span class="label" id="about-title" data-i18n="aboutLabel">Who we are</span>
+          <span class="label" id="about-title" data-i18n="aboutLabel">The founders</span>
         </div>
-        <!-- FOUNDER-EDIT: placeholder quote, edit it in js/i18n.js (aboutQuote, aboutCite) -->
+        <!-- FOUNDER-EDIT: placeholder quote, edit it in js/i18n.js (aboutQuote). No names here on purpose. -->
         <figure class="fquote" data-reveal style="--i:1">
-          <blockquote><p data-i18n="aboutQuote">The Dutch rental market is hard on people who simply need a place to live. We stand on the tenant’s side only — and we want to make finding a home feel a lot less hard.</p></blockquote>
-          <figcaption>
-            <span class="initials" aria-hidden="true">L · J</span>
-            <span class="cite"><strong>Luuk Claessen</strong> &amp; <strong>Jalal Selmani</strong> — <span data-i18n="aboutCite">Founders</span></span>
-          </figcaption>
+          <blockquote><p data-i18n="aboutQuote">The Dutch rental market is hard on people who simply need a place to live. We stand on the tenant’s side only.</p></blockquote>
+          <figcaption><span class="initials" data-i18n-aria="aboutSigAria" aria-label="Signed by the two founders">LC <i aria-hidden="true">·</i> JS</span></figcaption>
         </figure>
         <div class="believe" data-reveal style="--i:1">
           <p class="label" data-i18n="believeLabel">What we believe</p>
@@ -643,16 +667,6 @@
             <li><span class="label on-dark-soft" data-i18n="bel2k">Transparent</span><p data-i18n="bel2">One fee, shown in full before you register.</p></li>
             <li><span class="label on-dark-soft" data-i18n="bel3k">Human</span><p data-i18n="bel3">One fixed contact, from first message to signature.</p></li>
           </ul>
-        </div>
-        <div class="founders">
-          <figure class="founder" data-reveal style="--i:1" id="founder-luuk" data-name="Luuk Claessen" data-key="luuk">
-            <div class="avatar" data-tilt><i class="ring" aria-hidden="true"></i><span class="mono" aria-hidden="true">L</span></div>
-            <figcaption><strong>Luuk Claessen</strong></figcaption>
-          </figure>
-          <figure class="founder" data-reveal style="--i:2" id="founder-jalal" data-name="Jalal Selmani" data-key="jalal">
-            <div class="avatar" data-tilt><i class="ring" aria-hidden="true"></i><span class="mono" aria-hidden="true">J</span></div>
-            <figcaption><strong>Jalal Selmani</strong></figcaption>
-          </figure>
         </div>
       </div>
       <div class="band" aria-hidden="true">
@@ -701,6 +715,7 @@
           <div class="faq-item"><h3><button type="button" class="faq-q" id="fq8" aria-expanded="false" aria-controls="fa8"><span data-i18n="q8">How do you handle my data?</span></button></h3><div class="faq-a" id="fa8" role="region" aria-labelledby="fq8"><div><p data-i18n="a8">We only use your details to contact you and to search for a home for you. We share them with a landlord only when you ask us to. We use no tracking or advertising cookies.</p></div></div></div>
           <div class="faq-item"><h3><button type="button" class="faq-q" id="fq9" aria-expanded="false" aria-controls="fa9"><span data-i18n="q9">Which areas and home types?</span></button></h3><div class="faq-a" id="fa9" role="region" aria-labelledby="fq9"><div><p data-i18n="a9">We search throughout the Netherlands. In the registration you tell us the city or region and whether you want a room, studio, apartment or house.</p></div></div></div>
           <div class="faq-item"><h3><button type="button" class="faq-q" id="fq10" aria-expanded="false" aria-controls="fa10"><span data-i18n="q10">How long does it take?</span></button></h3><div class="faq-a" id="fa10" role="region" aria-labelledby="fq10"><div><p data-i18n="a10">That depends on the market, your budget and how flexible you are, so we do not promise a timeline. Registering takes about a minute.</p></div></div></div>
+          <div class="faq-item"><h3><button type="button" class="faq-q" id="fq11" aria-expanded="false" aria-controls="fa11"><span data-i18n="q11">Can you help me buy a home later?</span></button></h3><div class="faq-a" id="fa11" role="region" aria-labelledby="fq11"><div><p data-i18n="a11">We can point you to licensed advisers; we do not give regulated financial advice.</p></div></div></div>
         </div>
       </div>
     </section>
@@ -775,87 +790,6 @@
         <p class="fine" data-i18n="fine">Fee: 1.5× the total monthly rent (including gas, water and electricity) plus 21% VAT, only due when a lease is signed through Property Direct. No costs upfront. No fee for homes you find yourself.</p>
       </div>
       <p class="f-vof" data-i18n="fVof">Property Direct is a trade name of a general partnership (vof).</p>
-      <div class="f-bottom" data-reveal>
-        <p class="copy">© <span id="year">2026</span> Property Direct</p>
-        <a class="to-top" href="#top"><span data-i18n="toTop">Back to top</span>
-          <svg viewBox="0 0 24 40" width="16" height="26" fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="square" stroke-linejoin="miter" aria-hidden="true"><path pathLength="1" d="M12 38V3"/><path pathLength="1" d="M4 11l8-8 8 8"/></svg>
-        </a>
-      </div>
-    </div>
-  </footer>
-        </blockquote>
-        <div class="founders">
-          <figure class="founder" data-reveal style="--i:1" id="founder-luuk" data-name="Luuk Claessen" data-key="luuk">
-            <div class="avatar"><span aria-hidden="true">L</span></div>
-            <figcaption><strong>Luuk Claessen</strong><span data-i18n="founderLuuk">Closing, platform &amp; technology</span></figcaption>
-          </figure>
-          <figure class="founder" data-reveal style="--i:2" id="founder-jalal" data-name="Jalal Selmani" data-key="jalal">
-            <div class="avatar"><span aria-hidden="true">J</span></div>
-            <figcaption><strong>Jalal Selmani</strong><span data-i18n="founderJalal">First contact &amp; client qualification</span></figcaption>
-          </figure>
-        </div>
-      </div>
-      <div class="band" aria-hidden="true">
-        <picture>
-          <source type="image/avif" srcset="assets/media/band-canal-800.avif 800w, assets/media/band-canal-1600.avif 1600w" sizes="100vw">
-          <source type="image/webp" srcset="assets/media/band-canal-800.webp 800w, assets/media/band-canal-1600.webp 1600w" sizes="100vw">
-          <img src="assets/media/band-canal-800.webp" width="1600" height="900" loading="lazy" decoding="async" alt="">
-        </picture>
-        <i class="fade"></i>
-      </div>
-    </section>
-
-    <section class="s faq-sec" id="faq" aria-labelledby="faq-title">
-      <div class="wrap faq-grid">
-        <div class="head" data-reveal>
-          <span class="label" data-i18n="faqLabel">FAQ</span>
-          <h2 id="faq-title" data-i18n="faqTitle">What to know before you start</h2>
-          <a class="link-cta" href="mandate.html" data-i18n="moreInfo">More on the mandate and cancellation</a>
-        </div>
-        <div class="faq" id="faq-list" data-reveal style="--i:1">
-          <div class="faq-item"><h3><button type="button" class="faq-q" id="fq1" aria-expanded="false" aria-controls="fa1"><span data-i18n="q1">What does it cost?</span></button></h3><div class="faq-a" id="fa1" role="region" aria-labelledby="fq1"><div><p data-i18n="a1">1.5× your total monthly rent, including gas, water and electricity, plus 21% VAT. For a total rent of € 1,500 that is € 2,250 plus € 472.50 VAT, € 2,722.50 in total. Nothing is due upfront.</p></div></div></div>
-          <div class="faq-item"><h3><button type="button" class="faq-q" id="fq2" aria-expanded="false" aria-controls="fa2"><span data-i18n="q2">When do I pay?</span></button></h3><div class="faq-a" id="fa2" role="region" aria-labelledby="fq2"><div><p data-i18n="a2">Only after you have signed a lease for a home we found for you. Not when you register, not when you sign the mandate and not while we search.</p></div></div></div>
-          <div class="faq-item"><h3><button type="button" class="faq-q" id="fq3" aria-expanded="false" aria-controls="fa3"><span data-i18n="q3">What if you don’t find a home?</span></button></h3><div class="faq-a" id="fa3" role="region" aria-labelledby="fq3"><div><p data-i18n="a3">Then you pay nothing. No cure, no pay.</p></div></div></div>
-          <div class="faq-item"><h3><button type="button" class="faq-q" id="fq4" aria-expanded="false" aria-controls="fa4"><span data-i18n="q4">Do you list homes?</span></button></h3><div class="faq-a" id="fa4" role="region" aria-labelledby="fq4"><div><p data-i18n="a4">No. We do not publish or sell listings and we never show “available homes”. We search per tenant, based on your search profile.</p></div></div></div>
-          <div class="faq-item"><h3><button type="button" class="faq-q" id="fq5" aria-expanded="false" aria-controls="fa5"><span data-i18n="q5">Do you work for landlords?</span></button></h3><div class="faq-a" id="fa5" role="region" aria-labelledby="fq5"><div><p data-i18n="a5">No. We work for tenants only and never take money from landlords. Landlords do not pay us anything.</p></div></div></div>
-          <div class="faq-item"><h3><button type="button" class="faq-q" id="fq6" aria-expanded="false" aria-controls="fa6"><span data-i18n="q6">What is the mandate?</span></button></h3><div class="faq-a" id="fa6" role="region" aria-labelledby="fq6"><div><p data-i18n="a6">The mandate is the written agreement in which you instruct us to search for you. We only start searching once you have signed it. Registering on this site is not a mandate.</p></div></div></div>
-          <div class="faq-item"><h3><button type="button" class="faq-q" id="fq7" aria-expanded="false" aria-controls="fa7"><span data-i18n="q7">Can I cancel?</span></button></h3><div class="faq-a" id="fa7" role="region" aria-labelledby="fq7"><div><p data-i18n="a7">Yes, at any time before you sign a lease, and no fee is due then. As a consumer you also have a 14-day right of withdrawal. We only start within that period if you explicitly ask us to.</p></div></div></div>
-          <div class="faq-item"><h3><button type="button" class="faq-q" id="fq8" aria-expanded="false" aria-controls="fa8"><span data-i18n="q8">How do you handle my data?</span></button></h3><div class="faq-a" id="fa8" role="region" aria-labelledby="fq8"><div><p data-i18n="a8">We only use your details to contact you and to search for a home for you. We share them with a landlord only when you ask us to. We use no tracking or advertising cookies.</p></div></div></div>
-          <div class="faq-item"><h3><button type="button" class="faq-q" id="fq9" aria-expanded="false" aria-controls="fa9"><span data-i18n="q9">Which areas and home types?</span></button></h3><div class="faq-a" id="fa9" role="region" aria-labelledby="fq9"><div><p data-i18n="a9">We search throughout the Netherlands. In the registration you tell us the city or region and whether you want a room, studio, apartment or house.</p></div></div></div>
-          <div class="faq-item"><h3><button type="button" class="faq-q" id="fq10" aria-expanded="false" aria-controls="fa10"><span data-i18n="q10">How long does it take?</span></button></h3><div class="faq-a" id="fa10" role="region" aria-labelledby="fq10"><div><p data-i18n="a10">That depends on the market, your budget and how flexible you are, so we do not promise a timeline. Registering takes about a minute.</p></div></div></div>
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <footer class="site-footer grain">
-    <div class="wrap">
-      <p class="wordmark" aria-hidden="true">Property Direct</p>
-      <div class="cols">
-        <div>
-          <svg class="mark" viewBox="0 0 158 120" width="52" height="40" aria-hidden="true" focusable="false"><use href="#pd"/></svg>
-          <p class="f-about" data-i18n="fAbout">Personal tenant representation in the Netherlands.</p>
-          <p class="f-vof" data-i18n="fVof">Property Direct is a trade name of a general partnership (vof).</p>
-        </div>
-        <div>
-          <h3 data-i18n="fCompany">Company</h3>
-          <p>Property Direct<br><span data-i18n="fKvk">KvK</span>: <span data-cfg="kvk">[KvK]</span><br><span data-i18n="fVat">VAT</span>: <span data-cfg="btw">[BTW]</span></p>
-        </div>
-        <div>
-          <h3 data-i18n="fLegal">Legal</h3>
-          <ul class="flinks"><li><a href="privacy.html" data-i18n="privacyLink">Privacy Policy</a></li><li><a href="terms.html" data-i18n="termsLink">Terms and Conditions</a></li><li><a href="mandate.html" data-i18n="mandateLink">Mandate and cancellation</a></li><li><a href="assets/media/CREDITS.md" data-i18n="creditsLink">Photography credits</a></li></ul>
-        </div>
-        <div>
-          <h3 data-i18n="fContact">Contact</h3>
-          <ul class="flinks"><li><span data-i18n="fEmail2">Email</span>: <a data-cfg-href="email" data-cfg="email">[email]</a></li><li><span data-i18n="fPhone2">Phone</span>: <a data-cfg-href="phone" data-cfg="phone">[phone]</a></li></ul>
-          <h3 class="f-lang-h" data-i18n="fLang">Language</h3>
-          <div class="lang" role="group" aria-label="Language / Taal">
-            <button type="button" data-lang="en" aria-pressed="true">EN</button>
-            <button type="button" data-lang="nl" aria-pressed="false">NL</button>
-          </div>
-        </div>
-      </div>
-      <p class="fine" data-i18n="fine">Fee: 1.5× the total monthly rent (including gas, water and electricity) plus 21% VAT, only due when a lease is signed through Property Direct. No costs upfront. No fee for homes you find yourself.</p>
       <div class="f-bottom" data-reveal>
         <p class="copy">© <span id="year">2026</span> Property Direct</p>
         <a class="to-top" href="#top"><span data-i18n="toTop">Back to top</span>

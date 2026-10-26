@@ -67,6 +67,53 @@
     }
   }
 
+  // Kinetic headline: every letter is its own span (so it can rise from a masked baseline and swell near the cursor).
+  // The real text lives in the h1's aria-label; the split spans are aria-hidden. The English markup is already split in the HTML.
+  function splitInto(el, text, start) {
+    if (el.textContent === text && el.querySelector('.ch')) return start + text.replace(/ /g, '').length;
+    el.textContent = '';
+    var idx = start;
+    text.split(' ').forEach(function (word, wi) {
+      if (wi) el.appendChild(document.createTextNode(' '));
+      var w = document.createElement('span');
+      w.className = 'w';
+      word.split('').forEach(function (c) {
+        var s = document.createElement('span');
+        s.className = 'ch';
+        s.style.setProperty('--i', idx++);
+        s.textContent = c;
+        w.appendChild(s);
+      });
+      el.appendChild(w);
+    });
+    return idx;
+  }
+  function splitHero() {
+    var n = 0;
+    $$('[data-split]').forEach(function (el) { n = splitInto(el, PD.t(el.getAttribute('data-split')), n); });
+  }
+  function initHeroSwell() {
+    if (!finePointer || reduced || !heroH1) return;
+    var letters = [], raf = 0, mx = -999, my = -999, on = false;
+    function frame() {
+      raf = 0;
+      if (!letters.length) letters = $$('.ch', heroH1);
+      letters.forEach(function (c) {
+        var r = c.getBoundingClientRect();
+        var d = Math.hypot(mx - (r.left + r.width / 2), my - (r.top + r.height / 2));
+        var v = on ? clamp(1 - d / 170, 0, 1) : 0;
+        c.style.setProperty('--sw', v.toFixed(2));
+      });
+    }
+    hero.addEventListener('pointermove', function (e) {
+      if (e.pointerType && e.pointerType !== 'mouse') return;
+      mx = e.clientX; my = e.clientY; on = true;
+      if (!raf) raf = requestAnimationFrame(frame);
+    }, { passive: true });
+    hero.addEventListener('pointerleave', function () { on = false; if (!raf) raf = requestAnimationFrame(frame); });
+    document.addEventListener('pd:lang', function () { letters = []; });
+  }
+
   // Magnetic primary button and a tiny cursor glow, only for fine pointers
   function initPointerEffects() {
     if (!finePointer || reduced) return;
@@ -215,13 +262,14 @@
 
   var header = $('#site-header');
   var heroMedia = $('.hero-media');
+  var heroH1 = $('#hero-h1');
   var dClip = $('#dclip-rect');
   var wordmark = $('#wordmark');
   var statementWords = [];
   var navLinks = $$('nav.menu a');
-  var sectionIds = ['how', 'who', 'shield', 'story', 'where', 'reel', 'fee', 'register', 'about', 'after', 'faq', 'sign'];
-  var navOf = { how: 'how', who: 'who', shield: 'shield', story: 'shield', where: 'where', reel: 'where', fee: 'fee', register: 'fee', about: 'about', after: 'faq', faq: 'faq', sign: 'faq' };
-  var chapterOf = { top: 1, statement: 1, how: 2, who: 3, shield: 4, story: 4, where: 5, reel: 5, fee: 6, register: 6, about: 7, after: 8, faq: 8, sign: 8 };
+  var sectionIds = ['how', 'who', 'shield', 'story', 'reel', 'fee', 'register', 'about', 'after', 'faq', 'sign'];
+  var navOf = { how: 'how', who: 'who', shield: 'shield', story: 'shield', reel: 'shield', fee: 'fee', register: 'fee', about: 'about', after: 'faq', faq: 'faq', sign: 'faq' };
+  var chapterOf = { top: 1, statement: 1, how: 2, who: 3, shield: 4, story: 4, reel: 4, fee: 5, register: 5, about: 6, after: 7, faq: 7, sign: 7 };
   var chapterLinks = $$('#chapters a');
   var vis = { stmt: false, how: false, who: false, story: false };
   var cssTimeline = !!(window.CSS && CSS.supports && CSS.supports('animation-timeline: view()'));
@@ -257,30 +305,40 @@
     });
   }
 
+  // How it works: progress for the 3D key, "seen" flags for the card illustrations, and the stacking effect:
+  // as the next card slides over, the previous one scales to .94 and dims (--cp from 0 to 1)
   function updateHow() {
     var ol = $('#how-steps');
     if (!ol) return;
     var vh = window.innerHeight;
     var r = ol.getBoundingClientRect();
-    var trig = vh * 0.56;
-    var hp = clamp((trig - r.top) / r.height, 0, 1);
-    ol.style.setProperty('--p', hp.toFixed(4));
-    if (keyCtrl) keyCtrl.progress = hp;
-    var steps = $$('.how-step', ol);
-    var active = -1;
-    steps.forEach(function (s, i) { if (s.getBoundingClientRect().top < trig) active = i; });
-    steps.forEach(function (s, i) {
-      s.classList.toggle('is-active', i === active);
-      s.classList.toggle('is-past', i < active);
+    if (keyCtrl) keyCtrl.progress = clamp((vh * 0.56 - r.top) / r.height, 0, 1);
+    var cards = $$('.how-card', ol);
+    cards.forEach(function (c, i) {
+      var top = c.getBoundingClientRect().top;
+      if (top < vh * 0.85) c.classList.add('is-seen');
+      if (reduced || i === cards.length - 1) return;
+      var next = cards[i + 1].getBoundingClientRect().top;
+      var stuck = parseFloat(getComputedStyle(cards[i + 1]).top) || 0;
+      var p = clamp(1 - (next - stuck) / Math.max(1, c.offsetHeight), 0, 1);
+      c.style.setProperty('--cp', p.toFixed(3));
     });
   }
 
-  function updateStory() {
-    var track = $('#story-track');
-    if (!track) return;
+  // Film-strip: --fp (0 to 1) when the CSS scroll timeline is missing, and the "02 / 04" counter always
+  var filmPinned = !reduced && window.matchMedia('(min-width: 761px)').matches;
+  function updateFilm() {
+    var track = $('#film-track');
+    if (!track || !filmPinned) return;
     var r = track.getBoundingClientRect();
     var p = clamp(-r.top / Math.max(1, r.height - window.innerHeight), 0, 1);
-    track.style.setProperty('--sp', p.toFixed(4));
+    if (!cssTimeline) track.style.setProperty('--fp', p.toFixed(4));
+    var count = $('#film-count');
+    if (count) {
+      var n = Math.min(3, Math.round(p * 3)) + 1;
+      var txt = '0' + n + ' / 04';
+      if (count.textContent !== txt) count.textContent = txt;
+    }
   }
 
   function updateParallax() {
@@ -311,17 +369,15 @@
     }
     if (wordmark) wordmark.classList.toggle('lit', prog > 0.985);
 
-    if (hero && !reduced && y < vh * 1.1) {
-      var inner = $('#hero-inner');
-      var k = clamp(y / (vh * 0.75), 0, 1);
+    if (hero && !reduced && y < vh * 1.8) {
+      var hp = clamp(y / (vh * 0.6), 0, 1);
+      if (heroH1) heroH1.style.setProperty('--hp', hp.toFixed(3));
       heroMedia.style.setProperty('--vy', Math.min(y * 0.08, 40).toFixed(1) + 'px');
-      inner.style.transform = k > 0 ? 'translate3d(0,' + (y * 0.12).toFixed(1) + 'px,0)' : '';
-      inner.style.opacity = k > 0 ? (1 - k * 0.92).toFixed(3) : '';
     }
     if (vis.stmt) updateStatement();
     if (vis.how) updateHow();
+    if (vis.story) updateFilm();
     if (vis.who) updateParallax();
-    if (vis.story && !cssTimeline) updateStory();
 
     var current = '', chapter = 1;
     ['top', 'statement'].concat(sectionIds).forEach(function (id) {
@@ -829,44 +885,6 @@
     toastEl._t = setTimeout(function () { toastEl.classList.remove('show'); }, 2600);
   }
 
-  function initMap() {
-    var map = $('#nl-map');
-    if (!map) return;
-    var pins = $$('.pin', map);
-    pins.forEach(function (p, i) { p.style.setProperty('--k', i); });
-    var cityBtns = $$('.city');
-    var nameEl = $('#city-name');
-    var vibeEl = $('#city-vibe');
-    var current = '';
-    function preview(k) {
-      current = k;
-      pins.forEach(function (p) { p.classList.toggle('is-active', p.getAttribute('data-city') === k); });
-      cityBtns.forEach(function (b) { b.classList.toggle('is-active', b.getAttribute('data-city') === k); });
-      nameEl.textContent = PD.t('c_' + k);
-      vibeEl.textContent = PD.t('v_' + k);
-    }
-    function pick(k) {
-      preview(k);
-      var reg = field('regio');
-      if (reg) {
-        reg.value = PD.t('c_' + k);
-        reg.dispatchEvent(new Event('input', { bubbles: true }));
-        syncProfile('region');
-        if (msgKeys.regio) showMsg('regio', '');
-      }
-      toast(PD.t('mapSet').replace('{city}', PD.t('c_' + k)));
-      goTo($('#register'));
-      setTimeout(function () { if (reg) reg.focus({ preventScroll: true }); }, reduced ? 0 : 700);
-    }
-    pins.concat(cityBtns).forEach(function (el) {
-      var k = el.getAttribute('data-city');
-      el.addEventListener('pointerenter', function (e) { if (e.pointerType === 'mouse') preview(k); });
-      el.addEventListener('focus', function () { preview(k); });
-      el.addEventListener('click', function () { pick(k); });
-    });
-    document.addEventListener('pd:lang', function () { if (current) preview(current); });
-  }
-
   /* ------------------------------------------------------------------ Emerald-glass key (lazy WebGL) */
 
   var keyCtrl = null;
@@ -1049,31 +1067,71 @@
     });
   });
 
-  /* ------------------------------------------------------------------ founders */
+  /* ------------------------------------------------------------------ Facts & figures (config in js/config.js) */
 
-  function renderFounders() {
-    $$('.founder').forEach(function (fig) {
-      var path = (CFG.portraits || {})[fig.getAttribute('data-key')];
-      var avatar = $('.avatar', fig);
-      var img = $('img', avatar);
-      var alt = PD.t('portraitAlt').replace('{name}', fig.getAttribute('data-name'));
-      if (img) { img.alt = alt; return; }
-      if (!path) return;
-      img = document.createElement('img');
-      img.src = path;
-      img.alt = alt;
-      img.width = 220;
-      img.height = 220;
-      img.loading = 'lazy';
-      img.decoding = 'async';
-      img.addEventListener('error', function () { img.remove(); });
-      avatar.appendChild(img);
+  var factsReady = false;
+  function factText(f, k) { return PD.lang === 'nl' ? f[k + '_nl'] : f[k + '_en']; }
+  function renderFacts() {
+    var list = CFG.FACTS || [];
+    $$('.fact').forEach(function (li) {
+      var f = list[Number(li.getAttribute('data-fact'))];
+      if (!f) return;
+      li.hidden = f.show === false;
+      var unit = $('.unit', li);
+      if (unit) unit.textContent = factText(f, 'unit') || '';
+      $('.fact-label', li).textContent = factText(f, 'label');
     });
+  }
+  function initFacts() {
+    var items = $$('.fact');
+    if (!items.length) return;
+    var list = CFG.FACTS || [];
+    items.forEach(function (li) {
+      var f = list[Number(li.getAttribute('data-fact'))];
+      if (!f) return;
+      var pre = $('.pre', li), n = $('.n', li), suf = $('.suf', li);
+      if (pre && f.prefix != null) pre.textContent = f.prefix;
+      n.setAttribute('data-to', f.value);
+      n.textContent = String(f.value);
+      if (suf) {
+        var plus = f.suffix && f.suffix.slice(-1) === '+';
+        suf.textContent = plus ? f.suffix.slice(0, -1) : (f.suffix || '');
+        if (plus) { var p = document.createElement('span'); p.className = 'plus'; p.textContent = '+'; suf.appendChild(p); }
+      }
+    });
+    renderFacts();
+    factsReady = true;
+    function run(li) {
+      var n = $('.n', li), to = Number(n.getAttribute('data-to'));
+      li.classList.add('counting');
+      if (reduced || !to) { n.textContent = String(to); li.classList.add('done'); return; }
+      var t0 = performance.now(), dur = 1200;
+      n.textContent = '0';
+      (function step(now) {
+        var k = clamp((now - t0) / dur, 0, 1);
+        n.textContent = String(Math.round(to * (1 - Math.pow(1 - k, 3))));
+        if (k < 1) requestAnimationFrame(step);
+        else { n.textContent = String(to); li.classList.add('done'); }
+      })(t0);
+    }
+    if ('IntersectionObserver' in window && !reduced) {
+      var fio = new IntersectionObserver(function (entries) {
+        entries.forEach(function (en) {
+          if (!en.isIntersecting) return;
+          fio.unobserve(en.target);
+          run(en.target);
+        });
+      }, { threshold: 0.4 });
+      items.forEach(function (li) { fio.observe(li); });
+    } else {
+      items.forEach(function (li) { li.classList.add('counting', 'done'); });
+    }
   }
 
   /* ------------------------------------------------------------------ language changes and init */
 
   document.addEventListener('pd:lang', function () {
+    splitHero();
     splitStatement();
     renderAmounts();
     if (form) {
@@ -1083,14 +1141,16 @@
       syncProfile();
     }
     if (menuBtn) menuLabel();
-    renderFounders();
+    renderFacts();
   });
 
   var yearEl = $('#year');
   if (yearEl) yearEl.textContent = String(new Date().getFullYear());
 
+  splitHero();
   initHeroVideo();
   initClock();
+  initHeroSwell();
   initSmoothScroll();
   initPointerEffects();
   splitStatement();
@@ -1114,13 +1174,13 @@
     showStep(1, false);
     syncProfile();
   }
-  renderFounders();
+  initFacts();
   initShield();
-  initMap();
   initKey3d();
   initSign();
   initReel();
   initChecklist();
+  if (!filmPinned) { var fs = $('#film-strip'); if (fs) fs.setAttribute('tabindex', '0'); }
   (function initProof() {
     var items = CFG.proof;
     if (!items || !items.length) return;

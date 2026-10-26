@@ -12,21 +12,35 @@ Live at https://propertydirect.nl
 ├── privacy.html, terms.html, mandate.html     # Supporting pages (EN + NL), marked as drafts
 ├── guides/                # Move-in guides: index, first week, rental contract, rental scams (EN + NL)
 ├── css/style.css          # Design system (tokens, type, layout, motion)
-├── js/config.js           # Central config: KvK, BTW, email, phone, form endpoint, reel, proof, portraits
+├── js/config.js           # Central config: KvK, BTW, email, phone, form endpoint, reel, proof, FACTS
 ├── js/i18n.js             # Translations (EN/NL), language switch (with a view transition)
 ├── js/home.js             # Hero, scroll effects, calculator, form, Shield, map, story, reel, signature, checklist, menu
 ├── js/key3d.js            # The rotating emerald-glass key (plain WebGL, lazy)
 ├── js/vendor/             # Lenis smooth scrolling (MIT)
 ├── fonts/                 # Self-hosted Inter Tight, JetBrains Mono and a handwriting face (woff2)
 ├── assets/media/          # Hero video, reel, photos (AVIF + WebP), CREDITS.md
-├── assets/team/           # Founder portraits go here (see below)
 ├── _headers               # Cache and security headers (Cloudflare)
 └── wrangler.toml          # Cloudflare Workers (static assets) config
 ```
 
 ## Chapters on the home page
 
-Hero, statement, How it works (with the 3D key), Who we help, marquee, The Shield (interactive sample lease), the scrubbed day-to-night story, principles strip, Where we search (interactive map), the montage reel, Fee (calculator), Register (3 steps and live profile), About (the founders), After you sign (tickable checklist), FAQ, the signature finale and the footer. A chapter index sits on the left edge on wide screens.
+Hero (kinetic headline, pinned for about 60 vh), statement, Facts & figures, How it works (four cards that stack, with the 3D key), Who we help, marquee, The Shield (interactive sample lease), the horizontal film-strip (four frames, pinned; a swipe strip on mobile and for reduced motion), the bento grid of principles, the montage reel, Fee (calculator), Register (3 steps and live profile), About (a short founders' quote, initials only), After you sign (tickable checklist), FAQ, the signature finale and the footer. A chapter index sits on the left edge on wide screens. There is no city picker: the register form has a free-text "Region / city" field.
+
+## Look and feel
+
+Nacht, Smaragd, Sage and Paper, as in v3. Photos and video keep their real colours: one grade for all of them lives in two CSS custom properties at the top of `css/style.css`:
+
+```css
+--media-filter: saturate(.9) contrast(1.05) brightness(.9);
+--media-tint: rgba(14, 70, 52, .10);   /* normal blend, never multiply */
+```
+
+Dark gradients only sit behind text (left and bottom scrims). Change the two values once to retune the hero video and poster, persona cards, film-strip, finale, about band and reel.
+
+### Facts & figures
+
+`FACTS` in `js/config.js` (value, prefix, suffix, unit, `label_en`, `label_nl`, `show`). The HTML carries the final values (no JavaScript needed); the count-up runs once at 40% in view. The tiles are indicative figures about the team and network, not the company's own trading history: keep the footnote (`factsNote` in `js/i18n.js`), never write "deals completed" or "our clients" next to them, and keep them out of JSON-LD and meta text.
 
 ## Running locally
 
@@ -48,9 +62,9 @@ Everything lives in one object, `js/config.js` (`window.PD_CONFIG`):
 | `FORM_ENDPOINT`, `FORM_ACCESS_KEY` | The one URL the registration form POSTs JSON to (Web3Forms, key is public by design). |
 | `reelOverlay` | `true` shows the four words (search, check, sign, move in) over the reel. Set it to `false` if you replace the reel with one that has its own type. |
 | `proof` | Empty on purpose. Add real, provable numbers only, for example `[{ value: '1', label: 'Fixed contact per client' }]`. A proof strip appears only when the list has items. |
-| `portraits.luuk`, `portraits.jalal` | Paths of the founder photos, for example `assets/team/luuk.jpg`. While empty, a monogram (L / J) is shown and no file is requested. |
+| `FACTS` | The four tiles of the Facts & figures band, see above. |
 
-Also: the founders' quote (`aboutQuote` in `js/i18n.js`, marked `FOUNDER-EDIT`), `[KvK]` in the JSON-LD of `index.html`, `[retention period]` in `privacy.html`, and the `[VERIFY]` markers in the guides.
+Also: the founders' quote (`aboutQuote` in `js/i18n.js`, marked `FOUNDER-EDIT`; the About section shows initials only, no names), `[KvK]` in the JSON-LD of `index.html`, `[retention period]` in `privacy.html`, and the `[VERIFY]` markers in the guides.
 
 The legal pages and the guides are plain-language drafts. They say so, and they have not been reviewed by a legal professional.
 
@@ -68,8 +82,8 @@ The legal pages and the guides are plain-language drafts. They say so, and they 
 See `assets/media/CREDITS.md` for the source, creator and licence of every file.
 
 - **Hero video**: `hero.webm` + `hero.mp4` (silent, 1280×720, under 2.5 MB each, stabilised and slowed, looped with a crossfade), with `hero-poster*.webp` as fallback. The video starts after the page has loaded; reduced motion, Save-Data, reduced-data and 2G get the poster only (with a slow Ken Burns when motion is allowed). To use another clip, replace `hero.mp4` and delete `hero.webm`.
-- **Reel**: `reel.webm` + `reel.mp4` (16 cuts, under 1.2 MB each) and `reel-9x16.mp4` (the same cut for Instagram, LinkedIn and WhatsApp, with the words burnt in). Drop in your own `reel.mp4` (and delete `reel.webm`) and the same player picks it up.
-- **Photos**: each exists as AVIF and WebP at 800 and 1600 px wide. The cards are duotoned with CSS (emerald and sage), so any photo that fits the mood works.
+- **Reel**: `reel.webm` + `reel.mp4` (16 cuts in natural colour, about 1.2 MB each) and `reel-9x16.mp4` (the same cut for Instagram, LinkedIn and WhatsApp, with the words burnt in). Drop in your own `reel.mp4` (and delete `reel.webm`) and the same player picks it up.
+- **Photos**: each exists as AVIF and WebP at 800 and 1600 px wide. They keep their real colours; the shared grade (`--media-filter`, `--media-tint`) is applied in CSS.
 
 ## Performance notes
 

@@ -20,8 +20,13 @@ window.PD_CONFIG = {
   // [{ value: '1', label: 'Fixed contact per client' }]. Nothing is shown while the list is empty.
   proof: [],
 
-  // Founder portraits. Add the photo to assets/team/ and put its path here, for example
-  // 'assets/team/luuk.jpg'. While a value is empty, an elegant monogram is shown instead
-  // (and no request for a missing file is made).
-  portraits: { luuk: '', jalal: '' }
+  // Facts & figures band (shown right after the statement). Edit values here; set show: false to hide a tile.
+  // Indicative figures: they describe the team and network, not the company's own trading history. Never present
+  // them as "deals completed" or "our clients", and keep the footnote (factsNote in js/i18n.js).
+  FACTS: [
+    { prefix: '€', value: 5, suffix: 'M+', unit_en: '', unit_nl: '', label_en: 'Rental contract value, indicative', label_nl: 'Huurcontractwaarde, indicatief', show: true },
+    { value: 8, suffix: '+', unit_en: 'years', unit_nl: 'jaar', label_en: 'Experience in residential renting', label_nl: 'Ervaring in residentieel huren', show: true },
+    { value: 5, suffix: '', unit_en: 'regions', unit_nl: 'regio’s', label_en: 'Amsterdam · Rotterdam · The Hague · Utrecht · Groningen — and active nationwide', label_nl: 'Amsterdam · Rotterdam · Den Haag · Utrecht · Groningen — en actief in heel Nederland', show: true },
+    { value: 30, suffix: '+', unit_en: 'partners', unit_nl: 'partners', label_en: 'Landlords, property professionals and business contacts in our network', label_nl: 'Verhuurders, vastgoedprofessionals en zakelijke contacten in ons netwerk', show: true }
+  ]
 };

@@ -76,10 +76,6 @@
         "logo": "https://propertydirect.nl/icon-512.png",
         "description": "Personal tenant representation in the Netherlands. We search on the tenant's side only. You pay only when your lease is signed.",
         "areaServed": { "@type": "Country", "name": "Netherlands" },
-        "founder": [
-          { "@type": "Person", "name": "Luuk Claessen" },
-          { "@type": "Person", "name": "Jalal Selmani" }
-        ],
         "identifier": { "@type": "PropertyValue", "propertyID": "KvK", "value": "[KvK]" }
       },
       {
@@ -94,7 +90,8 @@
           { "@type": "Question", "name": "Can I cancel?", "acceptedAnswer": { "@type": "Answer", "text": "Yes, at any time before you sign a lease, and no fee is due then. As a consumer you also have a 14-day right of withdrawal. We only start within that period if you explicitly ask us to." } },
           { "@type": "Question", "name": "How do you handle my data?", "acceptedAnswer": { "@type": "Answer", "text": "We only use your details to contact you and to search for a home for you. We share them with a landlord only when you ask us to. We use no tracking or advertising cookies." } },
           { "@type": "Question", "name": "Which areas and home types?", "acceptedAnswer": { "@type": "Answer", "text": "We search throughout the Netherlands. In the registration you tell us the city or region and whether you want a room, studio, apartment or house." } },
-          { "@type": "Question", "name": "How long does it take?", "acceptedAnswer": { "@type": "Answer", "text": "That depends on the market, your budget and how flexible you are, so we do not promise a timeline. Registering takes about a minute." } }
+          { "@type": "Question", "name": "How long does it take?", "acceptedAnswer": { "@type": "Answer", "text": "That depends on the market, your budget and how flexible you are, so we do not promise a timeline. Registering takes about a minute." } },
+          { "@type": "Question", "name": "Can you help me buy a home later?", "acceptedAnswer": { "@type": "Answer", "text": "We can point you to licensed advisers; we do not give regulated financial advice." } }
         ]
       }
     ]
@@ -211,6 +208,19 @@
     <section class="statement" id="statement" aria-label="Summary">
       <div class="wrap">
         <p class="stmt" id="stmt" data-i18n="stmt">You describe what you need. We search for it, check the landlord and the lease, and you sign only what you’re happy with.</p>
+      </div>
+    </section>
+
+    <section class="facts" id="facts" aria-labelledby="facts-title">
+      <div class="wrap">
+        <p class="label on-dark" id="facts-title" data-i18n="factsLabel">Facts &amp; figures</p>
+        <ul class="facts-grid" id="facts-grid">
+          <li class="fact spot" data-fact="0" data-reveal><p class="fact-num"><span class="pre">€</span><span class="n" data-to="5">5</span><span class="suf">M<span class="plus">+</span></span></p><i class="fact-line" aria-hidden="true"></i><p class="fact-label">Rental contract value, indicative</p></li>
+          <li class="fact spot" data-fact="1" data-reveal style="--i:1"><p class="fact-num"><span class="n" data-to="8">8</span><span class="suf"><span class="plus">+</span></span><span class="unit">years</span></p><i class="fact-line" aria-hidden="true"></i><p class="fact-label">Experience in residential renting</p></li>
+          <li class="fact spot" data-fact="2" data-reveal style="--i:2"><p class="fact-num"><span class="n" data-to="5">5</span><span class="unit">regions</span></p><i class="fact-line" aria-hidden="true"></i><p class="fact-label">Amsterdam · Rotterdam · The Hague · Utrecht · Groningen — and active nationwide</p></li>
+          <li class="fact spot" data-fact="3" data-reveal style="--i:3"><p class="fact-num"><span class="n" data-to="30">30</span><span class="suf"><span class="plus">+</span></span><span class="unit">partners</span></p><i class="fact-line" aria-hidden="true"></i><p class="fact-label">Landlords, property professionals and business contacts in our network</p></li>
+        </ul>
+        <p class="facts-note" data-i18n="factsNote">Indicative figures based on the combined experience of the team and network behind Property Direct, not on the company’s own trading history.</p>
       </div>
     </section>
 
@@ -601,15 +611,12 @@
     <section class="s about" id="about" aria-labelledby="about-title" data-chapter="07">
       <div class="wrap">
         <div class="head" data-reveal>
-          <span class="label" id="about-title" data-i18n="aboutLabel">Who we are</span>
+          <span class="label" id="about-title" data-i18n="aboutLabel">The founders</span>
         </div>
-        <!-- FOUNDER-EDIT: placeholder quote, edit it in js/i18n.js (aboutQuote, aboutCite) -->
+        <!-- FOUNDER-EDIT: placeholder quote, edit it in js/i18n.js (aboutQuote). No names here on purpose. -->
         <figure class="fquote" data-reveal style="--i:1">
-          <blockquote><p data-i18n="aboutQuote">The Dutch rental market is hard on people who simply need a place to live. We stand on the tenant’s side only — and we want to make finding a home feel a lot less hard.</p></blockquote>
-          <figcaption>
-            <span class="initials" aria-hidden="true">L · J</span>
-            <span class="cite"><strong>Luuk Claessen</strong> &amp; <strong>Jalal Selmani</strong> — <span data-i18n="aboutCite">Founders</span></span>
-          </figcaption>
+          <blockquote><p data-i18n="aboutQuote">The Dutch rental market is hard on people who simply need a place to live. We stand on the tenant’s side only.</p></blockquote>
+          <figcaption><span class="initials" data-i18n-aria="aboutSigAria" aria-label="Signed by the two founders">LC <i aria-hidden="true">·</i> JS</span></figcaption>
         </figure>
         <div class="believe" data-reveal style="--i:1">
           <p class="label" data-i18n="believeLabel">What we believe</p>
@@ -618,16 +625,6 @@
             <li><span class="label on-dark-soft" data-i18n="bel2k">Transparent</span><p data-i18n="bel2">One fee, shown in full before you register.</p></li>
             <li><span class="label on-dark-soft" data-i18n="bel3k">Human</span><p data-i18n="bel3">One fixed contact, from first message to signature.</p></li>
           </ul>
-        </div>
-        <div class="founders">
-          <figure class="founder" data-reveal style="--i:1" id="founder-luuk" data-name="Luuk Claessen" data-key="luuk">
-            <div class="avatar" data-tilt><i class="ring" aria-hidden="true"></i><span class="mono" aria-hidden="true">L</span></div>
-            <figcaption><strong>Luuk Claessen</strong></figcaption>
-          </figure>
-          <figure class="founder" data-reveal style="--i:2" id="founder-jalal" data-name="Jalal Selmani" data-key="jalal">
-            <div class="avatar" data-tilt><i class="ring" aria-hidden="true"></i><span class="mono" aria-hidden="true">J</span></div>
-            <figcaption><strong>Jalal Selmani</strong></figcaption>
-          </figure>
         </div>
       </div>
       <div class="band" aria-hidden="true">
@@ -676,6 +673,7 @@
           <div class="faq-item"><h3><button type="button" class="faq-q" id="fq8" aria-expanded="false" aria-controls="fa8"><span data-i18n="q8">How do you handle my data?</span></button></h3><div class="faq-a" id="fa8" role="region" aria-labelledby="fq8"><div><p data-i18n="a8">We only use your details to contact you and to search for a home for you. We share them with a landlord only when you ask us to. We use no tracking or advertising cookies.</p></div></div></div>
           <div class="faq-item"><h3><button type="button" class="faq-q" id="fq9" aria-expanded="false" aria-controls="fa9"><span data-i18n="q9">Which areas and home types?</span></button></h3><div class="faq-a" id="fa9" role="region" aria-labelledby="fq9"><div><p data-i18n="a9">We search throughout the Netherlands. In the registration you tell us the city or region and whether you want a room, studio, apartment or house.</p></div></div></div>
           <div class="faq-item"><h3><button type="button" class="faq-q" id="fq10" aria-expanded="false" aria-controls="fa10"><span data-i18n="q10">How long does it take?</span></button></h3><div class="faq-a" id="fa10" role="region" aria-labelledby="fq10"><div><p data-i18n="a10">That depends on the market, your budget and how flexible you are, so we do not promise a timeline. Registering takes about a minute.</p></div></div></div>
+          <div class="faq-item"><h3><button type="button" class="faq-q" id="fq11" aria-expanded="false" aria-controls="fa11"><span data-i18n="q11">Can you help me buy a home later?</span></button></h3><div class="faq-a" id="fa11" role="region" aria-labelledby="fq11"><div><p data-i18n="a11">We can point you to licensed advisers; we do not give regulated financial advice.</p></div></div></div>
         </div>
       </div>
     </section>

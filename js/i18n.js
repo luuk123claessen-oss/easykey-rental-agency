@@ -77,8 +77,10 @@
       cType: 'Looking for', cRegion: 'Region', cBudget: 'Budget', cStart: 'Start', cPeople: 'People', cDuration: 'Duration', cRole: 'You are',
       cardNote: 'Built from your own answers. It is not a list of homes.',
 
-      aboutLabel: 'Who we are',
-      portraitAlt: 'Portrait of {name}',
+      aboutLabel: 'The founders',
+      aboutSigAria: 'Signed by the two founders',
+      factsLabel: 'Facts & figures',
+      factsNote: 'Indicative figures based on the combined experience of the team and network behind Property Direct, not on the company’s own trading history.',
 
       faqLabel: 'FAQ', faqTitle: 'What to know before you start',
       q1: 'What does it cost?', a1: '1.5× your total monthly rent, including gas, water and electricity, plus 21% VAT. For a total rent of € 1,500 that is € 2,250 plus € 472.50 VAT, € 2,722.50 in total. Nothing is due upfront.',
@@ -90,6 +92,7 @@
       q7: 'Can I cancel?', a7: 'Yes, at any time before you sign a lease, and no fee is due then. As a consumer you also have a 14-day right of withdrawal. We only start within that period if you explicitly ask us to.',
       q8: 'How do you handle my data?', a8: 'We only use your details to contact you and to search for a home for you. We share them with a landlord only when you ask us to. We use no tracking or advertising cookies.',
       q9: 'Which areas and home types?', a9: 'We search throughout the Netherlands. In the registration you tell us the city or region and whether you want a room, studio, apartment or house.',
+      q11: 'Can you help me buy a home later?', a11: 'We can point you to licensed advisers; we do not give regulated financial advice.',
       q10: 'How long does it take?', a10: 'That depends on the market, your budget and how flexible you are, so we do not promise a timeline. Registering takes about a minute.',
       moreInfo: 'More on the mandate and cancellation',
 
@@ -100,8 +103,7 @@
       privacyLink: 'Privacy Policy', termsLink: 'Terms and Conditions', mandateLink: 'Mandate and cancellation', creditsLink: 'Photography credits',
       toTop: 'Back to top',
       // FOUNDER-EDIT: the founders' quote below is a placeholder draft. Edit the wording here (EN and NL).
-      aboutQuote: 'The Dutch rental market is hard on people who simply need a place to live. We stand on the tenant’s side only — and we want to make finding a home feel a lot less hard.',
-      aboutCite: 'Founders',
+      aboutQuote: 'The Dutch rental market is hard on people who simply need a place to live. We stand on the tenant’s side only.',
       believeLabel: 'What we believe',
       bel1k: 'Fair',
       bel1: 'You pay only when your lease is signed.',
@@ -303,8 +305,10 @@
       cType: 'Zoekt', cRegion: 'Regio', cBudget: 'Budget', cStart: 'Start', cPeople: 'Personen', cDuration: 'Duur', cRole: 'Je bent',
       cardNote: 'Opgebouwd uit je eigen antwoorden. Dit is geen lijst met woningen.',
 
-      aboutLabel: 'Wie we zijn',
-      portraitAlt: 'Portret van {name}',
+      aboutLabel: 'De oprichters',
+      aboutSigAria: 'Ondertekend door de twee oprichters',
+      factsLabel: 'Feiten & cijfers',
+      factsNote: 'Indicatieve cijfers op basis van de gezamenlijke ervaring van het team en netwerk achter Property Direct, niet van de bedrijfsgeschiedenis van de onderneming zelf.',
 
       faqLabel: 'Vragen', faqTitle: 'Wat je wilt weten voordat je begint',
       q1: 'Wat kost het?', a1: '1,5× je totale maandhuur, inclusief gas, water en licht, plus 21% btw. Bij een totale huur van € 1.500 is dat € 2.250 plus € 472,50 btw, samen € 2.722,50. Vooraf is niets verschuldigd.',
@@ -316,6 +320,7 @@
       q7: 'Kan ik annuleren?', a7: 'Ja, op elk moment voordat je een huurcontract tekent, en dan is er geen fee verschuldigd. Als consument heb je ook 14 dagen bedenktijd. We beginnen binnen die periode alleen als jij daar uitdrukkelijk om vraagt.',
       q8: 'Hoe gaan jullie met mijn gegevens om?', a8: 'We gebruiken je gegevens alleen om contact met je op te nemen en een woning voor je te zoeken. We delen ze alleen met een verhuurder als jij dat vraagt. We gebruiken geen tracking- of advertentiecookies.',
       q9: 'Welke regio’s en soorten woningen?', a9: 'We zoeken in heel Nederland. Bij je inschrijving geef je de stad of regio aan en of je een kamer, studio, appartement of huis wilt.',
+      q11: 'Kun je me later ook helpen een woning te kopen?', a11: 'We kunnen je doorverwijzen naar erkende adviseurs; we geven zelf geen gereguleerd financieel advies.',
       q10: 'Hoelang duurt het?', a10: 'Dat hangt af van de markt, je budget en hoe flexibel je bent, dus we beloven geen termijn. Inschrijven kost ongeveer een minuut.',
       moreInfo: 'Meer over de opdracht en annuleren',
 
@@ -326,8 +331,7 @@
       privacyLink: 'Privacybeleid', termsLink: 'Algemene voorwaarden', mandateLink: 'Opdracht en annuleren', creditsLink: 'Fotocredits',
       toTop: 'Terug naar boven',
       // FOUNDER-EDIT: the founders' quote below is a placeholder draft. Edit the wording here (EN and NL).
-      aboutQuote: 'De Nederlandse huurmarkt is zwaar voor mensen die gewoon een plek nodig hebben om te wonen. Wij staan alleen aan de kant van de huurder — en willen het vinden van een woning veel lichter laten voelen.',
-      aboutCite: 'Oprichters',
+      aboutQuote: 'De Nederlandse huurmarkt is zwaar voor mensen die gewoon een plek nodig hebben om te wonen. Wij staan alleen aan de kant van de huurder.',
       believeLabel: 'Waar we in geloven',
       bel1k: 'Eerlijk',
       bel1: 'Je betaalt pas als je huurcontract getekend is.',

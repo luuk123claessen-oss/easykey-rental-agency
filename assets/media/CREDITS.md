@@ -2,21 +2,21 @@
 
 Photos and video are free to use commercially under the [Pexels License](https://www.pexels.com/license/) (no attribution required; we list it anyway). Files were downloaded in October 2026 and re-encoded for the web: resized, cropped, colour-graded and compressed. None of them show people's faces or brand logos, and none of them are homes we offer. They set a mood.
 
-## Hero: the daylight montage (`hero-2.webm`, `hero-2.mp4`, `hero-2-9x16.mp4`, `hero-2-poster*`, and `reel-9x16.mp4` with the words burnt in)
+## Hero: a city-to-home montage (`hero-3.webm`, `hero-3.mp4`, `hero-3-9x16.mp4`, `hero-3-poster*`, and `reel-9x16.mp4` with the words burnt in)
 
-Nine cuts of 1.25 seconds, natural colour, with a slow push-in on every cut. The poster is the first frame.
+Ten cuts of 1.25 seconds in natural colour, each with a slow push-in. The story runs from the city waking up, through its streets, to the key in the door and the home behind it. The poster is the first frame.
 
 | Clip | Creator | Source |
 | --- | --- | --- |
-| A Water Canal in the City of Amsterdam | Mikhail Fesenko | https://www.pexels.com/video/a-water-canal-in-the-city-of-amsterdam-14754279/ |
-| A row of purple bicycles parked in front of a bridge | Ali Alcántara | https://www.pexels.com/video/a-row-of-purple-bicycles-parked-in-front-of-a-bridge-19810593/ |
-| Cozy Kitchen at Sunrise with Window View | Waqas ilyas | https://www.pexels.com/video/cozy-kitchen-at-sunrise-with-window-view-38756590/ |
-| A Hinge Attached on the Door | Monstera Production | https://www.pexels.com/video/a-hinge-attached-on-the-door-7830154/ |
-| Kitchen Area and Living Room Interior | Yan Krukau | https://www.pexels.com/video/kitchen-area-and-living-room-interior-7314522/ |
+| Charming Canal and Street in Amsterdam (two cuts) | Jwan Joja | https://www.pexels.com/video/charming-canal-and-street-in-amsterdam-38413800/ |
+| Cyclists on Amsterdam Street Near Windmill | Bráulio jardim | https://www.pexels.com/video/cyclists-on-amsterdam-street-near-windmill-37083543/ |
+| A tram is traveling down a street with flowers | Ali Alcántara | https://www.pexels.com/video/a-tram-is-traveling-down-a-street-with-flowers-19329193/ |
+| Hyperlapse of Traffic on a Busy Intersection in Amsterdam | Mikhail Fesenko | https://www.pexels.com/video/hyperlapse-of-traffic-on-a-busy-intersection-in-amsterdam-12540108/ |
+| A woman walking down a narrow street in amsterdam | Ali Alcántara | https://www.pexels.com/video/a-woman-walking-down-a-narrow-street-in-amsterdam-19329211/ |
+| A Person Sticking a Key in a Doorknob | RDNE Stock project | https://www.pexels.com/video/a-person-sticking-a-key-in-a-doorknob-8292925/ |
 | Person Holding Keys | SHVETS production | https://www.pexels.com/video/person-holding-keys-7986204/ |
+| Cozy Kitchen at Sunrise with Window View | Waqas ilyas | https://www.pexels.com/video/cozy-kitchen-at-sunrise-with-window-view-38756590/ |
 | A living room with a fireplace and a large window | Алан Албегов | https://www.pexels.com/video/a-living-room-with-a-fireplace-and-a-large-window-20707771/ |
-| Sunlit Curtains Gently Sway in the Breeze | Melike | https://www.pexels.com/video/sunlit-curtains-gently-sway-in-the-breeze-38781079/ |
-| A Cozy Home | Max Vakhtbovych | https://www.pexels.com/video/a-cozy-home-7614417/ |
 
 ## Night band (`houses.webm`, `houses.mp4`, `houses-poster*.webp`)
 

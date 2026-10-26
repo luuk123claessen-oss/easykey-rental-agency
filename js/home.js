@@ -21,46 +21,20 @@
 
   var hero = $('.hero');
 
-  // Video: poster first, video starts after the page has loaded. Poster only for reduced motion,
-  // Save-Data and very slow connections. media/hero.mp4 can be swapped for another file without code changes.
+  // The hero video starts straight away from an inline script in index.html (autoplay, no waiting for the load event).
+  // That script removes the video for reduced motion, Save-Data and slow connections; then the poster gets a slow Ken Burns
+  // (not for reduced motion). Here we only pause the video while the hero is off screen.
   function initHeroVideo() {
     var video = $('#hero-video');
-    if (!video || !hero) return;
-    var conn = navigator.connection || {};
-    var lowData = conn.saveData || /(^|-)2g$/.test(conn.effectiveType || '') || window.matchMedia('(prefers-reduced-data: reduce)').matches;
-    if (reduced || lowData) {
-      // A calm still beats a shaky video: slow Ken Burns on the poster (not for reduced motion).
-      if (!reduced) video.parentNode.classList.add('kb');
+    if (!hero) return;
+    if (!video) {
+      var media = $('.hero-media');
+      if (media && !reduced) media.classList.add('kb');
       return;
     }
-    var started = false;
-
-    function start() {
-      if (started) return;
-      started = true;
-      var portrait = window.innerHeight > window.innerWidth;
-      (portrait ? [['assets/media/hero-2-9x16.mp4', 'video/mp4']] : [['assets/media/hero-2.webm', 'video/webm'], ['assets/media/hero-2.mp4', 'video/mp4']]).forEach(function (s) {
-        var src = document.createElement('source');
-        src.src = s[0];
-        src.type = s[1];
-        video.appendChild(src);
-      });
-      video.addEventListener('playing', function () { video.classList.add('on'); video.parentNode.classList.add('video-on'); }, { once: true });
-      video.load();
-      var p = video.play();
-      if (p && p.catch) p.catch(function () { /* autoplay blocked: the poster stays */ });
-    }
-    function whenIdle() {
-      if (window.requestIdleCallback) window.requestIdleCallback(start, { timeout: 2500 });
-      else setTimeout(start, 600);
-    }
-    if (document.readyState === 'complete') whenIdle();
-    else window.addEventListener('load', whenIdle, { once: true });
-
     if ('IntersectionObserver' in window) {
       new IntersectionObserver(function (entries) {
         entries.forEach(function (en) {
-          if (!started) return;
           if (en.isIntersecting) { var p = video.play(); if (p && p.catch) p.catch(function () {}); }
           else video.pause();
         });

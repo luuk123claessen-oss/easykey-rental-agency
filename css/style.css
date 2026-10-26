@@ -240,9 +240,9 @@ nav.menu a:hover::after, nav.menu a.is-current::after { transform: scaleX(1); }
 .hero-media { position: absolute; inset: 0; z-index: -2; transform: translate3d(0, var(--vy, 0px), 0) scale(1.05); will-change: transform; background: var(--nacht); }
 .hero-poster img { display: block; width: 100%; height: 100%; object-fit: cover; }
 .hero-poster, .hero-video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; filter: var(--media-filter); }
-.hero-video { opacity: 0; transition: opacity 1.8s var(--ease); pointer-events: none; }
+.hero-video { opacity: 0; transition: opacity .5s ease; pointer-events: none; }
 .hero-video.on { opacity: 1; }
-.hero-poster { transition: opacity 1.8s var(--ease); }
+.hero-poster { transition: opacity .5s ease; }
 .hero-media.video-on .hero-poster { opacity: 0; }
 .hero-media.kb .hero-poster { animation: kenburns 30s ease-in-out infinite alternate; }
 @keyframes kenburns { from { transform: scale(1); } to { transform: scale(1.06); } }

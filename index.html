@@ -122,8 +122,8 @@
         <svg class="mark mark-progress" viewBox="0 0 158 120" width="45" height="34" aria-hidden="true" focusable="false">
           <defs><clipPath id="dclip"><rect id="dclip-rect" x="0" y="120" width="158" height="0"/></clipPath></defs>
           <path class="d-fill" d="M86 108 V14 H96 A47 47 0 0 1 96 108 Z" clip-path="url(#dclip)"/>
-          <path class="mp" d="M16 108 V14 H48 A22 22 0 0 1 48 58 H16" fill="none" stroke-width="11" stroke-linejoin="miter"/>
-          <path class="md" d="M86 108 V14 H96 A47 47 0 0 1 96 108 Z" fill="none" stroke-width="11" stroke-linejoin="miter"/>
+          <path class="mp" pathLength="1" d="M16 108 V14 H48 A22 22 0 0 1 48 58 H16" fill="none" stroke-width="11" stroke-linejoin="miter"/>
+          <path class="md" pathLength="1" d="M86 108 V14 H96 A47 47 0 0 1 96 108 Z" fill="none" stroke-width="11" stroke-linejoin="miter"/>
         </svg>
         <span>Rental Agency</span>
       </a>
@@ -287,6 +287,69 @@
           </article>
           </div>
         </div>
+      </div>
+    </section>
+
+    <div class="marquee" aria-hidden="true">
+      <div class="mq-track">
+        <div class="mq-group"><span data-i18n="marq1">Tenant side only</span><i></i><span data-i18n="marq2">No cure, no pay</span><i></i><span data-i18n="marq3">No listings</span><i></i><span data-i18n="marq4">One fixed contact</span><i></i></div>
+        <div class="mq-group"><span data-i18n="marq1">Tenant side only</span><i></i><span data-i18n="marq2">No cure, no pay</span><i></i><span data-i18n="marq3">No listings</span><i></i><span data-i18n="marq4">One fixed contact</span><i></i></div>
+      </div>
+    </div>
+
+    <section class="s shield grain" id="shield" data-chapter="04" aria-labelledby="shield-title">
+      <div class="wrap">
+        <div class="head" data-reveal>
+          <span class="label on-dark" data-i18n="shLabel">The Shield</span>
+          <h2 id="shield-title" data-i18n="shTitle">We check the landlord and the lease</h2>
+          <p class="sub" data-i18n="shLead">Rental scams are real. Before you sign or pay anything, we look at who is renting out the home and what the lease says. Point at a line to see what we check.</p>
+        </div>
+        <div class="shield-grid">
+          <div class="lease spot" data-reveal style="--i:1">
+            <div class="lease-head"><span class="label" data-i18n="shDoc">Rental agreement · sample</span><span class="seal" aria-hidden="true"></span></div>
+            <div class="lease-body">
+              <button type="button" class="lrow" data-k="owner" aria-controls="chk-owner" aria-pressed="false"><span class="num" aria-hidden="true">01</span><span class="lbl" data-i18n="rowOwner">Landlord</span><span class="fld" aria-hidden="true"><i class="ph w60"></i></span></button>
+              <button type="button" class="lrow" data-k="pay" aria-controls="chk-pay" aria-pressed="false"><span class="num" aria-hidden="true">02</span><span class="lbl" data-i18n="rowPay">Payment details</span><span class="fld" aria-hidden="true"><i class="ph w80"></i></span></button>
+              <button type="button" class="lrow" data-k="rent" aria-controls="chk-rent" aria-pressed="false"><span class="num" aria-hidden="true">03</span><span class="lbl" data-i18n="rowRent">Basic rent per month</span><span class="fld" aria-hidden="true"><i class="ph w30"></i></span></button>
+              <button type="button" class="lrow" data-k="deposit" aria-controls="chk-deposit" aria-pressed="false"><span class="num" aria-hidden="true">04</span><span class="lbl" data-i18n="rowDeposit">Deposit</span><span class="fld" aria-hidden="true"><i class="ph w30"></i></span></button>
+              <button type="button" class="lrow" data-k="clauses" aria-controls="chk-clauses" aria-pressed="false"><span class="num" aria-hidden="true">05</span><span class="lbl" data-i18n="rowClauses">Terms and conditions</span><span class="fld" aria-hidden="true"><i class="ph w90"></i><i class="ph w70"></i><i class="ph w80"></i></span></button>
+              <button type="button" class="lrow" data-k="keys" aria-controls="chk-keys" aria-pressed="false"><span class="num" aria-hidden="true">06</span><span class="lbl" data-i18n="rowKeys">Payment and keys</span><span class="fld" aria-hidden="true"><i class="ph w50"></i></span></button>
+              
+            </div>
+            <div class="lease-foot" aria-hidden="true"><span><i class="ph w60"></i></span><span><i class="ph w50"></i></span></div>
+            <p class="lease-note" data-i18n="shDocNote">Sample only. No real person or property.</p>
+          </div>
+          <div class="shield-panel" id="shield-panel" role="region" aria-live="polite" aria-label="Shield" data-reveal style="--i:2">
+            <div class="chk" id="chk-owner" data-k="owner" hidden><span class="label on-dark">01</span><h3 data-i18n="sh1t">Landlord and owner</h3><p data-i18n="sh1p">We check that the person offering the home is the owner, or is authorised by the owner. Ownership is recorded in the public land registry (Kadaster).</p><a class="src" href="https://www.kadaster.nl/" target="_blank" rel="noopener" data-i18n="srcKadaster">Source</a></div>
+            <div class="chk" id="chk-pay" data-k="pay" hidden><span class="label on-dark">02</span><h3 data-i18n="sh2t">Payment details</h3><p data-i18n="sh2p">The name on the bank account should match the landlord, or someone authorised to collect the rent. Anything else is raised with you before any money moves.</p><a class="src" href="https://www.fraudehelpdesk.nl/campagnes/een-dak-boven-je-hoofd-of-van-je-centen-beroofd/" target="_blank" rel="noopener" data-i18n="srcFraud">Source</a></div>
+            <div class="chk" id="chk-rent" data-k="rent" hidden><span class="label on-dark">03</span><h3 data-i18n="sh4t">Rent against the legal limit</h3><p data-i18n="sh4p">We compare the basic rent with the rules for its segment. Limits from 1 January 2026: social rent up to € 932.93; middle rent between € 932.93 and € 1,228.07 (or 144–186 points); above that is the free sector (187+ points). In the free sector the Huurcommissie can check the starting rent, within the first 6 months.</p><a class="src" href="https://www.rijksoverheid.nl/onderwerpen/huurwoning-zoeken/vraag-en-antwoord/wat-is-het-verschil-tussen-een-sociale-huurwoning-een-middenhuurwoning-en-een-huurwoning-in-de-vrije-sector" target="_blank" rel="noopener" data-i18n="srcSegments">Source</a></div>
+            <div class="chk" id="chk-deposit" data-k="deposit" hidden><span class="label on-dark">04</span><h3 data-i18n="sh3t">Deposit</h3><p data-i18n="sh3p">For leases signed from 1 July 2023 the deposit may be at most 2 months’ basic rent. It must be returned within 14 days after the lease ends, or within 30 days if costs are deducted.</p><a class="src" href="https://www.rijksoverheid.nl/vraag-en-antwoord/woning-huren/woning-huren-waarborgsom" target="_blank" rel="noopener" data-i18n="srcDeposit">Source</a></div>
+            <div class="chk" id="chk-clauses" data-k="clauses" hidden><span class="label on-dark">05</span><h3 data-i18n="sh5t">Unusual or one-sided clauses</h3><p data-i18n="sh5p">We read the contract for clauses that look unusual or one-sided and explain them in plain language. Agreements and the deposit must be confirmed in writing (Wet goed verhuurderschap, since 1 July 2023).</p><a class="src" href="https://www.volkshuisvestingnederland.nl/onderwerpen/huren-en-wonen/wet-goed-verhuurderschap/voor-huurders" target="_blank" rel="noopener" data-i18n="srcWgv">Source</a></div>
+            <div class="chk" id="chk-keys" data-k="keys" hidden><span class="label on-dark">06</span><h3 data-i18n="sh6t">No money before keys and contract</h3><p data-i18n="sh6p">No payment before there is a signed contract. Key money is not allowed, and neither are costs for drawing up the lease. Be wary of anyone who asks for money just to view a home.</p><a class="src" href="https://www.rijksoverheid.nl/vraag-en-antwoord/woning-huren/welke-extra-kosten-mag-verhuurder-bij-een-huurcontract-vragen" target="_blank" rel="noopener" data-i18n="srcCosts">Source</a></div>
+            
+            <p class="sh-note" data-i18n="shNote">What we check. General information, not legal advice.</p>
+          </div>
+        </div>
+        <p class="sources"><span class="label on-dark" data-i18n="shSources">Sources</span>
+          <a href="https://www.rijksoverheid.nl/vraag-en-antwoord/woning-huren/woning-huren-waarborgsom" target="_blank" rel="noopener" data-i18n="srcDeposit">Rijksoverheid: deposit</a>
+          <a href="https://www.rijksoverheid.nl/vraag-en-antwoord/woning-huren/welke-extra-kosten-mag-verhuurder-bij-een-huurcontract-vragen" target="_blank" rel="noopener" data-i18n="srcCosts">Rijksoverheid: extra costs</a>
+          <a href="https://www.rijksoverheid.nl/onderwerpen/woning-huren/stappenplan-woning-huren" target="_blank" rel="noopener" data-i18n="srcSteps">Rijksoverheid: renting step by step</a>
+          <a href="https://www.volkshuisvestingnederland.nl/onderwerpen/huren-en-wonen/wet-goed-verhuurderschap/voor-huurders" target="_blank" rel="noopener" data-i18n="srcWgv">Volkshuisvesting Nederland: Wet goed verhuurderschap</a>
+          <a href="https://www.kadaster.nl/" target="_blank" rel="noopener" data-i18n="srcKadaster">Kadaster</a>
+          <a href="https://www.fraudehelpdesk.nl/campagnes/een-dak-boven-je-hoofd-of-van-je-centen-beroofd/" target="_blank" rel="noopener" data-i18n="srcFraud">Fraudehelpdesk: rental scams</a>
+          <span class="checked" data-i18n="shChecked">Last checked 26 October 2026</span>
+        </p>
+      </div>
+    </section>
+
+    <section class="principles" aria-label="Principles">
+      <div class="wrap">
+        <ul>
+          <li data-i18n="prin1">Tenant side only — never paid by landlords.</li>
+          <li data-i18n="prin2">We verify landlord and payment details before any money moves.</li>
+          <li data-i18n="prin3">Fully digital and paperless: mandate, documents and invoice.</li>
+          <li data-i18n="prin4">One fixed contact from first message to signature.</li>
+        </ul>
       </div>
     </section>
 

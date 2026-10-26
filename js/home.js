@@ -699,6 +699,32 @@
     });
   }
 
+  /* ------------------------------------------------------------------ The Shield: hotspots on a sample lease */
+
+  function initShield() {
+    var rows = $$('.lrow');
+    if (!rows.length) return;
+    var panels = $$('.chk');
+    var current = '';
+    function show(k, pin) {
+      if (k === current && !pin) return;
+      current = k;
+      rows.forEach(function (r) {
+        var on = r.getAttribute('data-k') === k;
+        r.classList.toggle('is-active', on);
+        r.setAttribute('aria-pressed', on ? 'true' : 'false');
+      });
+      panels.forEach(function (p) { p.hidden = p.getAttribute('data-k') !== k; });
+    }
+    rows.forEach(function (r) {
+      var k = r.getAttribute('data-k');
+      r.addEventListener('pointerenter', function (e) { if (e.pointerType === 'mouse') show(k); });
+      r.addEventListener('focus', function () { show(k); });
+      r.addEventListener('click', function () { show(k, true); });
+    });
+    show(rows[0].getAttribute('data-k'));
+  }
+
   /* ------------------------------------------------------------------ FAQ accordion (single open) */
 
   var faqItems = $$('.faq-item');
@@ -772,5 +798,6 @@
     syncProfile();
   }
   renderFounders();
+  initShield();
   tick();
 })();

@@ -33,7 +33,7 @@
       bnContactp: 'From first message to signature.',
       housesT: 'We search across the Netherlands.', faqMore: 'More questions', faqLess: 'Fewer questions',
       extrasLabel: 'More than a search', extrasText: 'We can also help with consultancy and advice around renting. Prices are personal and agreed with you first.',
-      stmt: 'We find the match for what you’re looking for, within our own network. We come back with options, and you sign only if you’re happy with one.',
+      stmt: 'We are a rental agency that works for tenants only: we find your home, you sign.',
 
       howLabel: 'How it works', howTitle: 'From registration to keys',
       s1h: 'Registration', s1p: 'Tell us what you need: type of home, region, budget and start date. It takes a minute and costs nothing.',
@@ -254,7 +254,7 @@
       bnContactp: 'Van eerste bericht tot handtekening.',
       housesT: 'Wij zoeken in heel Nederland.', faqMore: 'Meer vragen', faqLess: 'Minder vragen',
       extrasLabel: 'Meer dan zoeken', extrasText: 'We kunnen je ook helpen met consultancy en advies rondom het huren. De prijs is persoonlijk en spreken we vooraf met je af.',
-      stmt: 'Wij zoeken een match voor wat jij zoekt, binnen ons eigen netwerk. Daarna komen we met opties, en jij tekent alleen als je er blij mee bent.',
+      stmt: 'Wij zijn een rental agency die alleen voor huurders werkt: wij vinden jouw woning, jij tekent.',
 
       howLabel: 'Werkwijze', howTitle: 'Van registratie tot sleutel',
       s1h: 'Registratie', s1p: 'Vertel wat je nodig hebt: soort woning, regio, budget en startdatum. Het kost een minuut en niets.',

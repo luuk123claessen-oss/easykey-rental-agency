@@ -201,7 +201,9 @@
     var vh = window.innerHeight;
     var r = ol.getBoundingClientRect();
     var trig = vh * 0.56;
-    ol.style.setProperty('--p', clamp((trig - r.top) / r.height, 0, 1).toFixed(4));
+    var hp = clamp((trig - r.top) / r.height, 0, 1);
+    ol.style.setProperty('--p', hp.toFixed(4));
+    if (keyCtrl) keyCtrl.progress = hp;
     var steps = $$('.how-step', ol);
     var active = -1;
     steps.forEach(function (s, i) { if (s.getBoundingClientRect().top < trig) active = i; });
@@ -781,6 +783,37 @@
     document.addEventListener('pd:lang', function () { if (current) preview(current); });
   }
 
+  /* ------------------------------------------------------------------ Emerald-glass key (lazy WebGL) */
+
+  var keyCtrl = null;
+  function initKey3d() {
+    var box = $('#key3d');
+    if (!box || !('IntersectionObserver' in window)) return;
+    var conn = navigator.connection || {};
+    var lowData = conn.saveData || /(^|-)2g$/.test(conn.effectiveType || '') || window.matchMedia('(prefers-reduced-data: reduce)').matches;
+    if (reduced || lowData) return; // the static SVG key stays
+    var canvas = $('canvas', box);
+    var loading = false, visible = false;
+    function ready() {
+      keyCtrl = window.PDKey && window.PDKey.init(canvas);
+      if (!keyCtrl) return;
+      box.classList.add('ready');
+      if (visible) keyCtrl.start(); else keyCtrl.drawOnce();
+    }
+    new IntersectionObserver(function (entries) {
+      visible = entries[0].isIntersecting;
+      if (visible && !loading) {
+        loading = true;
+        var s = document.createElement('script');
+        s.src = 'js/key3d.js';
+        s.onload = ready;
+        document.body.appendChild(s);
+      } else if (keyCtrl) {
+        if (visible) keyCtrl.start(); else keyCtrl.stop();
+      }
+    }, { rootMargin: '300px 0px' }).observe(box);
+  }
+
   /* ------------------------------------------------------------------ FAQ accordion (single open) */
 
   var faqItems = $$('.faq-item');
@@ -856,5 +889,6 @@
   renderFounders();
   initShield();
   initMap();
+  initKey3d();
   tick();
 })();

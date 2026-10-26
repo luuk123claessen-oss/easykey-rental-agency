@@ -35,7 +35,7 @@
   <link rel="preload" href="assets/media/hero-3-poster.avif" as="image" type="image/avif" imagesrcset="assets/media/hero-3-poster-800.avif 800w, assets/media/hero-3-poster.avif 1280w" imagesizes="100vw" fetchpriority="high">
   <link rel="preload" href="fonts/inter-tight-latin.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="fonts/jetbrains-mono-latin.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="css/style.css?v=11">
+  <link rel="stylesheet" href="css/style.css?v=12">
   <script>
   /* Adds the .js class and loads the scripts progressively: straight away for Dutch visitors (no flash of English),
      otherwise after the page has loaded or on the first interaction. The hero needs no JavaScript to render. */
@@ -52,7 +52,7 @@
     function load() {
       if (done) return;
       done = 1;
-      ["js/config.js?v=11", "js/i18n.js?v=11", "js/home.js?v=11"].forEach(function (s) {
+      ["js/config.js?v=12", "js/i18n.js?v=12", "js/home.js?v=12"].forEach(function (s) {
         var e = d.createElement('script'); e.src = s; e.async = false; d.body.appendChild(e);
       });
     }
@@ -222,7 +222,7 @@
 
     <section class="statement" id="statement" aria-label="Summary">
       <div class="wrap">
-        <p class="stmt" id="stmt" data-i18n="stmt">We are a rental agency that works for tenants only: we find your home, you sign.</p>
+        <p class="stmt" id="stmt" data-i18n="stmt">We are a rental agency that works for you: we find your home, you sign.</p>
       </div>
     </section>
 

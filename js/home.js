@@ -219,9 +219,9 @@
   var wordmark = $('#wordmark');
   var statementWords = [];
   var navLinks = $$('nav.menu a');
-  var sectionIds = ['how', 'who', 'shield', 'story', 'where', 'reel', 'fee', 'register', 'about', 'after', 'faq', 'sign'];
-  var navOf = { how: 'how', who: 'who', shield: 'shield', story: 'shield', where: 'where', reel: 'where', fee: 'fee', register: 'fee', about: 'about', after: 'faq', faq: 'faq', sign: 'faq' };
-  var chapterOf = { top: 1, statement: 1, how: 2, who: 3, shield: 4, story: 4, where: 5, reel: 5, fee: 6, register: 6, about: 7, after: 8, faq: 8, sign: 8 };
+  var sectionIds = ['how', 'who', 'shield', 'story', 'reel', 'fee', 'register', 'about', 'after', 'faq', 'sign'];
+  var navOf = { how: 'how', who: 'who', shield: 'shield', story: 'shield', reel: 'shield', fee: 'fee', register: 'fee', about: 'about', after: 'faq', faq: 'faq', sign: 'faq' };
+  var chapterOf = { top: 1, statement: 1, how: 2, who: 3, shield: 4, story: 4, reel: 4, fee: 5, register: 5, about: 6, after: 7, faq: 7, sign: 7 };
   var chapterLinks = $$('#chapters a');
   var vis = { stmt: false, how: false, who: false, story: false };
   var cssTimeline = !!(window.CSS && CSS.supports && CSS.supports('animation-timeline: view()'));
@@ -829,44 +829,6 @@
     toastEl._t = setTimeout(function () { toastEl.classList.remove('show'); }, 2600);
   }
 
-  function initMap() {
-    var map = $('#nl-map');
-    if (!map) return;
-    var pins = $$('.pin', map);
-    pins.forEach(function (p, i) { p.style.setProperty('--k', i); });
-    var cityBtns = $$('.city');
-    var nameEl = $('#city-name');
-    var vibeEl = $('#city-vibe');
-    var current = '';
-    function preview(k) {
-      current = k;
-      pins.forEach(function (p) { p.classList.toggle('is-active', p.getAttribute('data-city') === k); });
-      cityBtns.forEach(function (b) { b.classList.toggle('is-active', b.getAttribute('data-city') === k); });
-      nameEl.textContent = PD.t('c_' + k);
-      vibeEl.textContent = PD.t('v_' + k);
-    }
-    function pick(k) {
-      preview(k);
-      var reg = field('regio');
-      if (reg) {
-        reg.value = PD.t('c_' + k);
-        reg.dispatchEvent(new Event('input', { bubbles: true }));
-        syncProfile('region');
-        if (msgKeys.regio) showMsg('regio', '');
-      }
-      toast(PD.t('mapSet').replace('{city}', PD.t('c_' + k)));
-      goTo($('#register'));
-      setTimeout(function () { if (reg) reg.focus({ preventScroll: true }); }, reduced ? 0 : 700);
-    }
-    pins.concat(cityBtns).forEach(function (el) {
-      var k = el.getAttribute('data-city');
-      el.addEventListener('pointerenter', function (e) { if (e.pointerType === 'mouse') preview(k); });
-      el.addEventListener('focus', function () { preview(k); });
-      el.addEventListener('click', function () { pick(k); });
-    });
-    document.addEventListener('pd:lang', function () { if (current) preview(current); });
-  }
-
   /* ------------------------------------------------------------------ Emerald-glass key (lazy WebGL) */
 
   var keyCtrl = null;
@@ -1116,7 +1078,6 @@
   }
   renderFounders();
   initShield();
-  initMap();
   initKey3d();
   initSign();
   initReel();

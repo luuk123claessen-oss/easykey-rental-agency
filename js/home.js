@@ -67,6 +67,53 @@
     }
   }
 
+  // Kinetic headline: every letter is its own span (so it can rise from a masked baseline and swell near the cursor).
+  // The real text lives in the h1's aria-label; the split spans are aria-hidden. The English markup is already split in the HTML.
+  function splitInto(el, text, start) {
+    if (el.textContent === text && el.querySelector('.ch')) return start + text.replace(/ /g, '').length;
+    el.textContent = '';
+    var idx = start;
+    text.split(' ').forEach(function (word, wi) {
+      if (wi) el.appendChild(document.createTextNode(' '));
+      var w = document.createElement('span');
+      w.className = 'w';
+      word.split('').forEach(function (c) {
+        var s = document.createElement('span');
+        s.className = 'ch';
+        s.style.setProperty('--i', idx++);
+        s.textContent = c;
+        w.appendChild(s);
+      });
+      el.appendChild(w);
+    });
+    return idx;
+  }
+  function splitHero() {
+    var n = 0;
+    $$('[data-split]').forEach(function (el) { n = splitInto(el, PD.t(el.getAttribute('data-split')), n); });
+  }
+  function initHeroSwell() {
+    if (!finePointer || reduced || !heroH1) return;
+    var letters = [], raf = 0, mx = -999, my = -999, on = false;
+    function frame() {
+      raf = 0;
+      if (!letters.length) letters = $$('.ch', heroH1);
+      letters.forEach(function (c) {
+        var r = c.getBoundingClientRect();
+        var d = Math.hypot(mx - (r.left + r.width / 2), my - (r.top + r.height / 2));
+        var v = on ? clamp(1 - d / 170, 0, 1) : 0;
+        c.style.setProperty('--sw', v.toFixed(2));
+      });
+    }
+    hero.addEventListener('pointermove', function (e) {
+      if (e.pointerType && e.pointerType !== 'mouse') return;
+      mx = e.clientX; my = e.clientY; on = true;
+      if (!raf) raf = requestAnimationFrame(frame);
+    }, { passive: true });
+    hero.addEventListener('pointerleave', function () { on = false; if (!raf) raf = requestAnimationFrame(frame); });
+    document.addEventListener('pd:lang', function () { letters = []; });
+  }
+
   // Magnetic primary button and a tiny cursor glow, only for fine pointers
   function initPointerEffects() {
     if (!finePointer || reduced) return;
@@ -215,6 +262,7 @@
 
   var header = $('#site-header');
   var heroMedia = $('.hero-media');
+  var heroH1 = $('#hero-h1');
   var dClip = $('#dclip-rect');
   var wordmark = $('#wordmark');
   var statementWords = [];
@@ -257,30 +305,40 @@
     });
   }
 
+  // How it works: progress for the 3D key, "seen" flags for the card illustrations, and the stacking effect:
+  // as the next card slides over, the previous one scales to .94 and dims (--cp from 0 to 1)
   function updateHow() {
     var ol = $('#how-steps');
     if (!ol) return;
     var vh = window.innerHeight;
     var r = ol.getBoundingClientRect();
-    var trig = vh * 0.56;
-    var hp = clamp((trig - r.top) / r.height, 0, 1);
-    ol.style.setProperty('--p', hp.toFixed(4));
-    if (keyCtrl) keyCtrl.progress = hp;
-    var steps = $$('.how-step', ol);
-    var active = -1;
-    steps.forEach(function (s, i) { if (s.getBoundingClientRect().top < trig) active = i; });
-    steps.forEach(function (s, i) {
-      s.classList.toggle('is-active', i === active);
-      s.classList.toggle('is-past', i < active);
+    if (keyCtrl) keyCtrl.progress = clamp((vh * 0.56 - r.top) / r.height, 0, 1);
+    var cards = $$('.how-card', ol);
+    cards.forEach(function (c, i) {
+      var top = c.getBoundingClientRect().top;
+      if (top < vh * 0.85) c.classList.add('is-seen');
+      if (reduced || i === cards.length - 1) return;
+      var next = cards[i + 1].getBoundingClientRect().top;
+      var stuck = parseFloat(getComputedStyle(cards[i + 1]).top) || 0;
+      var p = clamp(1 - (next - stuck) / Math.max(1, c.offsetHeight), 0, 1);
+      c.style.setProperty('--cp', p.toFixed(3));
     });
   }
 
-  function updateStory() {
-    var track = $('#story-track');
-    if (!track) return;
+  // Film-strip: --fp (0 to 1) when the CSS scroll timeline is missing, and the "02 / 04" counter always
+  var filmPinned = !reduced && window.matchMedia('(min-width: 761px)').matches;
+  function updateFilm() {
+    var track = $('#film-track');
+    if (!track || !filmPinned) return;
     var r = track.getBoundingClientRect();
     var p = clamp(-r.top / Math.max(1, r.height - window.innerHeight), 0, 1);
-    track.style.setProperty('--sp', p.toFixed(4));
+    if (!cssTimeline) track.style.setProperty('--fp', p.toFixed(4));
+    var count = $('#film-count');
+    if (count) {
+      var n = Math.min(3, Math.round(p * 3)) + 1;
+      var txt = '0' + n + ' / 04';
+      if (count.textContent !== txt) count.textContent = txt;
+    }
   }
 
   function updateParallax() {
@@ -311,17 +369,15 @@
     }
     if (wordmark) wordmark.classList.toggle('lit', prog > 0.985);
 
-    if (hero && !reduced && y < vh * 1.1) {
-      var inner = $('#hero-inner');
-      var k = clamp(y / (vh * 0.75), 0, 1);
+    if (hero && !reduced && y < vh * 1.8) {
+      var hp = clamp(y / (vh * 0.6), 0, 1);
+      if (heroH1) heroH1.style.setProperty('--hp', hp.toFixed(3));
       heroMedia.style.setProperty('--vy', Math.min(y * 0.08, 40).toFixed(1) + 'px');
-      inner.style.transform = k > 0 ? 'translate3d(0,' + (y * 0.12).toFixed(1) + 'px,0)' : '';
-      inner.style.opacity = k > 0 ? (1 - k * 0.92).toFixed(3) : '';
     }
     if (vis.stmt) updateStatement();
     if (vis.how) updateHow();
+    if (vis.story) updateFilm();
     if (vis.who) updateParallax();
-    if (vis.story && !cssTimeline) updateStory();
 
     var current = '', chapter = 1;
     ['top', 'statement'].concat(sectionIds).forEach(function (id) {
@@ -1075,6 +1131,7 @@
   /* ------------------------------------------------------------------ language changes and init */
 
   document.addEventListener('pd:lang', function () {
+    splitHero();
     splitStatement();
     renderAmounts();
     if (form) {
@@ -1090,8 +1147,10 @@
   var yearEl = $('#year');
   if (yearEl) yearEl.textContent = String(new Date().getFullYear());
 
+  splitHero();
   initHeroVideo();
   initClock();
+  initHeroSwell();
   initSmoothScroll();
   initPointerEffects();
   splitStatement();
@@ -1121,6 +1180,7 @@
   initSign();
   initReel();
   initChecklist();
+  if (!filmPinned) { var fs = $('#film-strip'); if (fs) fs.setAttribute('tabindex', '0'); }
   (function initProof() {
     var items = CFG.proof;
     if (!items || !items.length) return;

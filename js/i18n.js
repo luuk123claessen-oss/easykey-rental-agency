@@ -467,6 +467,10 @@
 
   function applyConfig() {
     var cfg = PD.cfg;
+    document.querySelectorAll('[data-cfg-show]').forEach(function (el) {
+      var any = el.getAttribute('data-cfg-show').split(',').some(function (k) { return !PD.isPlaceholder(cfg[k]); });
+      el.hidden = !any;
+    });
     document.querySelectorAll('[data-cfg]').forEach(function (el) {
       var value = cfg[el.getAttribute('data-cfg')];
       if (value && el.textContent !== value) el.textContent = value;

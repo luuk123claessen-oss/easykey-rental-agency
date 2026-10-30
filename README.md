@@ -58,12 +58,12 @@ Everything lives in one object, `js/config.js` (`window.PD_CONFIG`):
 
 | Key | What it is |
 | --- | --- |
-| `kvk`, `btw`, `email`, `phone` | Shown in the footer and on the legal pages. Currently `[KvK]`, `[BTW]`, `[email]`, `[phone]`. While `email` is a placeholder, the "or email us instead" link in the form error is left out. |
+| `kvk`, `btw`, `email`, `phone` | Empty for now, so they are not shown anywhere. Fill one in and the matching footer row appears by itself (Company: KvK and VAT, Contact: email and phone). The legal pages do not use them. |
 | `FORM_ENDPOINT`, `FORM_ACCESS_KEY` | The one URL the registration form POSTs JSON to (Web3Forms, key is public by design). |
 | `proof` | Empty on purpose. Add real, provable numbers only, for example `[{ value: '1', label: 'Fixed contact per client' }]`. A proof strip appears only when the list has items. |
 | `FACTS` | The four tiles of the Facts & figures band, see above. |
 
-Also: the founders' quote (`aboutQuote` in `js/i18n.js`, marked `FOUNDER-EDIT`; the About section shows initials only, no names), `[KvK]` in the JSON-LD of `index.html`, `[retention period]` in `privacy.html`, and the `[VERIFY]` markers in the guides.
+Also: the founders' quote (`aboutQuote` in `js/i18n.js`, marked `FOUNDER-EDIT`; the About section shows initials only, no names).
 
 The legal pages and the guides are plain-language drafts. They say so, and they have not been reviewed by a legal professional.
 

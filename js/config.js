@@ -2,10 +2,11 @@
    Everything that still needs a real value is a clearly marked placeholder in square brackets.
    Replace the values here and they update everywhere (footer, legal pages, mailto fallback). */
 window.PD_CONFIG = {
-  kvk: '[KvK]',
-  btw: '[BTW]',
-  email: '[email]',
-  phone: '[phone]',
+  // Leave a value empty ('') and it is simply not shown anywhere. Fill it in and the footer rows appear by themselves.
+  kvk: '',
+  btw: '',
+  email: '',
+  phone: '',
 
   // Registration form: POST JSON to this endpoint. The Web3Forms access key is public by design
   // (it only lets the form deliver to the inbox it was created for).
